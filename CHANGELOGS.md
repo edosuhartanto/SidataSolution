@@ -18,6 +18,16 @@
 - BARU : models berisi FilterContent, SortContent dan QueryContent
 - BARU : Extension terhadap IQueryable<T> utk Apply QueryContent menjadi Expression
  
+# Sidata.Abstractions.Queryable.SqlServer
+### v.2026.06.1
+- awal buat
+- BARU: ekstensi IQueryable utk membuat Expression LIKE di Sql Server
+
+# Sidata.SLIP2.Data
+### v.2026.06.1
+- buat awal
+- BARU : semua class modul utk domain utama Sistem Loyalti Pelanggan 2
+
 ---
 Sidata Solution
 <br>Copyright (c) 2026 Sidata Solusi Ritel

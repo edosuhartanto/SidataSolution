@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>Data Model Utama Sistem Loyalti Pelanggan 2</Title>
+    <Version>2026.06.1</Version>
+    <Authors>Edo Suhartanto</Authors>
+    <Company>Sidata Solusi Ritel</Company>
+    <Description>Seluruh Model yang merepresentasikan Sistem Loyalti Pelanggan 2 dalam bentuk ORM. Semua kelas merupakan turunan Persistent Object</Description>
+    <Copyright>(c) 2026 Sidata Solusi Ritel</Copyright>
+    <Product>Sistem Loyalti Pelanggan 2</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>sidata;platform;framework;sidata platform;sidata framework;persistent;persistent object;domain;data;ORM;</PackageTags>
+    <PackageReleaseNotes>
+      v.2026.06.1
+      - buat awal
+      - BARU : semua class modul utk domain utama Sistem Loyalti Pelanggan 2
+
+      catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sidata.Abstractions\Sidata.Abstractions.csproj" />
+    <ProjectReference Include="..\Sidata.SLIP2.Data.Abstractions\Sidata.SLIP2.Data.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

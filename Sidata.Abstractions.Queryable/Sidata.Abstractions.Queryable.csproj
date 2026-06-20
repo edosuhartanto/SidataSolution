@@ -11,14 +11,18 @@
     <Description>kumpulan item (interface, enum, models dan extension) utk membangun Expression dari sebuah class QueryContent </Description>
     <Copyright>(c) 2026 Sidata Solusi Ritel</Copyright>
     <PackageTags>sidata;platform;framework;sidata platform;sidata framework;abtract;abstractions;generic;base;base class;persistent;persistent object;standard;LINQ;queryable;extension;querycontent;filter;sort;</PackageTags>
-    <PackageReleaseNotes>v.2026.06.1
-- awal buat
-- BARU : enum FilterOperator, SortDirection dan FilterSortSelector
-- BARU : interfaces IPropertyOperator
-- BARU : models berisi FilterContent, SortContent dan QueryContent
-- BARU : Extension terhadap IQueryable&lt;T&gt; utk Apply QueryContent menjadi Expression
+    <PackageReleaseNotes>
+      v.2026.06.1
+      - awal buat
+      - BARU : enum FilterOperator, SortDirection dan FilterSortSelector
+      - BARU : interfaces IPropertyOperator
+      - BARU : models berisi FilterContent, SortContent dan QueryContent
+      - BARU : Extension terhadap IQueryable&lt;T&gt; utk Apply QueryContent menjadi Expression
 
-catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md</PackageReleaseNotes>
+      catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md
+    </PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Product>Sidata Solution Abstraction</Product>
   </PropertyGroup>
 
 </Project>

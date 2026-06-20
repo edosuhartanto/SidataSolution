@@ -24,6 +24,7 @@
 
       catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md
     </PackageReleaseNotes>
+    <Product>Sidata Solution Abstraction</Product>
   </PropertyGroup>
 
   <ItemGroup>

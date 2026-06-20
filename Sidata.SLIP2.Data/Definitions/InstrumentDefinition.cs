@@ -1,0 +1,127 @@
+﻿
+// ******************************************************
+// Copyright (c) 2026 Sidata Solusi Ritel
+// Licensed under the MIT License.
+// build by Edo Suhartanto 
+// ******************************************************
+
+using Sidata.Abstractions.BaseClasses;
+using Sidata.SLIP2.Data.Abstractions.Enums;
+using Sidata.SLIP2.Data.Masters;
+
+namespace Sidata.SLIP2.Data.Definitions
+{
+    /// <summary>
+    /// class to define the behaviour of instrument, 
+    /// this is the template for an instrument,
+    /// sample of instrument definition like 
+    /// VoucherDefinition, PointRewardDefinition, MembershipDefinition, etc
+    /// </summary>
+    public class InstrumentDefinition : PersistentObject
+    {
+        #region FK (Merchant, InstrumentType)
+        /// <summary>
+        /// id of the merchant who owns this definition
+        /// </summary>
+        public long MerchantId { get; set; }
+        
+        /// <summary>
+        /// id of the instrument type for this definition
+        /// type of VOUCHER, POINT, MEMBERSHIP, etc
+        /// a departement
+        /// </summary>
+        public long InstrumentTypeId { get; set; }
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// code of the instrument definition.
+        /// user-defined, user-friendly code
+        /// </summary>
+        public string DefinitionCode { get; set; } = default!;
+
+        /// <summary>
+        /// name of the instrument definition.
+        /// </summary>
+        public string DefinitionName { get; set; } = default!;
+
+        /// <summary>
+        /// type of balance calculation strategy
+        /// 0=undefined, 1=reusable, 2=bucket, 3=onetime / single use
+        /// </summary>
+        public BalanceStrategyType BalanceStrategyType { get; set; }
+
+        #region Earn Behavior
+        /// <summary>
+        /// how much value the user need to have to earn 1 unit
+        /// ex.100.000idr gets 100points = 0.001
+        /// 1 idr get 1000 points = 1000;
+        /// 1 idr get 1 point = 1;
+        /// </summary>
+        public decimal EarnConversionRate { get; set; }
+
+        /// <summary>
+        /// rounding mode for earn conversion
+        /// 0=none, 1=floor, 2=ceiling, 3=round
+        /// </summary>
+        public RoundingMode EarnRoundingMode { get; set; }
+
+        /// <summary>
+        /// value to be used as a factor for rounding the earning
+        /// after calculate with convertion rate
+        /// ex. factor=500, roundingmode=floor, earning=1560 => 1500;
+        /// factor=500, roundingmode=ceiling, earning=1560 => 2000;
+        /// </summary>
+        public decimal EarnRoundingFactor { get; set;  }
+        #endregion
+
+        #region Redeem Behavior
+        /// <summary>
+        /// how much value user can get when redeem 1 unit
+        /// ex. 25 points gets 1 idr = 0.04;
+        /// 1 points get 100 idr = 100;
+        /// 1 points get 1 idr = 1;
+        /// </summary>
+        public decimal RedeemConversionRate { get; set; }
+
+        /// <summary>
+        /// rounding mode for redeem conversion
+        /// 0=none, 1=floor, 2=ceiling, 3=round
+        /// </summary>
+        public RoundingMode RedeemRoundingMode { get; set; }
+
+        /// <summary>
+        /// value to be used as a factor for rounding the redeeming value
+        /// after calculate with convertion rate
+        /// ex. factor=500, roundingmode=floor, redeem=1560 => 1500;
+        /// factor=500, roundingmode=ceiling, redeem=1560 => 2000;
+        /// </summary>
+        public decimal RedeemRoundingFactor { get; set; }
+        #endregion
+
+        /// <summary>
+        /// definition is still active
+        /// </summary>
+        public bool IsActive { get; set; }
+        #endregion
+
+        #region FK Relationships
+        /// <summary>
+        /// the merchant who own this definition
+        /// </summary>
+        public Merchant Merchant { get; set; } = default!;
+
+        /// <summary>
+        /// type of this definition
+        /// </summary>
+        public InstrumentType InstrumentType { get; set; } = default!;
+        #endregion
+
+        #region Aggregation Relationships
+        /// <summary>
+        /// which account use this definition
+        /// </summary>
+        public ICollection<InstrumentAccount> InstrumentAccounts { get; set; } = [];
+        #endregion 
+    }
+}

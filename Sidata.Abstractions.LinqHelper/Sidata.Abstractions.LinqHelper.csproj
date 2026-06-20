@@ -19,6 +19,7 @@
       catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md
     </PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Product>Sidata Solution Abstraction</Product>
   </PropertyGroup>
 
 </Project>

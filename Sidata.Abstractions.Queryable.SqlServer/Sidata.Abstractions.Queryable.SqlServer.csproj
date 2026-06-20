@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>Ekstensi Pembangun Expression Utk Operator LIKE Sql Server</Title>
+    <Version>2026.06.1</Version>
+    <Authors>Edo Suhartanto</Authors>
+    <Company>Sidata Solusi Ritel</Company>
+    <Description>modul berisi ekstensi utk pembangun Expression khusus utk perintah LIKE Sql Server. </Description>
+    <Copyright>(c) 2026 Sidata Solusi Ritel</Copyright>
+    <PackageTags>sidata;platform;framework;sidata platform;sidata framework;abtract;abstractions;generic;base;base class;persistent;persistent object;standard;LINQ;queryable;extension;querycontent;sqlserver;LIKE;operator</PackageTags>
+    <PackageReleaseNotes>
+      v.2026.06.1
+      - awal buat
+      - BARU: ekstensi IQueryable utk membuat Expression LIKE di Sql Server
+
+      catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md
+    </PackageReleaseNotes>
+    <Product>Sidata Solution Abstraction</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.28" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sidata.Abstractions.Queryable\Sidata.Abstractions.Queryable.csproj" />
+  </ItemGroup>
+
+</Project>
