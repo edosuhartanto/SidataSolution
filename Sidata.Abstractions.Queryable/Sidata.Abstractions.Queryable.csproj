@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>Ekstensi atas IQueryable utk membangun Content Query terhap fungsi WHERE dan SORT</Title>
+    <Version>2026.06.1</Version>
+    <Authors>Edo Suhartanto</Authors>
+    <Company>Sidata Solusi Ritel</Company>
+    <Description>kumpulan item (interface, enum, models dan extension) utk membangun Expression dari sebuah class QueryContent </Description>
+    <Copyright>(c) 2026 Sidata Solusi Ritel</Copyright>
+    <PackageTags>sidata;platform;framework;sidata platform;sidata framework;abtract;abstractions;generic;base;base class;persistent;persistent object;standard;LINQ;queryable;extension;querycontent;filter;sort;</PackageTags>
+    <PackageReleaseNotes>v.2026.06.1
+- awal buat
+- BARU : enum FilterOperator, SortDirection dan FilterSortSelector
+- BARU : interfaces IPropertyOperator
+- BARU : models berisi FilterContent, SortContent dan QueryContent
+- BARU : Extension terhadap IQueryable&lt;T&gt; utk Apply QueryContent menjadi Expression
+
+catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>
