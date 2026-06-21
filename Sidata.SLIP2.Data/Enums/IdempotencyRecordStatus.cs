@@ -4,7 +4,7 @@
 // build by Edo Suhartanto 
 // ******************************************************
 
-namespace Sidata.SLIP2.Data.Abstractions.Enums
+namespace Sidata.SLIP2.Data.Enums
 {
     /// <summary>
     /// status of idempotency record

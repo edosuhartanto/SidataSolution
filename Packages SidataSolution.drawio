@@ -1,0 +1,106 @@
+<mxfile host="embed.diagrams.net">
+  <diagram id="XgaYLzxiFAJV2h1pV004" name="Page-1">
+    <mxGraphModel dx="1185" dy="771" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" value="Sidata.Abstractions" vertex="1">
+          <mxGeometry height="60" width="170" x="30" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" value="Sidata.Abstractions.DataContext" vertex="1">
+          <mxGeometry height="60" width="210" x="250" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Microsoft.EntityFramework&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Core&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="210" x="670" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="5" edge="1" parent="1" source="3" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=37;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" target="2" value="Use">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="240" y="160" as="sourcePoint" />
+            <mxPoint x="140" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6" edge="1" parent="1" source="3" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0;exitDx=210;exitDy=37;exitPerimeter=0;entryX=0;entryY=0;entryDx=0;entryDy=25.5;entryPerimeter=0;" target="4" value="Use">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="185" y="287" as="sourcePoint" />
+            <mxPoint x="520" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" value="Sidata.SLIP2.Data.Abstraction" vertex="1">
+          <mxGeometry height="60" width="210" x="180" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="9" edge="1" parent="1" source="3" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.53;entryY=0.262;entryDx=0;entryDy=0;entryPerimeter=0;" target="7" value="Use">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="385" y="217" as="sourcePoint" />
+            <mxPoint x="220" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="11" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" value="Sidata.Abstraction.Queryable" vertex="1">
+          <mxGeometry height="60" width="210" x="565" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;" value="Sidata.Abstraction.Queryable.SqlServer" vertex="1">
+          <mxGeometry height="60" width="280" x="920" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="13" edge="1" parent="1" source="12" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=25.5;exitPerimeter=0;entryX=0;entryY=0;entryDx=210;entryDy=37;entryPerimeter=0;" target="11" value="Use">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="880" y="140" as="sourcePoint" />
+            <mxPoint x="840" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="14" edge="1" parent="1" source="12" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0;entryY=0;entryDx=125;entryDy=14;entryPerimeter=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="4" value="Use">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="930" y="130" as="sourcePoint" />
+            <mxPoint x="870" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="15" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Microsoft.Extensions.DependencyInjection" vertex="1">
+          <mxGeometry height="60" width="280" x="920" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="16" edge="1" parent="1" source="12" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0;entryY=0;entryDx=160;entryDy=14;entryPerimeter=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="15" value="Use">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="530" y="574" as="sourcePoint" />
+            <mxPoint x="898" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="18" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" value="Sidata.SLIP2.Data" vertex="1">
+          <mxGeometry height="60" width="170" x="110" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="19" edge="1" parent="1" source="18" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=20;exitDy=0;exitPerimeter=0;" target="2" value="Use">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="387" y="163" as="sourcePoint" />
+            <mxPoint x="220" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="20" edge="1" parent="1" source="18" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.549;exitY=0.195;exitDx=0;exitDy=0;exitPerimeter=0;" target="7" value="Use">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="133" y="214" as="sourcePoint" />
+            <mxPoint x="80" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="21" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" value="Sidata.SLIP2.Data.Context" vertex="1">
+          <mxGeometry height="60" width="210" x="550" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Microsoft.EntityFramework&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Core.Tools&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="260" x="610" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="24" edge="1" parent="1" source="21" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=125;exitDy=14;exitPerimeter=0;" target="23" value="Use">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="650" y="390" as="sourcePoint" />
+            <mxPoint x="350" y="376" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="25" edge="1" parent="1" source="21" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0;exitDx=20;exitDy=0;exitPerimeter=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" target="3" value="Use">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="730" y="674" as="sourcePoint" />
+            <mxPoint x="830" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="26" edge="1" parent="1" source="21" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=37;exitPerimeter=0;entryX=0;entryY=0;entryDx=170;entryDy=25.5;entryPerimeter=0;" target="18" value="Use">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="672" y="550" as="sourcePoint" />
+            <mxPoint x="500" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

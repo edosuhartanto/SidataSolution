@@ -10,7 +10,7 @@
     <Company>Sidata Solusi Ritel</Company>
     <Description>modul berisi ekstensi utk pembangun Expression khusus utk perintah LIKE Sql Server. </Description>
     <Copyright>(c) 2026 Sidata Solusi Ritel</Copyright>
-    <PackageTags>sidata;platform;framework;sidata platform;sidata framework;abtract;abstractions;generic;base;base class;persistent;persistent object;standard;LINQ;queryable;extension;querycontent;sqlserver;LIKE;operator</PackageTags>
+    <PackageTags>sidata;platform;framework;sidata platform;sidata framework;abtract;abstractions;generic;base;base class;persistent;persistent object;standard;LINQ;queryable;extension;querycontent;sqlserver;LIKE;operator;</PackageTags>
     <PackageReleaseNotes>
       v.2026.06.1
       - awal buat
@@ -23,12 +23,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.28" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.28" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sidata.Abstractions.Queryable\Sidata.Abstractions.Queryable.csproj" />
+    <ProjectReference Include="..\Sidata.Abstractions.DataContext\Sidata.Abstractions.DataContext.csproj" />
   </ItemGroup>
 
 </Project>

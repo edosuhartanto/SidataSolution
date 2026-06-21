@@ -1,11 +1,10 @@
-﻿
-// ******************************************************
+﻿// ******************************************************
 // Copyright (c) 2026 Sidata Solusi Ritel
 // Licensed under the MIT License.
 // build by Edo Suhartanto 
 // ******************************************************
 
-namespace Sidata.SLIP2.Data.Abstractions.Enums
+namespace Sidata.SLIP2.Data.Enums
 {
     /// <summary>
     /// mode rounding for earn and redeem conversion rate,

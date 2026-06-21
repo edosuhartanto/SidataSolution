@@ -6,8 +6,8 @@
 // ******************************************************
 
 using Sidata.Abstractions.BaseClasses;
-using Sidata.SLIP2.Data.Abstractions.Enums;
-using Sidata.SLIP2.Data.Abstractions.Interfaces;
+using Sidata.Abstractions.DataContext.Interfaces;
+using Sidata.SLIP2.Data.Enums;
 using Sidata.SLIP2.Data.Masters;
 
 namespace Sidata.SLIP2.Data.Transactions
@@ -15,9 +15,6 @@ namespace Sidata.SLIP2.Data.Transactions
     /// <summary>
     /// the real transaction 
     /// </summary>
-    /// <remarks>
-    /// QC=20260603
-    /// </remarks>
     public class LedgerTransaction : PersistentObject, IPeriodAware 
     {
         #region FK (Merchant, InstrumentAccount)

@@ -5,8 +5,8 @@
 // ******************************************************
 
 using Sidata.Abstractions.BaseClasses;
-using Sidata.SLIP2.Data.Abstractions.Enums;
 using Sidata.SLIP2.Data.Definitions;
+using Sidata.SLIP2.Data.Enums;
 using Sidata.SLIP2.Data.Transactions;
 using System.ComponentModel.DataAnnotations.Schema;
 

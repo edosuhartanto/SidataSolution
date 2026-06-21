@@ -6,7 +6,7 @@
 // ******************************************************
 
 using Sidata.Abstractions.BaseClasses;
-using Sidata.SLIP2.Data.Abstractions.Enums;
+using Sidata.SLIP2.Data.Enums;
 using Sidata.SLIP2.Data.Masters;
 
 namespace Sidata.SLIP2.Data.Definitions

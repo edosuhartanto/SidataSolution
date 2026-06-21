@@ -23,6 +23,13 @@
 - awal buat
 - BARU: ekstensi IQueryable utk membuat Expression LIKE di Sql Server
 
+# Sidata.Abstractions.DataContext
+### v.2026.06.1
+- buat baru
+- BARU: BaseDbContext utk dasar pembuatan DbContext dalam platform Sidata Solusion.
+- BARU: enum utk penentu selector
+- BARU: interface utk IContextUSer dan IPeriodAware
+
 # Sidata.SLIP2.Data
 ### v.2026.06.1
 - buat awal

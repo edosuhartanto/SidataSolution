@@ -4,7 +4,7 @@
 // build by Edo Suhartanto 
 // ******************************************************
 
-namespace Sidata.SLIP2.Data.Abstractions.Enums
+namespace Sidata.SLIP2.Data.Enums
 {
     /// <summary>
     /// status life cycle of an instrument

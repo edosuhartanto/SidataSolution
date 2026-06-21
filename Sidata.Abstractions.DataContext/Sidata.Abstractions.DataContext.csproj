@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>Base Context for Ekosistem Platform Sidata</Title>
+    <Version>2026.06.1</Version>
+    <Authors>Edo Suhartanto</Authors>
+    <Company>Sidata Solusi Ritel</Company>
+    <Product>Sidata Solution Abstraction</Product>
+    <Description>abstraksi dari EFCore khusus untuk aplikasi Webservice, base dbContext spesial utk menentukan cara melakukan soft delete.</Description>
+    <Copyright>(c) 2026 Sidata Solusi Ritel</Copyright>
+    <PackageTags>sidata;platform;framework;sidata platform;sidata framework;abtract;abstractions;generic;base;base class;persistent;persistent object;standard;entityframeworkcore;</PackageTags>
+    <PackageReleaseNotes>v.2026.06.1
+- buat baru
+- BARU: BaseDbContext utk dasar pembuatan DbContext dalam platform Sidata Solusion.
+- BARU: enum utk penentu selector
+- BARU: interface utk IContextUSer dan IPeriodAware</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.28" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sidata.Abstractions.Queryable\Sidata.Abstractions.Queryable.csproj" />
+    <ProjectReference Include="..\Sidata.Abstractions\Sidata.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

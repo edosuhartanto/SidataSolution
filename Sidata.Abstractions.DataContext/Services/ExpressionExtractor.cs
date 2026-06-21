@@ -5,10 +5,12 @@
 // ******************************************************
 using System.Linq.Expressions;
 
-namespace Sidata.Abstractions.LinqHelper.Services
+namespace Sidata.Abstractions.DataContext.Services
 {
     /// <summary>
     /// kumpulan fungsi untuk mengekstrak isi sebuah LINQ Expression&lt;T&gt;
+    /// Tidak type-safe, maka hati2 dalam menggunakannya.
+    /// Cocok untuk membuat Filter atau Sort expression
     /// </summary>
     public static class ExpressionExtractor
     {
@@ -28,7 +30,9 @@ namespace Sidata.Abstractions.LinqHelper.Services
         }
 
         /// <summary>
-        /// fungsi untuk membongkar isi dalam sebuah LINQ Expression&lt;T&gt;
+        /// fungsi untuk membongkar isi dalam sebuah LINQ Expression&lt;T&gt;,
+        /// membongkarnya menjadi Nama Property dan Valuenya ... 
+        /// yang sudah dikonversi sesuai tipenya.
         /// </summary>
         public static (string PropertyName, object? Value)
             ExtractMemberInfo<TEntity>(

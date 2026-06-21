@@ -5,13 +5,12 @@ VisualStudioVersion = 17.14.37203.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidata.Abstractions", "Sidata.Abstractions\Sidata.Abstractions.csproj", "{39EB1E34-2DA3-4B1D-9635-D0CCA5405EE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidata.Abstractions.LinqHelper", "Sidata.Abstractions.LinqHelper\Sidata.Abstractions.LinqHelper.csproj", "{DD58D2E0-C005-44C4-A109-98E79B886ADD}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentations", "Documentations", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
 		CHANGELOGS.md = CHANGELOGS.md
 		LICENSE.txt = LICENSE.txt
-		C:\Users\User\source\repos\SistemLoyaktiPelanggan2\SLIP2.Domain\Documentations\SistemLoyaltiPelanggan.drawio = C:\Users\User\source\repos\SistemLoyaktiPelanggan2\SLIP2.Domain\Documentations\SistemLoyaltiPelanggan.drawio
+		Models SistemLoyaltiPelanggan2.drawio = Models SistemLoyaltiPelanggan2.drawio
+		Packages SidataSolution.drawio = Packages SidataSolution.drawio
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidata.Abstractions.Queryable", "Sidata.Abstractions.Queryable\Sidata.Abstractions.Queryable.csproj", "{49EC2307-EFC4-4EF1-8E6D-4B0F914400E4}"
@@ -20,7 +19,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidata.Abstractions.Queryab
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidata.SLIP2.Data", "Sidata.SLIP2.Data\Sidata.SLIP2.Data.csproj", "{559A1472-5420-494A-896D-6DE37AC4EF5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidata.SLIP2.Data.Abstractions", "Sidata.SLIP2.Data.Abstractions\Sidata.SLIP2.Data.Abstractions.csproj", "{A5118927-7D30-4D3C-93AE-094B5C04F5AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidata.SLIP2.Data.Context", "Sidata.SLIP2.Data.Context\Sidata.SLIP2.Data.Context.csproj", "{19609851-C4CD-4240-89D4-B0D2717059E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidata.Abstractions.DataContext", "Sidata.Abstractions.DataContext\Sidata.Abstractions.DataContext.csproj", "{5DA285A7-8710-4406-A65D-6AD5396D7A60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,10 +33,6 @@ Global
 		{39EB1E34-2DA3-4B1D-9635-D0CCA5405EE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39EB1E34-2DA3-4B1D-9635-D0CCA5405EE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39EB1E34-2DA3-4B1D-9635-D0CCA5405EE4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD58D2E0-C005-44C4-A109-98E79B886ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD58D2E0-C005-44C4-A109-98E79B886ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD58D2E0-C005-44C4-A109-98E79B886ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD58D2E0-C005-44C4-A109-98E79B886ADD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{49EC2307-EFC4-4EF1-8E6D-4B0F914400E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{49EC2307-EFC4-4EF1-8E6D-4B0F914400E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49EC2307-EFC4-4EF1-8E6D-4B0F914400E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,10 +45,14 @@ Global
 		{559A1472-5420-494A-896D-6DE37AC4EF5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{559A1472-5420-494A-896D-6DE37AC4EF5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{559A1472-5420-494A-896D-6DE37AC4EF5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A5118927-7D30-4D3C-93AE-094B5C04F5AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5118927-7D30-4D3C-93AE-094B5C04F5AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5118927-7D30-4D3C-93AE-094B5C04F5AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A5118927-7D30-4D3C-93AE-094B5C04F5AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19609851-C4CD-4240-89D4-B0D2717059E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19609851-C4CD-4240-89D4-B0D2717059E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19609851-C4CD-4240-89D4-B0D2717059E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19609851-C4CD-4240-89D4-B0D2717059E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DA285A7-8710-4406-A65D-6AD5396D7A60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DA285A7-8710-4406-A65D-6AD5396D7A60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DA285A7-8710-4406-A65D-6AD5396D7A60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DA285A7-8710-4406-A65D-6AD5396D7A60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

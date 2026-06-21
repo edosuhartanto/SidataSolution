@@ -12,7 +12,7 @@ using System.Linq.Expressions;
 
 namespace Sidata.Abstractions.Queryable.SqlServer.Extensions
 {
-    public static class LikeOperatorBuilder
+    public static class LikeOperatorBuilderExtension
     {
         /// <summary>
         /// register Filter Handler khusus utk operator LIKE dan 
