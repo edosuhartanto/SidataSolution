@@ -14,7 +14,7 @@ namespace Sidata.Abstractions.BaseClasses
     /// yang sama
     /// Siapa yg create, siapa update, siapa delete dan waktunya kapan
     /// </summary>
-    public abstract partial class PersistentObject:ISoftDelete, IMasterClass
+    public abstract class PersistentObject:ISoftDelete, IMasterClass
     {
 
         /// <summary>

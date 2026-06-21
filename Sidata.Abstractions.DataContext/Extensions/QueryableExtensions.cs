@@ -63,7 +63,7 @@ namespace Sidata.Abstractions.DataContext.Extensions
         /// to return TEntity ... send 'x => x' to selectproperties
         /// or used the second overload
         /// </summary>
-        public static async Task<TData> LoadEntityByIdAsync<TEntity, TData>(
+        public static async Task<TData?> LoadEntityByIdAsync<TEntity, TData>(
             this IQueryable<TEntity> queryentity,
             Expression<Func<TEntity, TData>> selectproperties,
             long id,
@@ -74,12 +74,12 @@ namespace Sidata.Abstractions.DataContext.Extensions
             if (allowtracking) queryentity = queryentity.AsNoTracking();
             // have selector for only some properties you want to?
             // default you select it all and return TEntity
-            TData x = await queryentity.Where(x => x.Id == id)
+            return await queryentity.Where(x => x.Id == id)
                                     .Select(selectproperties)
-                                    .FirstOrDefaultAsync()
-                    ?? throw new ArgumentException(
-                        $"{typeof(TEntity).Name} Id={id} Not Found", nameof(id));
-            return x;
+                                    .FirstOrDefaultAsync();
+            //        ?? throw new ArgumentException(
+            //            $"{typeof(TEntity).Name} Id={id} Not Found", nameof(id));
+            //return x;
         }
 
         /// <summary>
@@ -87,14 +87,15 @@ namespace Sidata.Abstractions.DataContext.Extensions
         /// this will return TEntity ... and default is always tracking by EF 
         /// for this object
         /// </summary>
-        public static async Task<TEntity> LoadEntityByIdAsync<TEntity>(
+        public static async Task<TEntity?> LoadEntityByIdAsync<TEntity>(
             this IQueryable<TEntity> queryentity,
             long id,
             bool allowtracking = true)
         where TEntity: class, IMasterClass
         {
             return await LoadEntityByIdAsync(
-                queryentity, x => x, id, allowtracking);
+                            queryentity, x => x, 
+                            id, allowtracking);
         }
 
         /// <summary>
