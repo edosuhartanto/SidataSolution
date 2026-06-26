@@ -36,6 +36,11 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Masters
             // added aggregation one to many relationship
             // CAUTION: do use lazy load for aggregation ... can slowing query performance
             //          always explicit .include for better query performance
+            // Merchant - 
+            builder.ConfigureAggregation(
+                        m => m.Customers,
+                        c => c.Merchant,
+                        c => c.MerchantId);
             builder.ConfigureAggregation(
                         m => m.InstrumentDefinitions,
                         d => d.Merchant,

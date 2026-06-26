@@ -1,0 +1,6 @@
+@Sidata.SLIP2.WebApi_HostAddress = http://localhost:5204
+
+GET {{Sidata.SLIP2.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

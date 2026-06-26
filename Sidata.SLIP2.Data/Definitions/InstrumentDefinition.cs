@@ -1,11 +1,4 @@
-﻿
-// ******************************************************
-// Copyright (c) 2026 Sidata Solusi Ritel
-// Licensed under the MIT License.
-// build by Edo Suhartanto 
-// ******************************************************
-
-using Sidata.Abstractions.BaseClasses;
+﻿using Sidata.Abstractions.BaseClasses;
 using Sidata.SLIP2.Data.Enums;
 using Sidata.SLIP2.Data.Masters;
 
@@ -103,6 +96,24 @@ namespace Sidata.SLIP2.Data.Definitions
         /// definition is still active
         /// </summary>
         public bool IsActive { get; set; }
+        #endregion
+
+        #region Selectable Behavior
+        public bool AllowTopup { get; set; }
+
+        public bool AllowDebit { get; set; }
+
+        public bool HasExpiration { get; set; }
+
+        public int ExpireAfterDays { get; set; }
+
+        public decimal MaximumBalance { get; set; }
+
+        public bool SingleUseOnly { get; set; }
+
+        public bool Transferable { get; set; }
+
+        public bool AllowNegativeBalance { get; set; }        
         #endregion
 
         #region FK Relationships

@@ -38,8 +38,9 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Masters
                                      UniqueMode.Yes);
             builder.ConfigureIndexes(x => x.SimariCustomerId);
 
-            // FK
-            builder.ConfigureForeignKey(c => c.Merchant, c => c.MerchantId);
+            // FK : leave here as recoqnition that no need to build FK if 
+            //      there is ConfigureAggregation inside MerchantConfiguration
+            //builder.ConfigureForeignKey(c => c.Merchant, c => c.MerchantId);
 
             // Aggregation of Account (what instruments does customer have?)
             builder.ConfigureAggregation(

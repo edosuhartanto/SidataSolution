@@ -34,10 +34,6 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Transactions
             builder.ConfigureUtcDateTimeProperty(x => x.ExpireAtUtc,
                                                  RequiredMode.Yes);
 
-            // FK
-            builder.ConfigureForeignKey(x => x.InstrumentAccount, x => x.InstrumentAccountId,
-                                        DeleteBehavior.NoAction, RequiredMode.Yes);
-
             // unique key
             // definition code is unique for each Merchant
             builder.ConfigureIndexes(x => new { x.InstrumentAccountId, x.SequenceNumber },

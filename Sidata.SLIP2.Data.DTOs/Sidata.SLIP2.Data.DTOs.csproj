@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sidata.Abstractions.WebApi\Sidata.Abstractions.WebApi.csproj" />
+    <ProjectReference Include="..\Sidata.Abstractions\Sidata.Abstractions.csproj" />
+    <ProjectReference Include="..\Sidata.SLIP2.Data\Sidata.SLIP2.Data.csproj" />
+  </ItemGroup>
+
+</Project>

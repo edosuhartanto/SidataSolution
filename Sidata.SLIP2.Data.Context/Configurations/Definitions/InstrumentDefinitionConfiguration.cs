@@ -49,10 +49,10 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Definitions
             builder.ConfigureBooleanProperty(x => x.IsActive,
                                              RequiredMode.Yes, false);
 
+            //-- 
+
             // FK
             builder.ConfigureForeignKey(x => x.Merchant, x => x.MerchantId,
-                                        DeleteBehavior.NoAction, RequiredMode.Yes);
-            builder.ConfigureForeignKey(x => x.InstrumentType, x => x.InstrumentTypeId,
                                         DeleteBehavior.NoAction, RequiredMode.Yes);
 
             // unique key

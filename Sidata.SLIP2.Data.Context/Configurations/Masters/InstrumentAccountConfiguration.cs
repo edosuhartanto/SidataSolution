@@ -42,18 +42,10 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Masters
             builder.ConfigureDescriptionStringProperty(x => x.PinHash);
             builder.ConfigureUtcDateTimeProperty(x => x.PinLockedUntilUtc);
 
-            // FK
+            // FK : because there is no Aggregation in MerchantConfigure
             builder.ConfigureForeignKey(a => a.Merchant, 
                                         a => a.MerchantId, 
                                         DeleteBehavior.NoAction, 
-                                        RequiredMode.Yes);
-            builder.ConfigureForeignKey(a => a.Customer,
-                                        a => a.CustomerId,
-                                        DeleteBehavior.NoAction,
-                                        RequiredMode.Yes);
-            builder.ConfigureForeignKey(a => a.InstrumentDefinition,
-                                        a => a.InstrumentDefinitionId,
-                                        DeleteBehavior.NoAction,
                                         RequiredMode.Yes);
 
             // unique key

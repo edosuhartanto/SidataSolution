@@ -34,7 +34,8 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Transactions
             builder.ConfigureUtcDateTimeProperty(x => x.ExpireAtUtc,    
                                                  RequiredMode.Yes);
 
-            // unique key : IdempotencyKey (build by caller) + RequestHash (build by server)
+            // unique key : IdempotencyKey (build by caller)
+            //              + RequestHash (build by server)
             builder.ConfigureIndexes(x => new { x.IdempotencyKey, x.RequestHash },
                                      UniqueMode.Yes);
         }

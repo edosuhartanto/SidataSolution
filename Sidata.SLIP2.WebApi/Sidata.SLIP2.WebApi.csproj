@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.28">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sidata.Abstractions.WebApi\Sidata.Abstractions.WebApi.csproj" />
+    <ProjectReference Include="..\Sidata.SLIP2.Data.Context\Sidata.SLIP2.Data.Context.csproj" />
+    <ProjectReference Include="..\Sidata.SLIP2.Data.DTOs\Sidata.SLIP2.Data.DTOs.csproj" />
+  </ItemGroup>
+
+</Project>
