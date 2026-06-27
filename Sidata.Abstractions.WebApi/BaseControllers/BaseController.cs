@@ -10,6 +10,9 @@ using Sidata.Abstractions.WebApi.Enums;
 using Sidata.Abstractions.WebApi.Extensions;
 using Sidata.Abstractions.WebApi.ResponseRequest.Extensions;
 using Sidata.Abstractions.WebApi.ResponseRequest.Models;
+using Sidata.SLIP2.Data.DTOs.CustomerSlice.Models;
+using Sidata.SLIP2.Data.DTOs.Enums;
+using Sidata.SLIP2.Data.Masters;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -27,8 +30,8 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
     /// Func&lt;TDto,TEntity&gt; CopyEntityToDto() 
     /// Action&lt;TDto,TEntity&gt; UpdateRequestDtoToEntity() 
     /// </summary>
-    public class WebApiBaseController<TDbContext, TEntity, TDto>(
-                    IDbContextFactory<TDbContext> dbfactory)
+    public abstract class WebApiCrudControllerBase<TDbContext, TEntity, TDto>(
+                          IDbContextFactory<TDbContext> dbfactory)
         : ControllerBase
     where TDbContext : DbContext
     where TEntity : PersistentObject
@@ -45,7 +48,14 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
         #endregion
 
         private readonly IDbContextFactory<TDbContext> _dbfactory = dbfactory;
-    
+
+        //protected abstract Func<TDto, TEntity> CopyDtoToEntity { get; }
+        //protected abstract Expression<Func<TEntity, TDto>> 
+        //            LinqExpressionEntityToDto { get; }
+        //protected abstract Action<TDto, TEntity, CopyIdStatus> 
+        //            UpdateEntityFromDto { get; }
+        protected abstract Func<TEntity, TDto> CopyEntityToDto { get; }
+
         /// <summary>
         /// delete command, TData adalah Dto yang diturunkan dari IMasterClass
         /// yang berisi Id. 
@@ -62,9 +72,8 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
         /// </param>
         /// <param name="request">Dto yang ingin dihapus</param>
         /// <returns></returns>
-        protected async Task<ActionResult<ResponseData<TDto>>>
+        protected virtual async Task<ActionResult<ResponseData<TDto>>>
                         EntityDeleteAsync(
-                            Func<TEntity, TDto> copyEntityToDtoAsResult,                            
                             RequestData<TDto> request)
         {
             using var db = _dbfactory.CreateDbContext();
@@ -73,27 +82,28 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
                 request.ThrowIfContentNullOrMultipleItem();
 
                 var dbentity = db.Set<TEntity>();
-                var requestdto = request.Data[0];
-                var id = requestdto.Id;
-
-                var currententity =
-                    await dbentity.LoadEntityByIdAsync(id);
+                var currententity = 
+                    await dbentity.LoadEntityByIdAsync(request.Data[0].Id);
                 dbentity.Remove(currententity); 
                 // softdelete is happened inside TDbContext
                 await db.SaveChangesAsync();
 
-                requestdto = copyEntityToDtoAsResult(currententity);
-                return Ok(requestdto.BuildOkResponseData());
+                return Ok(
+                    CopyEntityToDto(currententity)
+                        .BuildOkResponseData()
+                );
             }
             catch (Exception ex)
             {
                 return Ok(
                     ex.BuildErrorResponseData(
-                        ControllerObjectIdExtension.Builder(ControllerObjectId, BaseStatementId.Delete)));
+                        ControllerObjectIdExtension.Builder(
+                            ControllerObjectId, 
+                            BaseStatementId.Delete)));
             }
         }
 
-        protected async Task<ActionResult<ResponseData<TData>>> 
+        protected virtual async Task<ActionResult<ResponseData<TData>>> 
                         EntityUpdateAsync<TData>(
                             Func<TData, 
                                  Expression<Func<TEntity, bool>>> duplicatechecker,
@@ -109,10 +119,12 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
 
                 var dbentity = db.Set<TEntity>();
                 var requesteddata = request.Data[0];
-                await dbentity.ThrowIfDuplicateEntity(requesteddata, duplicatechecker);
+                await dbentity.ThrowIfDuplicateEntity(
+                    requesteddata,
+                    duplicatechecker);
 
                 var currententity = 
-                    await dbentity.LoadEntityByIdAsync(requesteddata.Id);                
+                    await dbentity.LoadEntityByIdAsync(requesteddata.Id);
 
                 updateRequestDtoToEntity(requesteddata, currententity);
                 dbentity.Add(currententity);
@@ -129,7 +141,7 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
             }
         }
 
-        protected async Task<ActionResult<ResponseData<TData>>>
+        protected virtual async Task<ActionResult<ResponseData<TData>>>
             EntityCreateAsync<TData>(
                 Func<TData,
                      Expression<Func<TEntity, bool>>> doublechecker,
@@ -165,7 +177,7 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
             }
         }
 
-        protected async Task<ActionResult<ResponseData<TData>>> 
+        protected virtual async Task<ActionResult<ResponseData<TData>>> 
                         BuildByIdAsync<TData>(
                             Expression<Func<TEntity, TData>> propertyselector,
                             RequestData<long> request)
@@ -198,7 +210,7 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
             }
         }
 
-        protected async Task<ActionResult<ResponseData<TData>>>
+        protected virtual async Task<ActionResult<ResponseData<TData>>>
                         BuildListAsync<TData>(
                             Expression<Func<TEntity, TData>> propertyselector,
                             RequestData<QueryContent>? request = null)

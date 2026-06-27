@@ -14,13 +14,31 @@ namespace Sidata.SLIP2.WebApi.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [ControllerObjectId(2)]
-    public class CustomerController(IDbContextFactory<LoyaltyDbContext> dbfactory) 
-        : WebApiBaseController<LoyaltyDbContext, Customer, CustomerDto>(dbfactory)
+    public class CustomerController(
+                    IDbContextFactory<LoyaltyDbContext> dbfactory) 
+        : WebApiCrudControllerBase<LoyaltyDbContext, Customer, CustomerDto>
+            (dbfactory)
     {
+        //==================================================
+        // OVERRIDE ABSTRACT FUNCTIONs
+        //==================================================
+        protected override Func<Customer, CustomerDto> CopyEntityToDto => 
+            x => new()
+            {
+                Id = x.Id,
+                MerchantId = x.MerchantId,
+                SimariCustomerId = x.SimariCustomerId,
+                CustomerNumber = x.CustomerNumber,
+                Name = x.Name,
+                Email = x.Email,
+                PhoneNumber = x.PhoneNumber,
+                BirthDate = x.BirthDate,
+                IsActive = x.IsActive
+            };
+
         //==================================================
         // GET LIST
         //==================================================
-
         [HttpPost("getlist")]
         public async Task<ActionResult<ResponseData<CustomerDto>>> 
                         GetList(RequestData<QueryContent>? request = null)
@@ -33,7 +51,6 @@ namespace Sidata.SLIP2.WebApi.Controllers
         //==================================================
         // GET BY ID
         //==================================================
-
         [HttpPost("getbyid")]
         public async Task<ActionResult<ResponseData<CustomerDto>>> GetById(RequestData<long> id)
         {
@@ -45,7 +62,6 @@ namespace Sidata.SLIP2.WebApi.Controllers
         //==================================================
         // CREATE
         //==================================================
-
         [HttpPost("createnew")]
         public async Task<ActionResult<ResponseData<CustomerDto>>> 
             CreateNew(RequestData<CustomerDto> request)
@@ -60,7 +76,6 @@ namespace Sidata.SLIP2.WebApi.Controllers
         //==================================================
         // UPDATE
         //==================================================
-
         [HttpPost("update")]
         public async Task<ActionResult<ResponseData<CustomerDto>>> Update(
             RequestData<CustomerDto> request)
@@ -76,14 +91,11 @@ namespace Sidata.SLIP2.WebApi.Controllers
         //==================================================
         // DELETE (SOFT DELETE)
         //==================================================
-
         [HttpPost("delete")]
         public async Task<ActionResult<ResponseData<CustomerDto>>> Delete(
             RequestData<CustomerDto> request)
         {
-            return await EntityDeleteAsync(
-                CustomerDataTransfer.CopyCustomerToDto,
-                request);
+            return await EntityDeleteAsync(request);
         }
 
     }
