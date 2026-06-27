@@ -5,7 +5,6 @@ using Sidata.Abstractions.WebApi.Attributes;
 using Sidata.Abstractions.WebApi.BaseControllers;
 using Sidata.Abstractions.WebApi.ResponseRequest.Models;
 using Sidata.SLIP2.Data.Context;
-using Sidata.SLIP2.Data.DTOs.CustomerSlice.Extensions;
 using Sidata.SLIP2.Data.DTOs.MerchantSlice.Extensions;
 using Sidata.SLIP2.Data.DTOs.MerchantSlice.Models;
 using Sidata.SLIP2.Data.Masters;
@@ -16,18 +15,18 @@ namespace Sidata.SLIP2.WebApi.Controllers
     [Route("api/[controller]")]
     [ControllerObjectId(1)]
     public class MerchantController(IDbContextFactory<LoyaltyDbContext> dbfactory) 
-        : WebApiBaseController<LoyaltyDbContext, Merchant, CustomerDto>(dbfactory)
+        : WebApiBaseController<LoyaltyDbContext, Merchant, MerchantDto>(dbfactory)
     {
         //==================================================
         // GET LIST
         //==================================================
 
         [HttpPost("getlist")]
-        public async Task<ActionResult<ResponseData<CustomerDto>>> 
+        public async Task<ActionResult<ResponseData<MerchantDto>>> 
                         GetList(RequestData<QueryContent>? request = null)
         {
             return await BuildListAsync(
-                                CustomerDataTransfer.LinqExpressionMerchantToDto, 
+                                MerchantDataTransfer.LinqExpressionMerchantToDto, 
                                 request);
         }
 
@@ -36,10 +35,10 @@ namespace Sidata.SLIP2.WebApi.Controllers
         //==================================================
 
         [HttpPost("getbyid")]
-        public async Task<ActionResult<ResponseData<CustomerDto>>> GetById(RequestData<long> id)
+        public async Task<ActionResult<ResponseData<MerchantDto>>> GetById(RequestData<long> id)
         {
             return await BuildByIdAsync(
-                    CustomerDataTransfer.LinqExpressionMerchantToDto, 
+                    MerchantDataTransfer.LinqExpressionMerchantToDto, 
                     id);
         }
 
@@ -48,13 +47,13 @@ namespace Sidata.SLIP2.WebApi.Controllers
         //==================================================
 
         [HttpPost("createnew")]
-        public async Task<ActionResult<ResponseData<CustomerDto>>> 
-            CreateNew(RequestData<CustomerDto> request)
+        public async Task<ActionResult<ResponseData<MerchantDto>>> 
+            CreateNew(RequestData<MerchantDto> request)
         {
             return await EntityCreateAsync(
                 (req) => x => x.MerchantCode == req.MerchantCode,
-                CustomerDataTransfer.CopyDtoToMerchant,
-                CustomerDataTransfer.CopyMerchantToDto,
+                MerchantDataTransfer.CopyDtoToMerchant,
+                MerchantDataTransfer.CopyMerchantToDto,
                 request);
         }
 
@@ -63,14 +62,14 @@ namespace Sidata.SLIP2.WebApi.Controllers
         //==================================================
 
         [HttpPost("update")]
-        public async Task<ActionResult<ResponseData<CustomerDto>>> Update(
-            RequestData<CustomerDto> request)
+        public async Task<ActionResult<ResponseData<MerchantDto>>> Update(
+            RequestData<MerchantDto> request)
         {
             return await EntityUpdateAsync(
                 (dto) => x => x.MerchantCode == dto.MerchantCode && 
                                x.Id != dto.Id,
                 (dto, m) => dto.UpdateMerchant(m),
-                CustomerDataTransfer.CopyMerchantToDto,
+                MerchantDataTransfer.CopyMerchantToDto,
                 request);
         }
 
@@ -79,11 +78,11 @@ namespace Sidata.SLIP2.WebApi.Controllers
         //==================================================
 
         [HttpPost("delete")]
-        public async Task<ActionResult<ResponseData<CustomerDto>>> Delete(
-            RequestData<CustomerDto> request)
+        public async Task<ActionResult<ResponseData<MerchantDto>>> Delete(
+            RequestData<MerchantDto> request)
         {
             return await EntityDeleteAsync(
-                CustomerDataTransfer.CopyMerchantToDto,
+                MerchantDataTransfer.CopyMerchantToDto,
                 request);
         }
 

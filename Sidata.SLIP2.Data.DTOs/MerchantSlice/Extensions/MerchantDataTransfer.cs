@@ -5,13 +5,13 @@ using System.Linq.Expressions;
 
 namespace Sidata.SLIP2.Data.DTOs.MerchantSlice.Extensions
 {
-    public static class CustomerDataTransfer
+    public static class MerchantDataTransfer
     {
 
         /// <summary>
         /// Function to build a merchant based from Dto
         /// </summary>
-        public static Func<CustomerDto, Merchant> CopyDtoToMerchant =>
+        public static Func<MerchantDto, Merchant> CopyDtoToMerchant =>
             x => new()
             {
                 Id = x.Id,
@@ -31,7 +31,7 @@ namespace Sidata.SLIP2.Data.DTOs.MerchantSlice.Extensions
         /// That function is not expression
         /// and cannot be used inside LINQ Expression.
         /// </remarks>
-        public static Expression<Func<Merchant, CustomerDto>> LinqExpressionMerchantToDto =>
+        public static Expression<Func<Merchant, MerchantDto>> LinqExpressionMerchantToDto =>
             x => new()
             {
                 Id = x.Id,
@@ -46,7 +46,7 @@ namespace Sidata.SLIP2.Data.DTOs.MerchantSlice.Extensions
         /// Copy Merchant To Dto. 
         /// Should not be consumed inside LINQ Expression
         /// </summary>
-        public static Func<Merchant, CustomerDto> CopyMerchantToDto =>
+        public static Func<Merchant, MerchantDto> CopyMerchantToDto =>
             x => new()
             {
                 Id = x.Id,
@@ -62,7 +62,7 @@ namespace Sidata.SLIP2.Data.DTOs.MerchantSlice.Extensions
         /// if id and code is updated, set copyid = true, default is false
         /// </summary>
         public static void UpdateMerchant(
-            this CustomerDto dto, Merchant merchant,
+            this MerchantDto dto, Merchant merchant,
             CopyIdStatus copyid = CopyIdStatus.DonotCopy)
         {
             merchant.MerchantName=dto.MerchantName;

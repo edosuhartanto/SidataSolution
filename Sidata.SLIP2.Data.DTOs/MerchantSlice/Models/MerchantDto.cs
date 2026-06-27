@@ -4,7 +4,7 @@ namespace Sidata.SLIP2.Data.DTOs.MerchantSlice.Models
     /// <summary>
     /// Dto for Merchant entity class
     /// </summary>
-    public class CustomerDto : IMasterClass
+    public class MerchantDto : IMasterClass
     {
         public long Id { get; set; }
 

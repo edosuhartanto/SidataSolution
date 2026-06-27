@@ -13,7 +13,7 @@ namespace Sidata.SLIP2.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [ControllerObjectId(1)]
+    [ControllerObjectId(2)]
     public class CustomerController(IDbContextFactory<LoyaltyDbContext> dbfactory) 
         : WebApiBaseController<LoyaltyDbContext, Customer, CustomerDto>(dbfactory)
     {
