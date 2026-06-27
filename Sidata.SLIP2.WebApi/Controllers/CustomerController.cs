@@ -6,8 +6,7 @@ using Sidata.Abstractions.WebApi.BaseControllers;
 using Sidata.Abstractions.WebApi.ResponseRequest.Models;
 using Sidata.SLIP2.Data.Context;
 using Sidata.SLIP2.Data.DTOs.CustomerSlice.Extensions;
-using Sidata.SLIP2.Data.DTOs.MerchantSlice.Extensions;
-using Sidata.SLIP2.Data.DTOs.MerchantSlice.Models;
+using Sidata.SLIP2.Data.DTOs.CustomerSlice.Models;
 using Sidata.SLIP2.Data.Masters;
 
 namespace Sidata.SLIP2.WebApi.Controllers
@@ -15,8 +14,8 @@ namespace Sidata.SLIP2.WebApi.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [ControllerObjectId(1)]
-    public class MerchantController(IDbContextFactory<LoyaltyDbContext> dbfactory) 
-        : WebApiBaseController<LoyaltyDbContext, Merchant, CustomerDto>(dbfactory)
+    public class CustomerController(IDbContextFactory<LoyaltyDbContext> dbfactory) 
+        : WebApiBaseController<LoyaltyDbContext, Customer, CustomerDto>(dbfactory)
     {
         //==================================================
         // GET LIST
@@ -27,7 +26,7 @@ namespace Sidata.SLIP2.WebApi.Controllers
                         GetList(RequestData<QueryContent>? request = null)
         {
             return await BuildListAsync(
-                                CustomerDataTransfer.LinqExpressionMerchantToDto, 
+                                CustomerDataTransfer.LinqExpressionCustomerToDto, 
                                 request);
         }
 
@@ -39,7 +38,7 @@ namespace Sidata.SLIP2.WebApi.Controllers
         public async Task<ActionResult<ResponseData<CustomerDto>>> GetById(RequestData<long> id)
         {
             return await BuildByIdAsync(
-                    CustomerDataTransfer.LinqExpressionMerchantToDto, 
+                    CustomerDataTransfer.LinqExpressionCustomerToDto, 
                     id);
         }
 
@@ -52,9 +51,9 @@ namespace Sidata.SLIP2.WebApi.Controllers
             CreateNew(RequestData<CustomerDto> request)
         {
             return await EntityCreateAsync(
-                (req) => x => x.MerchantCode == req.MerchantCode,
-                CustomerDataTransfer.CopyDtoToMerchant,
-                CustomerDataTransfer.CopyMerchantToDto,
+                (req) => x => x.CustomerNumber == req.CustomerNumber,
+                CustomerDataTransfer.CopyDtoToCustomer,
+                CustomerDataTransfer.CopyCustomerToDto,
                 request);
         }
 
@@ -67,10 +66,10 @@ namespace Sidata.SLIP2.WebApi.Controllers
             RequestData<CustomerDto> request)
         {
             return await EntityUpdateAsync(
-                (dto) => x => x.MerchantCode == dto.MerchantCode && 
+                (dto) => x => x.CustomerNumber == dto.CustomerNumber && 
                                x.Id != dto.Id,
-                (dto, m) => dto.UpdateMerchant(m),
-                CustomerDataTransfer.CopyMerchantToDto,
+                (dto, c) => dto.UpdateCustomer(c),
+                CustomerDataTransfer.CopyCustomerToDto,
                 request);
         }
 
@@ -83,7 +82,7 @@ namespace Sidata.SLIP2.WebApi.Controllers
             RequestData<CustomerDto> request)
         {
             return await EntityDeleteAsync(
-                CustomerDataTransfer.CopyMerchantToDto,
+                CustomerDataTransfer.CopyCustomerToDto,
                 request);
         }
 

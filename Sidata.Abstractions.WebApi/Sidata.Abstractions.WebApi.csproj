@@ -8,13 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.28" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Sidata.Abstractions.DataContext\Sidata.Abstractions.DataContext.csproj" />
     <ProjectReference Include="..\Sidata.Abstractions.WebApi.ResponseRequest\Sidata.Abstractions.WebApi.ResponseRequest.csproj" />
-    <ProjectReference Include="..\Sidata.Abstractions\Sidata.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

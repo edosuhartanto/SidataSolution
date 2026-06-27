@@ -6,6 +6,7 @@
 using Microsoft.EntityFrameworkCore;
 using Sidata.Abstractions.BaseClasses;
 using Sidata.Abstractions.DataContext.Interfaces;
+using Sidata.Abstractions.Interfaces;
 
 namespace Sidata.Abstractions.DataContext.BaseContexts
 {

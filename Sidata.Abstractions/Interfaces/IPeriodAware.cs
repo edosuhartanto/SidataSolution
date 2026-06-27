@@ -4,7 +4,7 @@
 // build by Edo Suhartanto 
 // ******************************************************
 
-namespace Sidata.Abstractions.DataContext.Interfaces
+namespace Sidata.Abstractions.Interfaces
 {
     public interface IPeriodAware
     {

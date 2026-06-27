@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sidata.Abstractions.DataContext\Sidata.Abstractions.DataContext.csproj" />
+    <ProjectReference Include="..\Sidata.Abstractions\Sidata.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
