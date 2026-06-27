@@ -295,11 +295,23 @@ namespace Sidata.Abstractions.Queryable.SqlServer.Extensions
 
         #region Nullable Type
         #region Datetime Type Configuration
+        /// <summary>
+        /// Extension to Configure DateTime field
+        /// </summary>
+        /// <typeparam name="TEntity">class Entity yang akan diconfigure</typeparam>
+        /// <param name="builder">PropertyBuilder</param>
+        /// <param name="selector">field selector menggunakan lambda command</param>
+        /// <param name="requiredmode">menentukan apakah NOT NULL (=requiredmode.Yes) atau NULL allowed</param>
+        /// <param name="getdefaultvalueaction">
+        /// builder custom utk default value datetime,
+        /// tiap provider database akan berbeda dalam cara perintah utk mendapatkan default value ... 
+        /// misal SQLSERVER menggunakan .HasDefaultValueSql("getutddate()")
+        /// </param>
         public static PropertyBuilder<DateTime?> ConfigureUtcDateTimeProperty<TEntity>(
             this EntityTypeBuilder<TEntity> builder,
             Expression<Func<TEntity, DateTime?>> selector,
             RequiredMode requiredmode = RequiredMode.Nullable,
-            DateTime? defaultValue = null)
+            Action<PropertyBuilder<DateTime?>>? getdefaultvalueaction = null)
             where TEntity : class
         {
             //var memberName = ((MemberExpression)selector.Body).Member.Name;
@@ -321,9 +333,9 @@ namespace Sidata.Abstractions.Queryable.SqlServer.Extensions
                 {
                     property.IsRequired();
                 }
-                if (defaultValue != null)
+                if (getdefaultvalueaction != null)
                 {
-                    property.HasDefaultValue(defaultValue.Value);
+                    getdefaultvalueaction(property);
                 }
                 else if (requiredmode == RequiredMode.No)
                 {
@@ -334,7 +346,7 @@ namespace Sidata.Abstractions.Queryable.SqlServer.Extensions
                         // if required 
                         // ex. createDate is required, but should not have default, so it should explicitly set
                         // transactionDate isnot required, should have  as default
-                        throw new ArgumentException($"{memberName} is not required, please configure it to have defaultValue", nameof(defaultValue));
+                        throw new ArgumentException($"{memberName} is not required, please configure it to have defaultValue", nameof(getdefaultvalueaction));
                     }
                 }
             }
@@ -344,9 +356,9 @@ namespace Sidata.Abstractions.Queryable.SqlServer.Extensions
                 {
                     throw new ArgumentException($"{memberName} is nullable, no need to configure RequiredMode = Yes", nameof(requiredmode));
                 }
-                if (defaultValue != null)
+                if (getdefaultvalueaction != null)
                 {
-                    throw new ArgumentException($"{memberName} is nullable, no need to configure defaultValue", nameof(defaultValue));
+                    throw new ArgumentException($"{memberName} is nullable, no need to configure defaultValue", nameof(getdefaultvalueaction));
                 }
             }
             return property;

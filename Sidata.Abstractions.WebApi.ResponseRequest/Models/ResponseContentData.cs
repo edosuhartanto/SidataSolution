@@ -11,15 +11,6 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Models
 {
     public class ResponseContentData<TData> : IRequestResponseDto<TData>
     {
-        /// <summary>
-        /// page number from where the list of TParam get
-        /// </summary>
-        public int PageNumber { get; set; }
-
-        /// <summary>
-        /// total record per page
-        /// </summary>
-        public int PageSize { get; set; }
 
         /// <summary>
         /// list of data return from an endpoint
@@ -27,7 +18,19 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Models
         public List<TData> Data { get; set; } = [];
 
         /// <summary>
-        /// if paging is used, totalsize is total all records actually have
+        /// page number from where the list of TParam get,
+        /// if pagingmode disable, then this will return 0
+        /// </summary>
+        public int PageNumber { get; set; }
+
+        /// <summary>
+        /// total record per page
+        /// if pagingmode disable, then this will return 0
+        /// </summary>
+        public int PageSize { get; set; }
+
+        /// <summary>
+        /// if pagingmode is used, totalsize is total all records actually have
         /// </summary>
         public long TotalSize { get; set; }
 

@@ -27,7 +27,7 @@ namespace Sidata.SLIP2.WebApi.Controllers
                         GetList(RequestData<QueryContent>? request = null)
         {
             return await BuildListAsync(
-                                MerchantDataTransfer.MerchantToDto, 
+                                MerchantDataTransfer.LinqExpressionMerchantToDto, 
                                 request);
         }
 
@@ -39,7 +39,7 @@ namespace Sidata.SLIP2.WebApi.Controllers
         public async Task<ActionResult<ResponseData<MerchantDto>>> GetById(RequestData<long> id)
         {
             return await BuildByIdAsync(
-                    MerchantDataTransfer.MerchantToDto, 
+                    MerchantDataTransfer.LinqExpressionMerchantToDto, 
                     id);
         }
 

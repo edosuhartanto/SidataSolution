@@ -25,6 +25,16 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Definitions
                                                 RequiredMode.Yes);
             builder.ConfigureDescriptionStringProperty(x => x.Description);
 
+            // default selectable behavior
+            builder.ConfigureBooleanProperty(x => x.DefaultAllowTopup);
+            builder.ConfigureBooleanProperty(x => x.DefaultAllowDebit);
+            builder.ConfigureBooleanProperty(x => x.DefaultHasExpiration);
+            builder.ConfigureIntegerProperty(x => x.DefaultExpireAfterDays);
+            builder.ConfigureDecimalProperty(x => x.DefaultMaximumBalance, 20, 4);
+            builder.ConfigureBooleanProperty(x => x.DefaultSingleUseOnly);
+            builder.ConfigureBooleanProperty(x => x.DefaultTransferable);
+            builder.ConfigureBooleanProperty(x => x.DefaultAllowNegativeBalance);
+
             // unique key
             builder.ConfigureIndexes(x => x.TypeCode, UniqueMode.Yes);
 

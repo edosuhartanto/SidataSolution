@@ -175,14 +175,20 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
 
             try
             {
-                request.ThrowIfContentNullOrMultipleItem();
-
-                var id = request.Data[0];
+                request.ThrowIfContentNull();
                 var dbentity = _db.Set<TEntity>();
-                var response = 
-                    await dbentity.LoadEntityByIdAsync(propertyselector, id);
-                
-                return Ok(response.BuildOkResponseData());
+                if (request.Data.Count > 1)
+                {
+                    var response =
+                         await dbentity.LoadEntityByIdAsync(propertyselector, request.Data);
+                    return Ok(response.BuildOkResponseData());
+                }
+                else
+                {
+                    var response =
+                       await dbentity.LoadEntityByIdAsync(propertyselector, request.Data[0]);
+                    return Ok(response.BuildOkResponseData());
+                }
             }
             catch (Exception ex)
             {
@@ -221,8 +227,8 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
                     // paging mode
                     // try? ... if pagenumber and pagesize = 0,
                     // it will cancel adding page mode
-                    pagenumber = request.PageNumber;
-                    pagesize = request.PageSize;
+                    pagenumber = querycontent.PageNumber;
+                    pagesize = querycontent.PageSize;
                     query.TryAddPagingMode(pagenumber, pagesize);
                 }
                 var response = await query.ToListAsync();

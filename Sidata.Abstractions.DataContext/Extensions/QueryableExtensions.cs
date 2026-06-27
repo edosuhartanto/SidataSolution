@@ -77,11 +77,31 @@ namespace Sidata.Abstractions.DataContext.Extensions
             if (allowtracking) queryentity = queryentity.AsNoTracking();
             // have selector for only some properties you want to?
             // default you select it all and return TEntity
-            var x = await queryentity.Where(x => x.Id == id)
+            return await queryentity.Where(x => x.Id == id)
                                     .Select(selectproperties)
-                                    .FirstOrDefaultAsync();
-            return x ?? throw new NullReferenceException(
-                        $"{typeof(TEntity).Name} Id={id} Not Found");            
+                                    .FirstOrDefaultAsync()
+                    ?? throw new NullReferenceException(
+                        $"{typeof(TEntity).Name} Id={id} Not Found");
+        }
+
+        public static async Task<IEnumerable<TData>> LoadEntityByIdAsync<TEntity, TData>(
+            this IQueryable<TEntity> queryentity,
+            Expression<Func<TEntity, TData>> selectproperties,
+            IEnumerable<long> ids,
+            bool allowtracking = false)
+        where TEntity : class, IMasterClass
+        where TData : class
+        {
+            if (allowtracking) queryentity = queryentity.AsNoTracking();
+            // have selector for only some properties you want to?
+            // default you select it all and return TEntity
+            var r = await queryentity.Where(x => ids.Contains(x.Id))
+                                    .Select(selectproperties)
+                                    .ToListAsync();
+            if ((r is null) || (r.Count == 0))
+                throw new NullReferenceException(
+                        $"{typeof(TEntity).Name} Id={ids} Not Found");
+            return r;
         }
 
         /// <summary>

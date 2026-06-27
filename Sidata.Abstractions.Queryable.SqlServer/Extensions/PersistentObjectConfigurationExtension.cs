@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Sidata.Abstractions.BaseClasses;
-using Sidata.Abstractions.DataContext.BaseContexts;
 using Sidata.Abstractions.DataContext.Enums;
-using Sidata.Abstractions.Queryable.SqlServer.Extensions;
 
 namespace Sidata.Abstractions.Queryable.SqlServer.Extensions
 {
@@ -31,7 +29,7 @@ namespace Sidata.Abstractions.Queryable.SqlServer.Extensions
             // created audit trail
             builder.ConfigureUtcDateTimeProperty(x => x.CreatedAtUtc, 
                                                  RequiredMode.Yes, 
-                                                 DateTime.UtcNow);
+                                                 p => p.HasDefaultValueSql("getutcdate()"));
             builder.ConfigureCodeStringProperty(x => x.CreatedBy, 
                                                 RequiredMode.Yes, 
                                                 GlobalSharedConstants.DefaultDeveloperUserName);

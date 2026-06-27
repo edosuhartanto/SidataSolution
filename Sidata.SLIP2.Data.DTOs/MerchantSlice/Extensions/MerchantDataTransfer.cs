@@ -24,14 +24,14 @@ namespace Sidata.SLIP2.Data.DTOs.MerchantSlice.Extensions
 
         /// <summary>
         /// Expression to build Dto from Merchant.
-        /// use this in LINQ based expression usually on .Select().
+        /// use this special in LINQ based expression usually on .Select().
         /// </summary>
         /// <remarks>
         /// please donot use CopyMerchantToDto inside this!
         /// That function is not expression
         /// and cannot be used inside LINQ Expression.
         /// </remarks>
-        public static Expression<Func<Merchant, MerchantDto>> MerchantToDto =>
+        public static Expression<Func<Merchant, MerchantDto>> LinqExpressionMerchantToDto =>
             x => new()
             {
                 Id = x.Id,

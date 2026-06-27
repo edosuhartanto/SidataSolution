@@ -25,6 +25,18 @@ namespace Sidata.Abstractions.Queryable.Models
         public List<SortContent> Sorts { get; set; } = [];
 
         /// <summary>
+        /// opsional property utk menentukan ukuran jumlah record dalam satu page.
+        /// jika paging mode tidak digunakan, isi dengan 0
+        /// </summary>
+        public int PageSize { get; set; }
+
+        /// <summary>
+        /// opsional property utk kirim nomor halaman yang ingin dikembalikan.
+        /// jika paging mode tidak digunakan, isi dengan 0
+        /// </summary>
+        public int PageNumber { get; set; }
+
+        /// <summary>
         /// opsional property utk mencari dlm database, jika diperlukan
         /// biasanya search adalah operasi UI, namun jika semua dilakukan sepenuhnya
         /// di database engine, maka property ini bisa digunakan.

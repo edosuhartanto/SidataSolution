@@ -8,8 +8,6 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Interfaces
 {
     public interface IRequestResponseDto<TData>
     {
-        int PageNumber { get; set; }
-        int PageSize { get; set; }
         List<TData> Data { get; set; }
     }
 }

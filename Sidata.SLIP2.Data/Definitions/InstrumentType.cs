@@ -36,6 +36,25 @@ namespace Sidata.SLIP2.Data.Definitions
         public string? Description { get; set; }
         #endregion
 
+        #region Default Selectable Behavior
+        public bool DefaultAllowTopup { get; set; }
+
+        public bool DefaultAllowDebit { get; set; }
+
+        public bool DefaultHasExpiration { get; set; }
+
+        public int DefaultExpireAfterDays { get; set; }
+
+        public decimal DefaultMaximumBalance { get; set; }
+
+        public bool DefaultSingleUseOnly { get; set; }
+
+        public bool DefaultTransferable { get; set; }
+
+        public bool DefaultAllowNegativeBalance { get; set; }
+        #endregion
+
+
         #region Aggregation Relationships
         /// <summary>
         /// all intrument definitions of this type

@@ -19,18 +19,6 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Models
     public class RequestData<TData>: IRequestResponseDto<TData>
     {
         /// <summary>
-        /// page number where caller wants to request from 
-        /// send 0 if request donot use paging system
-        /// </summary>
-        public int PageNumber { get; set; }
-
-        /// <summary>
-        /// total record per page, caller wants to request
-        /// send 0 if request donot use paging system
-        /// </summary>
-        public int PageSize { get; set; }
-
-        /// <summary>
         /// a list of parameters to be send to an endpoint
         /// </summary>
         public List<TData> Data { get; set; } = [];

@@ -15,29 +15,13 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Extensions
         /// </summary>
         public static RequestDetailData<TParam> 
                         BuildRequestDetailData<TParam>(
-                            long id_header, List<TParam> parameters, 
-                            int pagenumber, int pagesize)
+                            long id_header, List<TParam> parameters)
         {
             return new()
             {
-                PageNumber = pagenumber,
-                PageSize = pagesize,
                 Data = parameters,
                 Id_Header = id_header
             };
-        }
-
-        /// <summary>
-        /// special build the request for detail entity 
-        /// (using id_header as common filter)
-        /// with list of parameters
-        /// and without paging mode
-        /// </summary>
-        public static RequestDetailData<TParam> 
-                        BuildRequestDetailData<TParam>(
-                            long id_header, List<TParam> parameters)
-        {
-            return BuildRequestDetailData(id_header, parameters, 0, 0);
         }
 
         /// <summary>
@@ -50,7 +34,7 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Extensions
                         BuildRequestDetailData<TParam>(
                             long id_header, TParam parameter)
         {
-            return BuildRequestDetailData(id_header, [parameter], 0, 0);
+            return BuildRequestDetailData(id_header, [parameter]);
         }
         #endregion
 
@@ -63,27 +47,12 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Extensions
         /// </summary>
         public static RequestData<TParam> 
                         BuildRequestData<TParam>(
-                            List<TParam> parameters, 
-                            int pagenumber, int pagesize)
+                            List<TParam> parameters)
         {
             return new()
             {
-                PageNumber = pagenumber,
-                PageSize = pagesize,
                 Data = parameters
             };
-        }
-
-        /// <summary>
-        /// special request parameters builder, 
-        /// with list of parameters
-        /// without paging mode
-        /// </summary>
-        public static RequestData<TParam> 
-                        BuildRequestData<TParam>(
-                            List<TParam> parameters)
-        {
-            return BuildRequestData(parameters, 0, 0);
         }
 
         /// <summary>
@@ -95,7 +64,7 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Extensions
                         BuildRequestData<TParam>(
                             TParam parameter)
         {
-            return BuildRequestData([parameter], 0, 0);
+            return BuildRequestData([parameter]);
         }
         #endregion
 
@@ -271,14 +240,19 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Extensions
 
         #endregion
 
-        public static void ThrowIfContentNullOrMultipleItem<TData>(
-                                this RequestData<TData> request)
+        public static void ThrowIfContentNull<TData>(
+                        this RequestData<TData> request)
         {
             if (request.Data.Count == 0)
                 throw new ArgumentException(
                     "Argumen dalam request data tidak boleh kosong",
                     nameof(request));
+        }
 
+        public static void ThrowIfContentNullOrMultipleItem<TData>(
+                                this RequestData<TData> request)
+        {
+            request.ThrowIfContentNull();
             if (request.Data.Count > 1)
                 throw new ArgumentException(
                     "Jumlah data yang dikirim harus tepat satu",

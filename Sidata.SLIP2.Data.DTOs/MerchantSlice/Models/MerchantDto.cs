@@ -1,5 +1,4 @@
 ﻿using Sidata.Abstractions.Interfaces;
-
 namespace Sidata.SLIP2.Data.DTOs.MerchantSlice.Models
 {
     /// <summary>

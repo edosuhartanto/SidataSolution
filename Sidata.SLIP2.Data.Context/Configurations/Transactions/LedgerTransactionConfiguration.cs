@@ -40,10 +40,10 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Transactions
                                              RequiredMode.Yes, 0);
 
             // this all string is allow to be nulled
-            builder.ConfigureCodeStringProperty(x => x.ExternalReferenceNumber);
+            builder.ConfigureDescriptionStringProperty(x => x.ExternalReferenceNumber);
             builder.ConfigureCodeStringProperty(x => x.BranchReference);
             builder.ConfigureCodeStringProperty(x => x.MachineReference);
-            builder.ConfigureCodeStringProperty(x => x.Remark);
+            builder.ConfigureMaxStringProperty(x => x.Remark);
 
             // FK : semua harus required
             builder.ConfigureForeignKey(t => t.Merchant, t => t.MerchantId,

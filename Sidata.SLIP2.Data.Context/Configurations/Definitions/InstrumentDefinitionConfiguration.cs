@@ -49,7 +49,15 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Definitions
             builder.ConfigureBooleanProperty(x => x.IsActive,
                                              RequiredMode.Yes, false);
 
-            //-- 
+            //-- selectable behavior
+            builder.ConfigureBooleanProperty(x => x.AllowTopup);
+            builder.ConfigureBooleanProperty(x => x.AllowDebit);
+            builder.ConfigureBooleanProperty(x => x.HasExpiration);
+            builder.ConfigureIntegerProperty(x => x.ExpireAfterDays);
+            builder.ConfigureDecimalProperty(x => x.MaximumBalance, 20, 4);
+            builder.ConfigureBooleanProperty(x => x.SingleUseOnly);
+            builder.ConfigureBooleanProperty(x => x.Transferable);
+            builder.ConfigureBooleanProperty(x => x.AllowNegativeBalance);
 
             // FK
             builder.ConfigureForeignKey(x => x.Merchant, x => x.MerchantId,
