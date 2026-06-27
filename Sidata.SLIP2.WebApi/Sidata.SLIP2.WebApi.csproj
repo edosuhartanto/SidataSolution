@@ -19,5 +19,4 @@
     <ProjectReference Include="..\Sidata.SLIP2.Data.Context\Sidata.SLIP2.Data.Context.csproj" />
     <ProjectReference Include="..\Sidata.SLIP2.Data.DTOs\Sidata.SLIP2.Data.DTOs.csproj" />
   </ItemGroup>
-
 </Project>
