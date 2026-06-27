@@ -6,8 +6,9 @@
 // ******************************************************
 
 using Microsoft.EntityFrameworkCore;
-using Sidata.SLIP2.Data.Context;
 using Sidata.Abstractions.Queryable.SqlServer.Extensions;
+using Sidata.SLIP2.Data.Context;
+using System.Text.Json.Serialization;
 
 //---------------------------------------------------------------
 //-- Setup Builder
@@ -22,7 +23,12 @@ builder.Services.AddDbContextFactory<LoyaltyDbContext>(options =>
 builder.Services.AddQueryableLikeOperatorForSqlServer();
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter());
+    });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

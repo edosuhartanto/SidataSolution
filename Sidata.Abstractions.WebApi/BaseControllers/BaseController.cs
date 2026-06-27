@@ -222,14 +222,14 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
 
                     // build query based on request in QueryContent
                     querycontent = request.Data[0];
-                    query.ApplyQuery(querycontent);
+                    query = query.ApplyQuery(querycontent);
 
                     // paging mode
                     // try? ... if pagenumber and pagesize = 0,
                     // it will cancel adding page mode
                     pagenumber = querycontent.PageNumber;
                     pagesize = querycontent.PageSize;
-                    query.TryAddPagingMode(pagenumber, pagesize);
+                    query = query.TryAddPagingMode(pagenumber, pagesize);
                 }
                 var response = await query.ToListAsync();
                 var totalsize = await entity.DCountAsync(querycontent);

@@ -70,7 +70,7 @@ namespace Sidata.Abstractions.Queryable.Extensions
 
             foreach (var filter in filters)
             {
-                filter.ThrowIfNotAValidProperty();
+                filter.ThrowIfNotAValidProperty<T>();
 
                 // start build filter LINQ Expression
                 var expression =
@@ -257,7 +257,7 @@ namespace Sidata.Abstractions.Queryable.Extensions
 
             foreach (var sort in sortList)
             {
-                sort.ThrowIfNotAValidProperty();
+                sort.ThrowIfNotAValidProperty<T>();
 
                 query =
                     ApplySingleSort(
@@ -338,16 +338,15 @@ namespace Sidata.Abstractions.Queryable.Extensions
         /// <summary>
         /// fungsi utk check apakah property valid utk diakses QueryContent builder.
         /// </summary>
-        public static void ThrowIfNotAValidProperty<T>(this T content)
-        where T : IPropertyOperator
+        public static void ThrowIfNotAValidProperty<T>(this IPropertyOperator content)
         {
             // check property name available in T
-            _ = typeof(T).GetProperty(
+            var p = typeof(T).GetProperty(
                     content.PropertyName,
                     BindingFlags.Public |
                     BindingFlags.Instance |
-                    BindingFlags.IgnoreCase)
-                ?? throw new InvalidOperationException(
+                    BindingFlags.IgnoreCase);
+            if (p is null) throw new InvalidOperationException(
                     $"Property '{content.PropertyName}' tidak ditemukan pada entity '{typeof(T).Name}'.");
         }
 
