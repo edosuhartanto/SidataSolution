@@ -1,5 +1,5 @@
 ﻿using Sidata.Abstractions.Interfaces;
-namespace Sidata.SLIP2.Data.DTOs.MerchantSlice.Models
+namespace Sidata.SLIP2.Data.DTOs.Masters
 {
     /// <summary>
     /// Dto for Merchant entity class

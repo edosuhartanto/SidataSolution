@@ -1,6 +1,6 @@
 ﻿using Sidata.Abstractions.Interfaces;
 
-namespace Sidata.SLIP2.Data.DTOs.CustomerSlice.Models
+namespace Sidata.SLIP2.Data.DTOs.Masters
 {
     /// <summary>
     /// Dto for Customer entity class

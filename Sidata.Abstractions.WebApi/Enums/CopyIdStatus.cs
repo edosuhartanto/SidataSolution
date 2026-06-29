@@ -1,4 +1,4 @@
-﻿namespace Sidata.SLIP2.Data.DTOs.Enums
+﻿namespace Sidata.Abstractions.WebApi.Enums
 {
     public enum CopyIdStatus : byte
     {

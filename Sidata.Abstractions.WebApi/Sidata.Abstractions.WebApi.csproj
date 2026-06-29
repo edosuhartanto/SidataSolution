@@ -13,7 +13,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Sidata.Abstractions.DataContext\Sidata.Abstractions.DataContext.csproj" />
     <ProjectReference Include="..\Sidata.Abstractions.WebApi.ResponseRequest\Sidata.Abstractions.WebApi.ResponseRequest.csproj" />
-    <ProjectReference Include="..\Sidata.SLIP2.Data.DTOs\Sidata.SLIP2.Data.DTOs.csproj" />
   </ItemGroup>
 
 </Project>

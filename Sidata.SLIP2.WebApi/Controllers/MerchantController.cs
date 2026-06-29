@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Sidata.Abstractions.Queryable.Models;
 using Sidata.Abstractions.WebApi.Attributes;
 using Sidata.Abstractions.WebApi.BaseControllers;
+using Sidata.Abstractions.WebApi.Enums;
 using Sidata.Abstractions.WebApi.ResponseRequest.Models;
 using Sidata.SLIP2.Data.Context;
-using Sidata.SLIP2.Data.DTOs.CustomerSlice.Models;
-using Sidata.SLIP2.Data.DTOs.MerchantSlice.Extensions;
-using Sidata.SLIP2.Data.DTOs.MerchantSlice.Models;
+using Sidata.SLIP2.Data.DTOs.Masters;
 using Sidata.SLIP2.Data.Masters;
+using System.Linq.Expressions;
 
 namespace Sidata.SLIP2.WebApi.Controllers
 {
@@ -21,79 +21,65 @@ namespace Sidata.SLIP2.WebApi.Controllers
         //==================================================
         // OVERRIDE ABSTRACT FUNCTIONs
         //==================================================
-        protected override Func<Merchant, MerchantDto> CopyEntityToDto =>
-            x => new()
-            {
-                Id = x.Id,
-                MerchantCode = x.MerchantCode,
-                MerchantName = x.MerchantName,
-                Email = x.Email,
-                PhoneNumber = x.PhoneNumber,
-                IsActive = x.IsActive
-            };
+        protected override Func<Merchant, MerchantDto> 
+            CopyEntityToDto =>
+                m => new()
+                {
+                    Id = m.Id,
+                    MerchantCode = m.MerchantCode,
+                    MerchantName = m.MerchantName,
+                    Email = m.Email,
+                    PhoneNumber = m.PhoneNumber,
+                    IsActive = m.IsActive
+                };
 
-        //==================================================
-        // GET LIST
-        //==================================================
-        [HttpPost("getlist")]
-        public async Task<ActionResult<ResponseData<MerchantDto>>> 
-                        GetList(RequestData<QueryContent>? request = null)
-        {
-            return await BuildListAsync(
-                                MerchantDataTransfer.LinqExpressionMerchantToDto, 
-                                request);
-        }
+        protected override Expression<Func<Merchant, MerchantDto>> 
+            LinqExpressionEntityToDto =>
+                m => new()
+                {
+                    Id = m.Id,
+                    MerchantCode = m.MerchantCode,
+                    MerchantName = m.MerchantName,
+                    Email = m.Email,
+                    PhoneNumber = m.PhoneNumber,
+                    IsActive = m.IsActive
+                };
 
-        //==================================================
-        // GET BY ID
-        //==================================================
-        [HttpPost("getbyid")]
-        public async Task<ActionResult<ResponseData<MerchantDto>>> 
-            GetById(RequestData<long> id)
-        {
-            return await BuildByIdAsync(
-                    MerchantDataTransfer.LinqExpressionMerchantToDto, 
-                    id);
-        }
+        protected override Action<MerchantDto, Merchant, CopyIdStatus>
+            UpdateEntityFromDto =>
+                (dto, merchant, copyid) =>
+                {
+                    merchant.MerchantName = dto.MerchantName;
+                    merchant.Email = dto.Email;
+                    merchant.PhoneNumber = dto.PhoneNumber;
+                    merchant.IsActive = dto.IsActive;
+                    if (copyid == CopyIdStatus.CopyIt)
+                    {
+                        merchant.MerchantCode = dto.MerchantCode;
+                        merchant.Id = dto.Id;
+                    }
+                };
 
-        //==================================================
-        // CREATE
-        //==================================================
-        [HttpPost("createnew")]
-        public async Task<ActionResult<ResponseData<MerchantDto>>> 
-            CreateNew(RequestData<MerchantDto> request)
-        {
-            return await EntityCreateAsync(
-                (req) => x => x.MerchantCode == req.MerchantCode,
-                MerchantDataTransfer.CopyDtoToMerchant,
-                MerchantDataTransfer.CopyMerchantToDto,
-                request);
-        }
+        protected override Func<MerchantDto, Merchant> 
+            CopyDtoToEntity =>
+                (dto) => new()
+                {
+                    Id = dto.Id,
+                    MerchantCode = dto.MerchantCode,
+                    MerchantName = dto.MerchantName,
+                    Email = dto.Email,
+                    PhoneNumber = dto.PhoneNumber,
+                    IsActive = dto.IsActive
+                };
 
-        //==================================================
-        // UPDATE
-        //==================================================
-        [HttpPost("update")]
-        public async Task<ActionResult<ResponseData<MerchantDto>>> 
-            Update(RequestData<MerchantDto> request)
-        {
-            return await EntityUpdateAsync(
-                (dto) => x => x.MerchantCode == dto.MerchantCode && 
-                               x.Id != dto.Id,
-                (dto, m) => dto.UpdateMerchant(m),
-                MerchantDataTransfer.CopyMerchantToDto,
-                request);
-        }
+        protected override Func<MerchantDto, Expression<Func<Merchant, bool>>>
+            InsertDuplicateChecker =>
+                (dto) => m => m.MerchantCode == dto.MerchantCode;
 
-        //==================================================
-        // DELETE (SOFT DELETE)
-        //==================================================
-        [HttpPost("delete")]
-        public async Task<ActionResult<ResponseData<MerchantDto>>> 
-            Delete(RequestData<MerchantDto> request)
-        {
-            return await EntityDeleteAsync(request);
-        }
+        protected override Func<MerchantDto, Expression<Func<Merchant, bool>>>
+            UpdateDuplicateChecker =>
+                (dto) => m => (m.MerchantCode == dto.MerchantCode) &&
+                              (m.Id != dto.Id);
 
     }
 }
