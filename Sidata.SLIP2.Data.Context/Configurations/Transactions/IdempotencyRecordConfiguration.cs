@@ -23,12 +23,12 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Transactions
             builder.ConfigurePersistentObject("IdempotencyRecord");
 
             // without default value, means caller should provide the value explicitly
-            builder.ConfigureCodeStringProperty(x => x.IdempotencyKey, 
+            builder.ConfigureString50Property(x => x.IdempotencyKey, 
                                                 RequiredMode.Yes);
             builder.ConfigureEnumProperty(x => x.IdempotencyRecordStatus,
                                           RequiredMode.Yes, 
                                           IdempotencyRecordStatus.Undefined);
-            builder.ConfigureDescriptionStringProperty(x => x.RequestHash, 
+            builder.ConfigureString255Property(x => x.RequestHash, 
                                                        RequiredMode.Yes);
             builder.ConfigureMaxStringProperty(x => x.RequestData);
             builder.ConfigureUtcDateTimeProperty(x => x.ExpireAtUtc,    

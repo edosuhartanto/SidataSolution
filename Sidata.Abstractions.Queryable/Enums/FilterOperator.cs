@@ -43,45 +43,63 @@ namespace Sidata.Abstractions.Queryable.Enums
         LessThanOrEqual = 5,
 
         /// <summary>
-        /// spesial operator SQL utk mencari bagian dari sebuah string,
-        /// dapat menggunakan wildcard seperti "%" atau "_" 
-        /// [note: tergantung provider database] 
-        /// dalam LINQ, operator ini membutuhkan proses building yg berbeda
-        /// gunakan operator Contains, jika ada banyak Filter yang menggunakan LIKE
-        /// agar proses building query lebih cepat.
-        /// </summary>
-        Like = 6,
-
-        /// <summary>
         /// sama seperti LIKE 'find%', mencari kata di awal kalimat.
         /// </summary>
-        StartsWith = 7,
+        StartsWith = 6,
 
         /// <summary>
         /// sama seperti LIKE '%find', mencari kata di akhir kalimat.
         /// </summary>
-        EndsWith = 8,
+        EndsWith = 7,
 
         /// <summary>
         /// sama seperti LIKE '%find%', mencari kata di tengah kalimat.
         /// </summary>
-        Contains = 9,
+        Contains = 8,
 
         /// <summary>
         /// mencari yang NULL
         /// </summary>
-        IsNull = 10,
+        IsNull = 9,
 
         /// <summary>
         /// mencari yang tidak NULL
         /// </summary>
-        IsNotNull = 11,
+        IsNotNull = 10,
 
         /// <summary>
         /// operator spesial utk mencari beberapa item sekaligus
         /// contoh: Kode in [1, 2, 3, 4] ... berarti mencari kode=1 atau 2, 
         /// atau 3, atau 4
         /// </summary>
-        In = 12
+        In = 11,
+
+        /// <summary>
+        /// spesial operator SQL utk mencari bagian dari sebuah string,
+        /// dengan wildcard secara bebas (tidak seperti Contains).<br/>
+        /// Karakter wildcard yang didukung, seperti:
+        /// <list type="bullet">
+        /// <item>'%'(percent)     : kata bebas</item>
+        /// <item>'_'(underscore)  : 1 karakter bebas</item>
+        /// <item>' '(spasi)       : akan diganti menjadi "%"</item>
+        /// <item>'"'(doublequote) : akan diganti menjadi " " (spasi)</item>
+        /// </list>
+        /// <b>contoh:</b>
+        /// [boneka "XL"] => [%boneka% XL %]
+        /// hasilnya [bantal boneka bebek xl pink]
+        /// tetapi bukan [boneka doraemon xl] 
+        /// (krn "XL" di kalimat ini hanya memiliki spasi di depan)<br/>
+        /// [boneka "XL] => inputan ini yg akan menghasilkan 
+        /// [boneka doraemon xl] tetapi juga akan menghasilkan 
+        /// [boneka ertiga xl7]
+        /// </summary>
+        /// <remarks>
+        /// LIKE sangat tergantung pada provider database.<br/> 
+        /// Dalam LINQ, operator ini membutuhkan proses building yg berbeda.<br/>
+        /// Gunakan operator <seealso cref="Contains">Contains</seealso>, 
+        /// jika ada banyak Filter yang menggunakan LIKE
+        /// agar proses building query lebih cepat, serta lebih idiomatik.
+        /// </remarks>
+        Like = 12
     }
 }

@@ -20,12 +20,12 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Masters
             EntityTypeBuilder<Merchant> builder)
         {
             builder.ConfigurePersistentObject("Merchant");
-            builder.ConfigureCodeStringProperty(x => x.MerchantCode, 
+            builder.ConfigureString50Property(x => x.MerchantCode, 
                                                 RequiredMode.Yes);
-            builder.ConfigureDescriptionStringProperty(x => x.MerchantName, 
+            builder.ConfigureString255Property(x => x.MerchantName, 
                                                         RequiredMode.Yes);
-            builder.ConfigureDescriptionStringProperty(x => x.Email);
-            builder.ConfigureDescriptionStringProperty(x => x.PhoneNumber);
+            builder.ConfigureString255Property(x => x.Email);
+            builder.ConfigureString255Property(x => x.PhoneNumber);
             builder.ConfigureBooleanProperty(x => x.IsActive, 
                                              RequiredMode.Yes, 
                                              false);

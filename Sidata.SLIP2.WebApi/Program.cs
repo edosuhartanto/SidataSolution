@@ -6,9 +6,10 @@
 // ******************************************************
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi;
+using Microsoft.OpenApi.Models;
 using Sidata.Abstractions.Queryable.SqlServer.Extensions;
 using Sidata.SLIP2.Data.Context;
+using Sidata.SLIP2.WebApi.Services;
 using System.Text.Json.Serialization;
 
 internal class Program
@@ -25,7 +26,10 @@ internal class Program
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
+        // Like must be handled with special custom handle
         builder.Services.AddQueryableLikeOperatorForSqlServer();
+        // setup CRUD Definition to be consumed by webapi crud controller base
+        builder.Services.AddCrudDefinition();
 
         // Add json so endpoint can receive or response Enum in string name
         builder.Services.AddControllers()

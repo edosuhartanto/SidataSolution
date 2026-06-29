@@ -30,17 +30,17 @@ namespace Sidata.Abstractions.Queryable.SqlServer.Extensions
             builder.ConfigureUtcDateTimeProperty(x => x.CreatedAtUtc, 
                                                  RequiredMode.Yes, 
                                                  p => p.HasDefaultValueSql("getutcdate()"));
-            builder.ConfigureCodeStringProperty(x => x.CreatedBy, 
+            builder.ConfigureString50Property(x => x.CreatedBy, 
                                                 RequiredMode.Yes, 
                                                 GlobalSharedConstants.DefaultDeveloperUserName);
 
             // updated/modified audit trail
             builder.Property(x => x.UpdatedAtUtc);
-            builder.ConfigureCodeStringProperty(x => x.UpdatedBy);
+            builder.ConfigureString50Property(x => x.UpdatedBy);
 
             // deleted audit trail
             builder.Property(x => x.DeletedAtUtc);
-            builder.ConfigureCodeStringProperty(x => x.DeletedBy);
+            builder.ConfigureString50Property(x => x.DeletedBy);
             builder.ConfigureBooleanProperty(x => x.IsDeleted, 
                                              RequiredMode.Yes, 
                                              false);

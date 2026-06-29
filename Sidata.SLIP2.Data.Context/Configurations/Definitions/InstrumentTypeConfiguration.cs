@@ -21,9 +21,9 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Definitions
         {
             builder.ConfigurePersistentObject("InstrumentType");
             // without default value, means caller should provide the value explicitly
-            builder.ConfigureCodeStringProperty(x => x.TypeCode, 
+            builder.ConfigureString50Property(x => x.TypeCode, 
                                                 RequiredMode.Yes);
-            builder.ConfigureDescriptionStringProperty(x => x.Description);
+            builder.ConfigureString255Property(x => x.Description);
 
             // default selectable behavior
             builder.ConfigureBooleanProperty(x => x.DefaultAllowTopup);

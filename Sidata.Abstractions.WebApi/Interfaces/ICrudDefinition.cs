@@ -3,15 +3,20 @@
 // Licensed under the MIT License.
 // build by Edo Suhartanto
 // ******************************************************
-using Sidata.Abstractions.BaseClasses;
 using Sidata.Abstractions.Interfaces;
 using Sidata.Abstractions.WebApi.Enums;
 using System.Linq.Expressions;
 
 namespace Sidata.Abstractions.WebApi.Interfaces
 {
+    /// <summary>
+    /// interface utama utk menentukan apa saja definition yang perlu
+    /// dilakukan oleh sebuah DbContext&lt;Entity&gt;.
+    /// </summary>
+    /// <typeparam name="TEntity">type data model</typeparam>
+    /// <typeparam name="TDto">type data transfer object</typeparam>
     public interface ICrudDefinition<TEntity, TDto>
-    where TEntity : PersistentObject 
+    where TEntity : class
     where TDto : class, IMasterClass
     {
         /// <summary>

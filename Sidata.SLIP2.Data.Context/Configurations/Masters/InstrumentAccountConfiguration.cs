@@ -22,10 +22,10 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Masters
         {
             builder.ConfigurePersistentObject("InstrumentAccount");
             // without default value, means caller should provide the value explicitly
-            builder.ConfigureCodeStringProperty(x => x.AccountNumber, 
+            builder.ConfigureString50Property(x => x.AccountNumber, 
                                                 RequiredMode.Yes);
             // without default value, means caller should provide the value explicitly
-            builder.ConfigureDescriptionStringProperty(x => x.AccountName, 
+            builder.ConfigureString255Property(x => x.AccountName, 
                                                         RequiredMode.Yes);            
             builder.ConfigureDecimalProperty(x => x.CurrentBalance, 20, 4, 
                                              RequiredMode.Yes, 0);
@@ -39,7 +39,7 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Masters
             // to make sure that hash data has enough spaces
             // donot use nvarchar(max) (using generic ConfigureStringProperty()
             // without MaxLength) because it will slow down the query a bit
-            builder.ConfigureDescriptionStringProperty(x => x.PinHash);
+            builder.ConfigureString255Property(x => x.PinHash);
             builder.ConfigureUtcDateTimeProperty(x => x.PinLockedUntilUtc);
 
             // FK : because there is no Aggregation in MerchantConfigure

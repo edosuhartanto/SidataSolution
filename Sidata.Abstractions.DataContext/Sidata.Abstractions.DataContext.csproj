@@ -12,11 +12,15 @@
     <Description>abstraksi dari EFCore khusus untuk aplikasi Webservice, base dbContext spesial utk menentukan cara melakukan soft delete.</Description>
     <Copyright>(c) 2026 Sidata Solusi Ritel</Copyright>
     <PackageTags>sidata;platform;framework;sidata platform;sidata framework;abtract;abstractions;generic;base;base class;persistent;persistent object;standard;entityframeworkcore;</PackageTags>
-    <PackageReleaseNotes>v.2026.06.1
-- buat baru
-- BARU: BaseDbContext utk dasar pembuatan DbContext dalam platform Sidata Solusion.
-- BARU: enum utk penentu selector
-- BARU: interface utk IContextUSer dan IPeriodAware</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      v.2026.06.1
+      - buat baru
+      - BARU: BaseDbContext utk dasar pembuatan DbContext dalam platform Sidata Solusion.
+      - BARU: enum utk penentu selector
+      - BARU: interface utk IContextUSer dan IPeriodAware
+
+      catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md
+    </PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 

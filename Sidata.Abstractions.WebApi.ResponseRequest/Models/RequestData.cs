@@ -16,11 +16,11 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Models
     /// segala macam type bisa disimpan disini,
     /// tergantung kebutuhan endpoint
     /// </typeparam>
-    public class RequestData<TData>: IRequestResponseDto<TData>
+    public class RequestData<TData>: IRequestResponseContent<TData>
     {
         /// <summary>
         /// a list of parameters to be send to an endpoint
         /// </summary>
-        public List<TData> Data { get; set; } = [];
+        public List<TData> Contents { get; set; } = [];
     }
 }

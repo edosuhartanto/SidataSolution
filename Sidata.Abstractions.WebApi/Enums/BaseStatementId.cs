@@ -1,5 +1,15 @@
-﻿namespace Sidata.Abstractions.WebApi.Enums
+﻿
+// ******************************************************
+// Copyright (c) 2026 Sidata Solusi Ritel
+// Licensed under the MIT License.
+// build by Edo Suhartanto 
+// ******************************************************
+
+namespace Sidata.Abstractions.WebApi.Enums
 {
+    /// <summary>
+    /// pengenal untuk statement yang ada dalam CRUD system
+    /// </summary>
     public enum BaseStatementId : int
     {
         Unknown = 0,

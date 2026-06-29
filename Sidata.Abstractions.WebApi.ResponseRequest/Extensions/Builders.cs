@@ -1,4 +1,11 @@
-﻿using Sidata.Abstractions.WebApi.ResponseRequest.Models;
+﻿
+// ******************************************************
+// Copyright (c) 2026 Sidata Solusi Ritel
+// Licensed under the MIT License.
+// build by Edo Suhartanto 
+// ******************************************************
+
+using Sidata.Abstractions.WebApi.ResponseRequest.Models;
 
 namespace Sidata.Abstractions.WebApi.ResponseRequest.Extensions
 {
@@ -19,7 +26,7 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Extensions
         {
             return new()
             {
-                Data = parameters,
+                Contents = parameters,
                 Id_Header = id_header
             };
         }
@@ -51,7 +58,7 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Extensions
         {
             return new()
             {
-                Data = parameters
+                Contents = parameters
             };
         }
 
@@ -94,7 +101,7 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Extensions
                 TotalSize = totalsize,
                 PageNumber = pagenumber,
                 PageSize = pagesize,
-                Data = datacontents
+                Contents = datacontents
             };
         }
 
@@ -243,7 +250,7 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Extensions
         public static void ThrowIfContentNull<TData>(
                         this RequestData<TData> request)
         {
-            if (request.Data.Count == 0)
+            if (request.Contents.Count == 0)
                 throw new ArgumentException(
                     "Argumen dalam request data tidak boleh kosong",
                     nameof(request));
@@ -253,7 +260,7 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Extensions
                                 this RequestData<TData> request)
         {
             request.ThrowIfContentNull();
-            if (request.Data.Count > 1)
+            if (request.Contents.Count > 1)
                 throw new ArgumentException(
                     "Jumlah data yang dikirim harus tepat satu",
                     nameof(request));

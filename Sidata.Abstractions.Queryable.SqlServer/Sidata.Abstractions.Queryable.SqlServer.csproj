@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Title>Ekstensi Pembangun Expression Utk Operator LIKE Sql Server</Title>
+    <Title>Ekstensi Pembangun Expression dan Configurasi Utk provider Sql Server</Title>
     <Version>2026.06.1</Version>
     <Authors>Edo Suhartanto</Authors>
     <Company>Sidata Solusi Ritel</Company>

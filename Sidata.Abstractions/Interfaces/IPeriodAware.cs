@@ -6,6 +6,11 @@
 
 namespace Sidata.Abstractions.Interfaces
 {
+    /// <summary>
+    /// Interface untuk memastikan sebuah Entity membutuhkan
+    /// proses setting periode accounting ke dirinya sendiri
+    /// berdasarkan tanggal transaksi.
+    /// </summary>
     public interface IPeriodAware
     {
         public void SetAccountingPeriod();

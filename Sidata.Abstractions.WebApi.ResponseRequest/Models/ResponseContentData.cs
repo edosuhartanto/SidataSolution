@@ -9,13 +9,13 @@ using Sidata.Abstractions.WebApi.ResponseRequest.Interfaces;
 
 namespace Sidata.Abstractions.WebApi.ResponseRequest.Models
 {
-    public class ResponseContentData<TData> : IRequestResponseDto<TData>
+    public class ResponseContentData<TData> : IRequestResponseContent<TData>
     {
 
         /// <summary>
         /// list of data return from an endpoint
         /// </summary>
-        public List<TData> Data { get; set; } = [];
+        public List<TData> Contents { get; set; } = [];
 
         /// <summary>
         /// page number from where the list of TParam get,

@@ -4,6 +4,22 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Title>Data Transfer Object utk Sistem Loyalti Pelanggan 2</Title>
+    <Version>2026.06.1</Version>
+    <Authors>Edo Suhartanto</Authors>
+    <Company>Sidata Solusi Ritel</Company>
+    <Product>Sistem Loyalti Pelanggan 2</Product>
+    <Description>Data Transfer Object utk Sistem Loyalti Pelanggan 2</Description>
+    <Copyright>(c) 2026 oleh Sidata Solusi Ritel</Copyright>
+    <PackageTags>sidata;platform;framework;sidata platform;sidata framework;persistent;persistent object;Sistem Loyalti Pelanggan 2;SLIP2;data;data transfer object;DTO;</PackageTags>
+    <PackageReleaseNotes>
+      v.2026.06.1
+      - awal buat
+      - BARU: Merchant dan Customer DTO
+
+      catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md
+    </PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

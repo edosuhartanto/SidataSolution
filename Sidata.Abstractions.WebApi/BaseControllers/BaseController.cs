@@ -1,4 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+// ******************************************************
+// Copyright (c) 2026 Sidata Solusi Ritel
+// Licensed under the MIT License.
+// build by Edo Suhartanto 
+// ******************************************************
+
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sidata.Abstractions.BaseClasses;
 using Sidata.Abstractions.DataContext.Extensions;
@@ -8,9 +15,9 @@ using Sidata.Abstractions.Queryable.Models;
 using Sidata.Abstractions.WebApi.Attributes;
 using Sidata.Abstractions.WebApi.Enums;
 using Sidata.Abstractions.WebApi.Extensions;
+using Sidata.Abstractions.WebApi.Interfaces;
 using Sidata.Abstractions.WebApi.ResponseRequest.Extensions;
 using Sidata.Abstractions.WebApi.ResponseRequest.Models;
-using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Sidata.Abstractions.WebApi.BaseControllers
@@ -21,24 +28,23 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
     /// entity dapat diakses dari/ke database.
     /// Dan entity harus turunan dari PersistentObject.
     /// Controller turunan harus memiliki Attribute "[ControllerObjectId(no)]".
-    /// Dan harus menurunkan fungsi2 berikut:
-    /// Expression&lt;Func&lt;TDto,TEntity&gt;&gt; SelectEntityIntoDto()
-    /// Func&lt;TDto,TEntity&gt; CopyDtoToEntity()
-    /// Func&lt;TDto,TEntity&gt; CopyEntityToDto() 
-    /// Action&lt;TDto,TEntity&gt; UpdateRequestDtoToEntity() 
+    /// Dan harus disediakan ICrudDefinition sesuai tipe Entity dan Dto
+    /// yang didaftarkan secara singleton.
     /// </summary>
     /// <remarks>
     /// Class ini dibuat sebagai Abstract, agar controller ini tidak bisa
     /// digunakan secara langsung.
     /// </remarks>
     public abstract class WebApiCrudControllerBase<TDbContext, TEntity, TDto>(
-                          IDbContextFactory<TDbContext> dbfactory)
+                          IDbContextFactory<TDbContext> dbfactory,
+                          ICrudDefinition<TEntity, TDto> cruddefinition)
         : ControllerBase
     where TDbContext : DbContext
     where TEntity : PersistentObject
     where TDto : class, IMasterClass
     {
         private readonly IDbContextFactory<TDbContext> _dbfactory = dbfactory;
+        private readonly ICrudDefinition<TEntity, TDto> _cruddefinition = cruddefinition;  
 
         #region CONTROLLER OBJECTID
         private int? _tmpobjectid;
@@ -48,48 +54,6 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
                 ?.Id
                 ?? throw new InvalidOperationException(
                     $"{GetType().Name} harus deklarasi [ControllerObjectId(id)]");
-        #endregion
-
-        #region ABSTRACT DELEGATE FUNCTIONS
-        protected abstract Func<TDto, Expression<Func<TEntity, bool>>> 
-            InsertDuplicateChecker { get; }
-
-        protected abstract Func<TDto, Expression<Func<TEntity, bool>>>
-            UpdateDuplicateChecker { get; }
-
-        /// <summary>
-        /// controller turunan harus membuat proses update Entity
-        /// dgn data yang didapat dari Dto.
-        /// </summary>
-        /// <remarks>
-        /// jika Id dan Kode (yg unik per record) tidak ingin dioverwrite
-        /// set CopyIdStatus ke DonotCopy.
-        /// </remarks>
-        protected abstract Action<TDto, TEntity, CopyIdStatus> 
-                    UpdateEntityFromDto { get; }
-
-        /// <summary>
-        /// controller turunan harus menurunkan cara mengkopi Dto ke Entity
-        /// </summary>
-        protected abstract Func<TDto, TEntity> CopyDtoToEntity { get; }
-
-        /// <summary>
-        /// controller turunan harus menurunkan cara mengkopi Dto ke Entity
-        /// </summary>
-        /// <remarks>
-        /// fungsi ini khusus utk digunakan dalam Linq Expression
-        /// jadi meskipun mungkin isinya sama seperti yang digunakan dalam 
-        /// CopyEntityToDto, 
-        /// jangan referensikan ke sini, namun harus dibuatlah sekali lagi.
-        /// agar Linq dapat menjadikannya perintah SQL. Kalo tidak, maka
-        /// proses perubahan ini akan terjadi di memory, bukan di server SQL.
-        /// </remarks>
-        protected abstract Expression<Func<TEntity, TDto>> 
-                    LinqExpressionEntityToDto { get; }
-        /// <summary>
-        /// fungsi yang harus diturunkan utk mengkopi entity to dto
-        /// </summary>
-        protected abstract Func<TEntity, TDto> CopyEntityToDto { get; }
         #endregion
 
         #region PROTECTED CORE ENGINE
@@ -119,13 +83,13 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
 
                 var dbentity = db.Set<TEntity>();
                 var currententity = 
-                    await dbentity.LoadEntityByIdAsync(request.Data[0].Id);
+                    await dbentity.LoadEntityByIdAsync(request.Contents[0].Id);
                 dbentity.Remove(currententity); 
                 // softdelete is happened inside TDbContext
                 await db.SaveChangesAsync();
 
                 return Ok(
-                    CopyEntityToDto(currententity)
+                    _cruddefinition.CopyEntityToDto(currententity)
                         .BuildOkResponseData()
                 );
             }
@@ -150,15 +114,15 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
                 request.ThrowIfContentNullOrMultipleItem();
 
                 var dbentity = db.Set<TEntity>();
-                var requesteddata = request.Data[0];
+                var requesteddata = request.Contents[0];
                 await dbentity.ThrowIfDuplicateEntity(
                     requesteddata,
-                    UpdateDuplicateChecker);
+                    _cruddefinition.UpdateDuplicateChecker);
 
                 var currententity = 
                     await dbentity.LoadEntityByIdAsync(requesteddata.Id);
 
-                UpdateEntityFromDto.Invoke(
+                _cruddefinition.UpdateEntityFromDto.Invoke(
                     requesteddata, 
                     currententity, 
                     copyidstatus);
@@ -166,7 +130,7 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
                 dbentity.Add(currententity);
                 await db.SaveChangesAsync();
 
-                return Ok(CopyEntityToDto(currententity)
+                return Ok(_cruddefinition.CopyEntityToDto(currententity)
                             .BuildOkResponseData());
             }
             catch (Exception ex)
@@ -187,17 +151,17 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
                 request.ThrowIfContentNullOrMultipleItem();
 
                 var dbentity = db.Set<TEntity>();
-                var dto = request.Data[0];
+                var dto = request.Contents[0];
                 await dbentity
                         .ThrowIfDuplicateEntity(
                             dto, 
-                            InsertDuplicateChecker);
+                            _cruddefinition.InsertDuplicateChecker);
 
-                var entity = CopyDtoToEntity(dto);
+                var entity = _cruddefinition.CopyDtoToEntity(dto);
                 dbentity.Add(entity);
                 await db.SaveChangesAsync();
 
-                return Ok(CopyEntityToDto(entity)
+                return Ok(_cruddefinition.CopyEntityToDto(entity)
                             .BuildOkResponseData());
             }
             catch (Exception ex)
@@ -217,18 +181,18 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
             {
                 request.ThrowIfContentNull();
                 var dbentity = _db.Set<TEntity>();
-                if (request.Data.Count > 1)
+                if (request.Contents.Count > 1)
                 {
                     var response =
                          await dbentity.LoadEntityByIdAsync(
-                             LinqExpressionEntityToDto, request.Data);
+                             _cruddefinition.LinqExpressionEntityToDto, request.Contents);
                     return Ok(response.BuildOkResponseData());
                 }
                 else
                 {
                     var response =
                        await dbentity.LoadEntityByIdAsync(
-                           LinqExpressionEntityToDto, request.Data[0]);
+                           _cruddefinition.LinqExpressionEntityToDto, request.Contents[0]);
                     return Ok(response.BuildOkResponseData());
                 }
             }
@@ -252,7 +216,7 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
             {
                 var entity = _db.Set<TEntity>();
                 var query = entity.AsNoTracking()
-                                  .Select(LinqExpressionEntityToDto);
+                                  .Select(_cruddefinition.LinqExpressionEntityToDto);
                 var querycontent = new QueryContent();
                 var pagenumber = 0;
                 var pagesize = 0;
@@ -263,7 +227,7 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
                     request.ThrowIfContentNullOrMultipleItem();
 
                     // build query based on request in QueryContent
-                    querycontent = request.Data[0];
+                    querycontent = request.Contents[0];
                     query = query.ApplyQuery(querycontent);
 
                     // paging mode

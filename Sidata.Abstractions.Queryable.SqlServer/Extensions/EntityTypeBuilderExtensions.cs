@@ -367,9 +367,10 @@ namespace Sidata.Abstractions.Queryable.SqlServer.Extensions
 
         #region String Type Configuration
         /// <summary>
-        /// string property usually used by undefined length (jsondata, document, dll)
-        /// length = max. NOTE: use with care for this nvarchar(max) mode. 
-        /// cannot be indexed, etc 
+        /// string property usually used by undefined length 
+        /// (jsondata, document, dll) => length = max. <br/>
+        /// NOTE: use with care for this nvarchar(max) mode. 
+        /// it cannot be indexed, etc 
         /// </summary>
         public static PropertyBuilder<string?> ConfigureMaxStringProperty<TEntity>(
             this EntityTypeBuilder<TEntity> builder,
@@ -384,9 +385,11 @@ namespace Sidata.Abstractions.Queryable.SqlServer.Extensions
         }
 
         /// <summary>
-        /// string property usually used by description, remarks, etc length = 255
+        /// setup property with string typed, 
+        /// usually used by description, remarks, address, etc 
+        /// with length = 255
         /// </summary>
-        public static PropertyBuilder<string?> ConfigureDescriptionStringProperty<TEntity>(
+        public static PropertyBuilder<string?> ConfigureString255Property<TEntity>(
             this EntityTypeBuilder<TEntity> builder,
             Expression<Func<TEntity, string?>> selector,
             RequiredMode requiredMode = RequiredMode.Nullable,
@@ -399,9 +402,11 @@ namespace Sidata.Abstractions.Queryable.SqlServer.Extensions
         }
 
         /// <summary>
-        /// string property usually used by code, nobukti, etc, with length=50
+        /// setup property with string typed, 
+        /// usually used by name, phone, email, etc 
+        /// with length = 50
         /// </summary>
-        public static PropertyBuilder<string?> ConfigureCodeStringProperty<TEntity>(
+        public static PropertyBuilder<string?> ConfigureString50Property<TEntity>(
             this EntityTypeBuilder<TEntity> builder,
             Expression<Func<TEntity, string?>> selector,
             RequiredMode requiredMode = RequiredMode.Nullable,
@@ -413,6 +418,27 @@ namespace Sidata.Abstractions.Queryable.SqlServer.Extensions
                                                    defaultValue); 
         }
 
+        /// <summary>
+        /// setup property with string typed, 
+        /// usually used by PLU, NIK, social number, ISBN, etc 
+        /// with length = 20
+        /// </summary>
+        public static PropertyBuilder<string?> ConfigureString20Property<TEntity>(
+            this EntityTypeBuilder<TEntity> builder,
+            Expression<Func<TEntity, string?>> selector,
+            RequiredMode requiredMode = RequiredMode.Nullable,
+            string? defaultValue = null)
+            where TEntity : class
+        {
+            return builder.ConfigureStringProperty(selector, 20,
+                                                   requiredMode,
+                                                   defaultValue);
+        }
+
+        /// <summary>
+        /// configure generic string property.<br/>
+        /// MaxLength = 4000.
+        /// </summary>
         public static PropertyBuilder<string?> ConfigureStringProperty<TEntity>(
             this EntityTypeBuilder<TEntity> builder,
             Expression<Func<TEntity, string?>> selector,

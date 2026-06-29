@@ -22,9 +22,9 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Definitions
         {
             builder.ConfigurePersistentObject("InstrumentDefinition");
             // without default value, means caller should provide the value explicitly
-            builder.ConfigureCodeStringProperty(x => x.DefinitionCode, 
+            builder.ConfigureString50Property(x => x.DefinitionCode, 
                                                 RequiredMode.Yes);
-            builder.ConfigureDescriptionStringProperty(x => x.DefinitionName, 
+            builder.ConfigureString255Property(x => x.DefinitionName, 
                                                        RequiredMode.Yes);
             builder.ConfigureEnumProperty(x => x.BalanceStrategyType, 
                                           RequiredMode.Yes, 

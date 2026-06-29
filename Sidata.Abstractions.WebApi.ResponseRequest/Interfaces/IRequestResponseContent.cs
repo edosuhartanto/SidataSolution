@@ -6,8 +6,12 @@
 
 namespace Sidata.Abstractions.WebApi.ResponseRequest.Interfaces
 {
-    public interface IRequestResponseDto<TData>
+    /// <summary>
+    /// default Interface for Request and Response Data Contents
+    /// </summary>
+    /// <typeparam name="TData"></typeparam>
+    public interface IRequestResponseContent<TData>
     {
-        List<TData> Data { get; set; }
+        List<TData> Contents { get; set; }
     }
 }

@@ -12,7 +12,7 @@
     <Copyright>(c) 2026 Sidata Solusi Ritel</Copyright>
     <Product>Sistem Loyalti Pelanggan 2</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>sidata;platform;framework;sidata platform;sidata framework;persistent;persistent object;domain;data;ORM;</PackageTags>
+    <PackageTags>sidata;platform;framework;sidata platform;sidata framework;persistent;persistent object;Sistem Loyalti Pelanggan 2;SLIP2;domain;data;ORM;SLIP2;</PackageTags>
     <PackageReleaseNotes>
       v.2026.06.1
       - buat awal

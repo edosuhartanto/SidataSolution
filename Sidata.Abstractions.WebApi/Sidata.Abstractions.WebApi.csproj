@@ -4,6 +4,23 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Title>Abstraksi utk CRUD WebApi dari framework Sidata </Title>
+    <Version>2026.06.1</Version>
+    <Authors>Edo Suhartanto</Authors>
+    <Company>Sidata Solusi Ritel</Company>
+    <Product>Sidata Solution Abstraction</Product>
+    <Description>abstraksi untuk mendirikan webapi CRUD dalam lingkungan aplikasi Sidata. Attribute ControllerObjectId utk menjadi controller memiliki kode khusus, CRUDDefinition agar bisa mapping dengan sederhana antara Entity dan Dto serta bisa ditentukan secara user defined.</Description>
+    <Copyright>(c) 2026 oleh Sidata Solusi Ritel</Copyright>
+    <PackageTags>sidata;platform;framework;sidata platform;sidata framework;abtract;abstractions;generic;base;base class;persistent;persistent object;standard;api;web;webapi;crud;definition;controllerobjectid;</PackageTags>
+    <PackageReleaseNotes>
+      v.2026.06.1:
+      - first build
+      - BARU: webapi CRUD controller base
+      - BARU: controllerobjectid
+      - BARU: cruddefinition, ICrudDefinition
+
+      catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md      
+    </PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

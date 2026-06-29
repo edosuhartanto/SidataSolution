@@ -1,4 +1,11 @@
-﻿using Sidata.Abstractions.WebApi.Enums;
+﻿
+// ******************************************************
+// Copyright (c) 2026 Sidata Solusi Ritel
+// Licensed under the MIT License.
+// build by Edo Suhartanto 
+// ******************************************************
+
+using Sidata.Abstractions.WebApi.Enums;
 
 namespace Sidata.Abstractions.WebApi.Extensions
 {

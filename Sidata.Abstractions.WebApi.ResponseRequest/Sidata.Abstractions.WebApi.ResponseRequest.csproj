@@ -4,6 +4,24 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Title>Abstraksi Content Request Dan Response Data utk Sidata Solution</Title>
+    <Version>2026.06.1</Version>
+    <Authors>Edo Suhartanto</Authors>
+    <Company>Sidata Solusi Ritel</Company>
+    <Description>abstraksi utk mendapatkan model data yang dipergunakan sebagai standard format Request ke WebApi 
+juga standard format untuk hasil Response dari WebApi dalam lingkungan Sidata Solution</Description>
+    <Copyright>(c) 2026 oleh Sidata Solusi Ritel</Copyright>
+    <PackageTags>sidata;platform;framework;sidata platform;sidata framework;abtract;abstractions;generic;base;base class;request;response;content;data content;request data content;response data content;</PackageTags>
+    <PackageReleaseNotes>
+      v.2026.06.1
+      - build baru
+      - BARU: definisi request dan response data content
+      - BARU: ekstensi utk build request dan response content, sehingga mudah dipanggil dari webapi secara generic.
+
+      catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md
+    </PackageReleaseNotes>
+    <Product>Sidata Solution Abstraction</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>

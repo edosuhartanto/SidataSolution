@@ -41,7 +41,7 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Periods
             builder.ConfigureBooleanProperty(x => x.IsClosed, 
                                              RequiredMode.Yes, false);
             builder.ConfigureUtcDateTimeProperty(x => x.ClosedAtUtc);
-            builder.ConfigureCodeStringProperty(x => x.ClosedBy);
+            builder.ConfigureString50Property(x => x.ClosedBy);
             
             // FK
             builder.ConfigureIndexes(x => x.InstrumentAccountId);

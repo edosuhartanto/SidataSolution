@@ -22,12 +22,12 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Masters
             builder.ConfigurePersistentObject("Customer");
             builder.ConfigureLongIdProperty(x => x.SimariCustomerId, 
                                             RequiredMode.Yes, 0); 
-            builder.ConfigureCodeStringProperty(x => x.CustomerNumber, 
+            builder.ConfigureString50Property(x => x.CustomerNumber, 
                                                 RequiredMode.Yes);
-            builder.ConfigureDescriptionStringProperty(x => x.Name, 
+            builder.ConfigureString255Property(x => x.Name, 
                                                        RequiredMode.Yes);
-            builder.ConfigureCodeStringProperty(x => x.PhoneNumber);
-            builder.ConfigureDescriptionStringProperty(x => x.Email);
+            builder.ConfigureString50Property(x => x.PhoneNumber);
+            builder.ConfigureString255Property(x => x.Email);
             builder.ConfigureBooleanProperty(x => x.IsActive, 
                                              RequiredMode.Yes, 
                                              true);

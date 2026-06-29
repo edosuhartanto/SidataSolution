@@ -16,7 +16,7 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Transactions
             builder.ConfigurePersistentObject("LedgerTransaction");
 
             // without default value, means caller should provide the value explicitly
-            builder.ConfigureCodeStringProperty(x => x.TransactionReferenceNumber, 
+            builder.ConfigureString50Property(x => x.TransactionReferenceNumber, 
                                                 RequiredMode.Yes);
             builder.ConfigureIntegerProperty(x => x.AccountingPeriodYear, 
                                              RequiredMode.Yes);
@@ -40,9 +40,9 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Transactions
                                              RequiredMode.Yes, 0);
 
             // this all string is allow to be nulled
-            builder.ConfigureDescriptionStringProperty(x => x.ExternalReferenceNumber);
-            builder.ConfigureCodeStringProperty(x => x.BranchReference);
-            builder.ConfigureCodeStringProperty(x => x.MachineReference);
+            builder.ConfigureString255Property(x => x.ExternalReferenceNumber);
+            builder.ConfigureString50Property(x => x.BranchReference);
+            builder.ConfigureString50Property(x => x.MachineReference);
             builder.ConfigureMaxStringProperty(x => x.Remark);
 
             // FK : semua harus required

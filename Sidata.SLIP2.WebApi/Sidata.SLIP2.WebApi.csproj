@@ -4,6 +4,22 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Title>Webapi Utama untuk Sistem Loyalti Pelanggan 2</Title>
+    <Version>2026.06.1</Version>
+    <Authors>Edo Suhartanto</Authors>
+    <Company>Sidata Solusi Ritel</Company>
+    <Product>Sistem Loyalti Pelanggan 2</Product>
+    <Description>webapi utama untuk sistem loyalti pelanggan 2</Description>
+    <Copyright>(c) 2026 oleh Sidata Solusi Ritel</Copyright>
+    <PackageTags>sidata;platform;framework;sidata platform;sidata framework;Sistem Loyalti Pelanggan 2;SLIP2;web;api;restful;webapi;</PackageTags>
+    <PackageReleaseNotes>
+      v.2026.06.1
+      - first build
+      - BARU: endpoint utk Merchant dan Customer
+
+      catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md
+    </PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,7 +27,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.2" />
   </ItemGroup>
 
   <ItemGroup>
