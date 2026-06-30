@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>Abstraksi utk CRUD WebApi dari framework Sidata </Title>
-    <Version>2026.06.1</Version>
+    <Version>2026.06.2</Version>
     <Authors>Edo Suhartanto</Authors>
     <Company>Sidata Solusi Ritel</Company>
     <Product>Sidata Solution Abstraction</Product>
@@ -13,11 +13,8 @@
     <Copyright>(c) 2026 oleh Sidata Solusi Ritel</Copyright>
     <PackageTags>sidata;platform;framework;sidata platform;sidata framework;abtract;abstractions;generic;base;base class;persistent;persistent object;standard;api;web;webapi;crud;definition;controllerobjectid;</PackageTags>
     <PackageReleaseNotes>
-      v.2026.06.1:
-      - first build
-      - BARU: webapi CRUD controller base
-      - BARU: controllerobjectid
-      - BARU: cruddefinition, ICrudDefinition
+      v.2026.06.2:
+      - BARU: extension SetupCrudDefinition
 
       catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md      
     </PackageReleaseNotes>

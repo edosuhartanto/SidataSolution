@@ -5,11 +5,14 @@
 // build by Edo Suhartanto 
 // ******************************************************
 
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Sidata.Abstractions.Queryable.SqlServer.Extensions;
+using Sidata.Abstractions.Services;
+using Sidata.Abstractions.WebApi.Services;
 using Sidata.SLIP2.Data.Context;
-using Sidata.SLIP2.WebApi.Services;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Text.Json.Serialization;
 
 internal class Program
@@ -29,7 +32,7 @@ internal class Program
         // Like must be handled with special custom handle
         builder.Services.AddQueryableLikeOperatorForSqlServer();
         // setup CRUD Definition to be consumed by webapi crud controller base
-        builder.Services.AddCrudDefinition();
+        builder.Services.AddCrudDefinitions();
 
         // Add json so endpoint can receive or response Enum in string name
         builder.Services.AddControllers()
@@ -45,9 +48,34 @@ internal class Program
         {
             options.SwaggerDoc("v2", new OpenApiInfo   // <-- tanpa prefix Microsoft.OpenApi.Models
             {
-                Title = "Sistem Loyalti Pelanggan",
-                Version = "v2",
-                Description = "API utk melayani sistem loyalti pelanggan"
+                Title = AssemblyProperties.GetProductName(),
+                Description = AssemblyProperties.GetProductDescription(),
+                Version = AssemblyProperties.GetProductVersion()
+            });
+
+            // add grouping text name based on attribute in each controller
+            // Urutkan berdasarkan tag (opsional tapi rapi)
+            options.OrderActionsBy(
+                (api) => api.ActionDescriptor.EndpointMetadata
+                            .OfType<TagsAttribute>()
+                            .SelectMany(t => t.Tags)
+                            .FirstOrDefault()
+                         ?? api.ActionDescriptor.RouteValues["controller"]!
+            );
+
+            // Kelompokkan endpoint dengan tag custom (bukan nama controller)
+            options.TagActionsBy(api =>
+            {
+                // Ambil tag dari attribute [Tags] jika ada
+                var tags = api.ActionDescriptor.EndpointMetadata
+                    .OfType<TagsAttribute>()
+                    .SelectMany(t => t.Tags)
+                    .ToList();
+
+                if (tags.Any()) return tags;
+
+                // Fallback ke nama controller
+                return new[] { api.ActionDescriptor.RouteValues["controller"]! };
             });
         });
 
@@ -62,7 +90,9 @@ internal class Program
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v2/swagger.json", "Sistem Loyalti Pelanggan v2");
+                options.SwaggerEndpoint("/swagger/v2/swagger.json", AssemblyProperties.GetProductName());
+                options.DocExpansion(DocExpansion.None);
+                options.ConfigObject.AdditionalItems["syntaxHighlight"] = false;
             });
         }
 

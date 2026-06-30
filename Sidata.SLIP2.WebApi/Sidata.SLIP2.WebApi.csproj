@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <Title>Webapi Utama untuk Sistem Loyalti Pelanggan 2</Title>
-    <Version>2026.06.1</Version>
+    <Version>2026.06.2</Version>
     <Authors>Edo Suhartanto</Authors>
     <Company>Sidata Solusi Ritel</Company>
     <Product>Sistem Loyalti Pelanggan 2</Product>
@@ -13,14 +13,37 @@
     <Copyright>(c) 2026 oleh Sidata Solusi Ritel</Copyright>
     <PackageTags>sidata;platform;framework;sidata platform;sidata framework;Sistem Loyalti Pelanggan 2;SLIP2;web;api;restful;webapi;</PackageTags>
     <PackageReleaseNotes>
-      v.2026.06.1
-      - first build
-      - BARU: endpoint utk Merchant dan Customer
+      v.2026.06.2
+      - CHANGE:swagger:using custom tag utk menambahkan sort, dan grouping
+      - CHANGE:controllers:using custom tag swagger itu
+      - NOTE: to build new Crud on xxx model: Add xxxController, Add xxxDto, Add xxxCrudDefinition
 
       catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md
     </PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <!--
+      Path proyek SwaggerToHttp relatif terhadap file .csproj ini.
+      Contoh di bawah: solution root ada satu level di atas YourWebApi.
+    -->
+    <SwaggerToHttpProject>$(MSBuildThisFileDirectory)..\Sidata.Tools.SwaggerJsonToWebApiHttpConverter\Sidata.Tools.SwaggerJsonToWebApiHttpConverter.csproj</SwaggerToHttpProject>
+
+    <!-- Output swagger.json dari Swashbuckle CLI -->
+    <SwaggerJsonOutput>$(MSBuildThisFileDirectory)swagger.json</SwaggerJsonOutput>
+
+    <!-- Output .http — di root proyek (selalu mudah ditemukan) -->
+    <HttpFileOutput>$(MSBuildThisFileDirectory)$(AssemblyName).http</HttpFileOutput>
+
+    <!-- Nama dokumen Swagger (default "v1", sesuaikan jika berbeda) -->
+    <SwaggerDocName>v2</SwaggerDocName>
   </PropertyGroup>
+
+  <!-- ───────────────────────────────────────────────────────────────── -->
+  <!-- Referensi ke proyek SwaggerToHttp agar ikut di-restore/build    -->
+  <!-- ───────────────────────────────────────────────────────────────── -->
+  <ItemGroup>
+    <ProjectReference Include="$(SwaggerToHttpProject)" ReferenceOutputAssembly="false" SkipGetTargetFrameworkProperties="true" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.28">
@@ -35,4 +58,21 @@
     <ProjectReference Include="..\Sidata.SLIP2.Data.Context\Sidata.SLIP2.Data.Context.csproj" />
     <ProjectReference Include="..\Sidata.SLIP2.Data.DTOs\Sidata.SLIP2.Data.DTOs.csproj" />
   </ItemGroup>
+
+  <!-- ───────────────────────────────────────────────────────────────── -->
+  <!-- Target: generate swagger.json lalu konversi ke .http             -->
+  <!-- ───────────────────────────────────────────────────────────────── -->
+  <Target Name="GenerateSwaggerAndHttpFile" AfterTargets="Build">
+
+    <!-- Langkah 1: Generate swagger.json via Swashbuckle CLI -->
+    <Exec Command="dotnet swagger tofile --output &quot;$(SwaggerJsonOutput)&quot; &quot;$(TargetDir)$(AssemblyName).dll&quot; $(SwaggerDocName)" WorkingDirectory="$(MSBuildThisFileDirectory)" ContinueOnError="true" ConsoleToMSBuild="false" />
+
+    <!-- Langkah 2: Konversi swagger.json → swagger.http -->
+    <Exec Condition="Exists('$(SwaggerJsonOutput)')" Command="dotnet run --project &quot;$(SwaggerToHttpProject)&quot; --configuration Release --no-launch-profile -- &quot;$(SwaggerJsonOutput)&quot; &quot;$(HttpFileOutput)&quot;" WorkingDirectory="$(MSBuildThisFileDirectory)" ContinueOnError="true" ConsoleToMSBuild="false" />
+
+    <Message Condition="Exists('$(HttpFileOutput)')" Text="✔ $(AssemblyName).http berhasil dibuat: $(HttpFileOutput)" Importance="High" />
+
+    <Message Condition="!Exists('$(HttpFileOutput)')" Text="⚠ $(AssemblyName).http tidak dibuat (swagger.json mungkin belum ada)." Importance="Normal" />
+
+  </Target>
 </Project>

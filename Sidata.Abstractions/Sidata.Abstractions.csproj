@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>Model Abstraksi Generik untuk Sidata Platform</Title>
-    <Version>2026.06.1</Version>
+    <Version>2026.06.2</Version>
     <Authors>Edo Suhartanto</Authors>
     <Company>Sidata Solusi Ritel</Company>
     <Description>
@@ -17,10 +17,8 @@
     <PackageTags>sidata;platform;framework;sidata platform;sidata framework;abtract;abstractions;generic;base;base class;persistent;persistent object;standard;</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes>
-      v.2026.06.1
-      - awal buat
-      - BARU: class PersistenObject
-      - BARU: interface ISoftDelete dan IMasterClass
+      v.2026.06.2
+      - BARU: add AssemblyProperties
 
       catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md
     </PackageReleaseNotes>

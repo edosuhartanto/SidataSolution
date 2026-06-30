@@ -4,6 +4,8 @@
 - BARU: class PersistenObject
 - BARU: interface ISoftDelete dan IMasterClass
 - BARU: template utk menghasilkan MIT License Header
+### v.2026.06.2
+- BARU: add AssemblyProperties
  
 # 2.Sidata.Abstractions.DataContext
 ### v.2026.06.1
@@ -31,6 +33,8 @@
 - BARU: webapi CRUD controller base
 - BARU: controllerobjectid
 - BARU: cruddefinition, ICrudDefinition
+### v.2026.06.2:
+- BARU: extension SetupCrudDefinition
 
 # 6.Sidata.Abstractions.WebApi.ResponseRequest
 ### v.2026.06.1
@@ -58,6 +62,15 @@
 ### v.2026.06.1
 - first build
 - BARU: endpoint utk Merchant dan Customer
+### v.2026.06.2
+- CHANGE:swagger:using custom tag utk menambahkan sort, dan grouping
+- CHANGE:controllers:using custom tag
+- NOTE: to build new Crud on xxx model: Add xxxController, Add xxxDto, Add xxxCrudDefinition
+
+# 11.Sidata.Tools.SwaggerJsonToWebApiHttpConverter
+### v.2026.06.1
+- first build
+- build using Claude Code AI
 
 ---
 Sidata Solution

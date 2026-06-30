@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>Swagger Json To Http Converter</Title>
+    <Version>2026.06.1</Version>
+    <Authors>Claude Code, Edo Suhartanto</Authors>
+    <Company>Sidata Solusi Ritel</Company>
+    <Product>Sidata Solution Tools</Product>
+    <Description>tools to convert swagger.json into web api .http file</Description>
+    <Copyright>(c) 2026 Sidata Solusi Ritel</Copyright>
+    <PackageTags>sidata;solutions;framework;tools;converter;swagger json;webapi http;</PackageTags>
+    <PackageReleaseNotes>
+      v.2026.06.1
+      - first build
+      - build using Claude Code AI
+
+      catatan perubahan lengkap liat disini: &lt;root github&gt;/Sidata/CHANGELOGS.md
+    </PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+</Project>
