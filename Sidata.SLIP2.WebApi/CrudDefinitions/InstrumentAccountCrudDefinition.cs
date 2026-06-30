@@ -9,26 +9,26 @@ using Sidata.SLIP2.Data.DTOs.Masters;
 using Sidata.SLIP2.Data.Masters;
 using System.Linq.Expressions;
 
-InstrumentDefinitionIdspace Sidata.SLIP2.WebApi.CrudDefinitions
+namespace Sidata.SLIP2.WebApi.CrudDefinitions
 {
     public class InstrumentAccountCrudDefinition :
         CrudDefinition<InstrumentAccount, InstrumentAccountDto>
     {
         public override Func<InstrumentAccountDto, Expression<Func<InstrumentAccount, bool>>>
             InsertDuplicateChecker =>
-                (dto) => c => c.InstrumentAccountNumber == dto.InstrumentAccountNumber;
+                (dto) => c => c.MerchantId = dto.MerchantId && 
+                              c.AccountNumber == dto.AccountNumber;
         public override Func<InstrumentAccountDto, Expression<Func<InstrumentAccount, bool>>>
             UpdateDuplicateChecker =>
-                (dto) => c => c.InstrumentAccountNumber == dto.InstrumentAccountNumber &&
-                               c.Id != dto.Id;
+                (dto) => c => c.MerchantId = dto.MerchantId &&
+                              c.AccountNumber == dto.AccountNumber &&
+                              c.Id != dto.Id;
         public override Action<InstrumentAccountDto, InstrumentAccount, CopyIdStatus>
             UpdateEntityFromDto =>
                 (dto, InstrumentAccount, copyid) =>
                 {
-                    InstrumentAccount.MerchantId = dto.MerchantId;
                     InstrumentAccount.CustomerId = dto.CustomerId;
                     InstrumentAccount.InstrumentDefinitionId = dto.InstrumentDefinitionId;
-                    InstrumentAccount.AccountNumber = dto.AccountNumber;
                     InstrumentAccount.AccountName = dto.AccountName;
                     InstrumentAccount.CurrentBalance = dto.CurrentBalance;
                     InstrumentAccount.ReservedBalance = dto.ReservedBalance;
@@ -38,6 +38,7 @@ InstrumentDefinitionIdspace Sidata.SLIP2.WebApi.CrudDefinitions
                     InstrumentAccount.PinLockedUntilUtc = dto.PinLockedUntilUtc;
                     if (copyid == CopyIdStatus.CopyIt)
                     {
+                        InstrumentAccount.MerchantId = dto.MerchantId;
                         InstrumentAccount.AccountNumber = dto.AccountNumber;
                         InstrumentAccount.Id = dto.Id;
                     }

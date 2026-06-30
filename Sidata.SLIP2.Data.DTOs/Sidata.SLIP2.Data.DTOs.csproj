@@ -26,4 +26,8 @@
     <ProjectReference Include="..\Sidata.SLIP2.Data\Sidata.SLIP2.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Transactions\" />
+  </ItemGroup>
+
 </Project>

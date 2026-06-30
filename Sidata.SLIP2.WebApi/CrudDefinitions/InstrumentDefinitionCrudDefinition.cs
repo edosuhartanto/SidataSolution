@@ -9,25 +9,25 @@ using Sidata.SLIP2.Data.DTOs.Masters;
 using Sidata.SLIP2.Data.Masters;
 using System.Linq.Expressions;
 
-DefinitionCodespace Sidata.SLIP2.WebApi.CrudDefinitions
+namespace Sidata.SLIP2.WebApi.CrudDefinitions
 {
     public class InstrumentDefinitionCrudDefinition :
         CrudDefinition<InstrumentDefinition, InstrumentDefinitionDto>
     {
         public override Func<InstrumentDefinitionDto, Expression<Func<InstrumentDefinition, bool>>>
             InsertDuplicateChecker =>
-                (dto) => c => c.DefinitionCode == dto.DefinitionCode;
+                (dto) => c => c.MerchantId == dto.MerchantId &&
+                              c.DefinitionCode == dto.DefinitionCode;
         public override Func<InstrumentDefinitionDto, Expression<Func<InstrumentDefinition, bool>>>
             UpdateDuplicateChecker =>
-                (dto) => c => c.DefinitionCode == dto.DefinitionCode &&
-                               c.Id != dto.Id;
+                (dto) => c => c.MerchantId == dto.MerchantId &&
+                              c.DefinitionCode == dto.DefinitionCode &&
+                              c.Id != dto.Id;
         public override Action<InstrumentDefinitionDto, InstrumentDefinition, CopyIdStatus>
             UpdateEntityFromDto =>
                 (dto, InstrumentDefinition, copyid) =>
                 {
-                    InstrumentDefinition.MerchantId = dto.MerchantId;
                     InstrumentDefinition.InstrumentTypeId = dto.InstrumentTypeId;
-                    InstrumentDefinition.DefinitionCode = dto.DefinitionCode;
                     InstrumentDefinition.DefinitionName = dto.DefinitionName;
                     InstrumentDefinition.BalanceStrategyType = dto.BalanceStrategyType;
                     InstrumentDefinition.EarnConversionRate = dto.EarnConversionRate;
@@ -47,7 +47,8 @@ DefinitionCodespace Sidata.SLIP2.WebApi.CrudDefinitions
                     InstrumentDefinition.AllowNegativeBalance = dto.AllowNegativeBalance;
                     if (copyid == CopyIdStatus.CopyIt)
                     {
-                        InstrumentDefinition.SingleUseOnly = dto.SingleUseOnly;
+                        InstrumentDefinition.MerchantId = dto.MerchantId;
+                        InstrumentDefinition.DefinitionCode = dto.DefinitionCode;
                         InstrumentDefinition.Id = dto.Id;
                     }
                 };
@@ -103,7 +104,5 @@ DefinitionCodespace Sidata.SLIP2.WebApi.CrudDefinitions
                     Transferable = cust.Transferable,
                     AllowNegativeBalance = cust.AllowNegativeBalance
                 };
-
-
     }
 }
