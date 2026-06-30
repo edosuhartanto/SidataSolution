@@ -9,7 +9,7 @@
     "/api/Merchant/getlist": {
       "post": {
         "tags": [
-          "1.Masters - 1.Merchant"
+          "1.Masters - 1.MerchantController"
         ],
         "requestBody": {
           "content": {
@@ -57,7 +57,7 @@
     "/api/Merchant/getbyid": {
       "post": {
         "tags": [
-          "1.Masters - 1.Merchant"
+          "1.Masters - 1.MerchantController"
         ],
         "requestBody": {
           "content": {
@@ -105,7 +105,7 @@
     "/api/Merchant/createnew": {
       "post": {
         "tags": [
-          "1.Masters - 1.Merchant"
+          "1.Masters - 1.MerchantController"
         ],
         "requestBody": {
           "content": {
@@ -153,7 +153,7 @@
     "/api/Merchant/update": {
       "post": {
         "tags": [
-          "1.Masters - 1.Merchant"
+          "1.Masters - 1.MerchantController"
         ],
         "requestBody": {
           "content": {
@@ -201,7 +201,7 @@
     "/api/Merchant/delete": {
       "post": {
         "tags": [
-          "1.Masters - 1.Merchant"
+          "1.Masters - 1.MerchantController"
         ],
         "requestBody": {
           "content": {
@@ -249,7 +249,7 @@
     "/api/Customer/getlist": {
       "post": {
         "tags": [
-          "1.Masters - 2.Customer"
+          "1.Masters - 2.CustomerController"
         ],
         "requestBody": {
           "content": {
@@ -297,7 +297,7 @@
     "/api/Customer/getbyid": {
       "post": {
         "tags": [
-          "1.Masters - 2.Customer"
+          "1.Masters - 2.CustomerController"
         ],
         "requestBody": {
           "content": {
@@ -345,7 +345,7 @@
     "/api/Customer/createnew": {
       "post": {
         "tags": [
-          "1.Masters - 2.Customer"
+          "1.Masters - 2.CustomerController"
         ],
         "requestBody": {
           "content": {
@@ -393,7 +393,7 @@
     "/api/Customer/update": {
       "post": {
         "tags": [
-          "1.Masters - 2.Customer"
+          "1.Masters - 2.CustomerController"
         ],
         "requestBody": {
           "content": {
@@ -441,7 +441,7 @@
     "/api/Customer/delete": {
       "post": {
         "tags": [
-          "1.Masters - 2.Customer"
+          "1.Masters - 2.CustomerController"
         ],
         "requestBody": {
           "content": {

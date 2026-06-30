@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentations", "Documenta
 		LICENSE.txt = LICENSE.txt
 		Models SistemLoyaltiPelanggan2.drawio = Models SistemLoyaltiPelanggan2.drawio
 		Packages SidataSolution.drawio = Packages SidataSolution.drawio
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sidata.Abstractions.Queryable", "Sidata.Abstractions.Queryable\Sidata.Abstractions.Queryable.csproj", "{49EC2307-EFC4-4EF1-8E6D-4B0F914400E4}"
