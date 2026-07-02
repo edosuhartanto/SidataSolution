@@ -16,23 +16,24 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
     {
         public override Func<IdempotencyRecordDto, Expression<Func<IdempotencyRecord, bool>>>
             InsertDuplicateChecker =>
-                (dto) => c => c.IdempotencyKey == dto.IdempotencyKey;
+                (dto) => c => c.IdempotencyKey == dto.IdempotencyKey &&
+                              c.RequestHash = dto.RequestHash;
         public override Func<IdempotencyRecordDto, Expression<Func<IdempotencyRecord, bool>>>
             UpdateDuplicateChecker =>
                 (dto) => c => c.IdempotencyKey == dto.IdempotencyKey &&
-                               c.Id != dto.Id;
+                              c.RequestHash = dto.RequestHash &&
+                              c.Id != dto.Id;
         public override Action<IdempotencyRecordDto, IdempotencyRecord, CopyIdStatus>
             UpdateEntityFromDto =>
                 (dto, IdempotencyRecord, copyid) =>
                 {
-                    IdempotencyRecord.Id = dto.Id;
                     IdempotencyRecord.IdempotencyRecordStatus = dto.IdempotencyRecordStatus;
-                    IdempotencyRecord.RequestHash = dto.RequestHash;
                     IdempotencyRecord.RequestData = dto.RequestData;
                     IdempotencyRecord.ExpireAtUtc = dto.ExpireAtUtc;
                     if (copyid == CopyIdStatus.CopyIt)
                     {
                         IdempotencyRecord.IdempotencyKey = dto.IdempotencyKey;
+                        IdempotencyRecord.RequestHash = dto.RequestHash;
                         IdempotencyRecord.Id = dto.Id;
                     }
                 };
@@ -52,7 +53,6 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
                 (cust) => new()
                 {
                     Id = cust.Id,
-                    MerchantId = cust.MerchantId,
                     IdempotencyKey = cust.IdempotencyKey,
                     IdempotencyRecordStatus = cust.IdempotencyRecordStatus,
                     RequestHash = cust.RequestHash,
