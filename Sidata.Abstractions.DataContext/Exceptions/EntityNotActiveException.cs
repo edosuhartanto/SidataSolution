@@ -3,12 +3,9 @@
 // Licensed under the MIT License.
 // build by Edo Suhartanto
 // ******************************************************
-namespace Sidata.Abstractions.Exceptions
+namespace Sidata.Abstractions.DataContext.Exceptions
 {
-    /// <summary>
-    /// an empty interface to mark a message from a exception is safe to be shown to user
-    /// </summary>
-    public interface ISafeException
+    public class EntityNotActiveException(string message) : SidataEntityContextException(message)
     {
     }
 }

@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sidata.Abstractions.Queryable\Sidata.Abstractions.Queryable.csproj" />
-    <ProjectReference Include="..\Sidata.Abstractions\Sidata.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

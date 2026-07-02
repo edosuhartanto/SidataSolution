@@ -3,7 +3,7 @@
 // Licensed under the MIT License.
 // build by Edo Suhartanto
 // ******************************************************
-namespace Sidata.Abstractions.Exceptions
+namespace Sidata.Abstractions.DataContext.Exceptions
 {
     public class ControllerObjectIdNotDeclaredException(string message) : Exception(message), ISafeException
     {

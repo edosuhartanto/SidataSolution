@@ -6,6 +6,7 @@
 // ******************************************************
 
 using Microsoft.EntityFrameworkCore;
+using Sidata.Abstractions.DataContext.Exceptions;
 using Sidata.Abstractions.DataContext.Services;
 using Sidata.Abstractions.Exceptions;
 using Sidata.Abstractions.Interfaces;
