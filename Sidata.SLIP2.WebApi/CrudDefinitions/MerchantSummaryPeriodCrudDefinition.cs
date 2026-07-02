@@ -16,20 +16,19 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
     {
         public override Func<MerchantSummaryPeriodDto, Expression<Func<MerchantSummaryPeriod, bool>>>
             InsertDuplicateChecker =>
-                (dto) => c => c.AccountingPeriodYear == dto.AccountingPeriodYear &&
+                (dto) => c => c.MerchantId = dto.MerchantId &&
+                              c.AccountingPeriodYear == dto.AccountingPeriodYear &&
                               c.AccountingPeriodMonth == dto.AccountingPeriodMonth;
         public override Func<MerchantSummaryPeriodDto, Expression<Func<MerchantSummaryPeriod, bool>>>
             UpdateDuplicateChecker =>
-                (dto) => c => c.AccountingPeriodYear == dto.AccountingPeriodYear &&
+                (dto) => c => c.MerchantId = dto.MerchantId && 
+                              c.AccountingPeriodYear == dto.AccountingPeriodYear &&
                               c.AccountingPeriodMonth == dto.AccountingPeriodMonth &&
                               c.Id != dto.Id;
         public override Action<MerchantSummaryPeriodDto, MerchantSummaryPeriod, CopyIdStatus>
             UpdateEntityFromDto =>
                 (dto, MerchantSummaryPeriod, copyid) =>
                 {
-                    MerchantSummaryPeriod.MerchantId = dto.MerchantId;
-                    MerchantSummaryPeriod.AccountingPeriodYear = dto.AccountingPeriodYear;
-                    MerchantSummaryPeriod.AccountingPeriodMonth = dto.AccountingPeriodMonth;
                     MerchantSummaryPeriod.TotalCustomerCount = dto.TotalCustomerCount;
                     MerchantSummaryPeriod.TotalActiveCustomerCount = dto.TotalActiveCustomerCount;
                     MerchantSummaryPeriod.TotalAccountCount = dto.TotalAccountCount;
@@ -43,6 +42,9 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
 
                     if (copyid == CopyIdStatus.CopyIt)
                     {
+                        MerchantSummaryPeriod.MerchantId = dto.MerchantId;
+                        MerchantSummaryPeriod.AccountingPeriodYear = dto.AccountingPeriodYear;
+                        MerchantSummaryPeriod.AccountingPeriodMonth = dto.AccountingPeriodMonth;
                         MerchantSummaryPeriod.Id = dto.Id;
                     }
                 };
