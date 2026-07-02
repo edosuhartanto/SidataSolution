@@ -3,7 +3,7 @@
 // Licensed under the MIT License.
 // build by Edo Suhartanto
 // ******************************************************
-namespace Sidata.Abstractions.DataContext.Exceptions
+namespace Sidata.Abstractions.Queryable.Exceptions
 {
     public class EntityPropertyBuilderException(string message) : Exception(message), ISafeException
     {

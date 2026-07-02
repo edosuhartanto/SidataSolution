@@ -207,17 +207,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MerchantDtoRequestData"
+                "$ref": "#/components/schemas/Int64RequestData"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/MerchantDtoRequestData"
+                "$ref": "#/components/schemas/Int64RequestData"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/MerchantDtoRequestData"
+                "$ref": "#/components/schemas/Int64RequestData"
               }
             }
           }
@@ -447,17 +447,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomerDtoRequestData"
+                "$ref": "#/components/schemas/Int64RequestData"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomerDtoRequestData"
+                "$ref": "#/components/schemas/Int64RequestData"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CustomerDtoRequestData"
+                "$ref": "#/components/schemas/Int64RequestData"
               }
             }
           }

@@ -3,9 +3,9 @@
 // Licensed under the MIT License.
 // build by Edo Suhartanto
 // ******************************************************
-namespace Sidata.Abstractions.DataContext.Exceptions
+namespace Sidata.Abstractions.Queryable.Exceptions
 {
-    public class PasswordIsnotValidException(string message) : SidataAuthenticationException(message)
+    public class EntityNotActiveException(string message) : SidataEntityContextException(message)
     {
     }
 }

@@ -6,7 +6,55 @@
     "version": "8.1.2.0"
   },
   "paths": {
-    "/api/ApiClient/getlist": {
+    "/api/ApiClient/registerclient": {
+      "post": {
+        "tags": [
+          "ApiClient"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiClientDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiClientDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiClientDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiClientDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiClientDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiClientDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ApiClient/getlistclient": {
       "post": {
         "tags": [
           "ApiClient"
@@ -54,7 +102,7 @@
         }
       }
     },
-    "/api/ApiClient/getbyid": {
+    "/api/ApiClient/unregisterclient": {
       "post": {
         "tags": [
           "ApiClient"
@@ -102,7 +150,7 @@
         }
       }
     },
-    "/api/ApiClient/createnew": {
+    "/api/ApiClient/getaccesstoken": {
       "post": {
         "tags": [
           "ApiClient"
@@ -111,17 +159,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ApiClientDtoRequestData"
+                "$ref": "#/components/schemas/CodeAndKeyDtoRequestData"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ApiClientDtoRequestData"
+                "$ref": "#/components/schemas/CodeAndKeyDtoRequestData"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ApiClientDtoRequestData"
+                "$ref": "#/components/schemas/CodeAndKeyDtoRequestData"
               }
             }
           }
@@ -132,113 +180,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiClientDtoResponseData"
+                  "$ref": "#/components/schemas/StringResponseData"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiClientDtoResponseData"
+                  "$ref": "#/components/schemas/StringResponseData"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiClientDtoResponseData"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/ApiClient/update": {
-      "post": {
-        "tags": [
-          "ApiClient"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ApiClientDtoRequestData"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ApiClientDtoRequestData"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ApiClientDtoRequestData"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiClientDtoResponseData"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiClientDtoResponseData"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiClientDtoResponseData"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/ApiClient/delete": {
-      "post": {
-        "tags": [
-          "ApiClient"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ApiClientDtoRequestData"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ApiClientDtoRequestData"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ApiClientDtoRequestData"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiClientDtoResponseData"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiClientDtoResponseData"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiClientDtoResponseData"
+                  "$ref": "#/components/schemas/StringResponseData"
                 }
               }
             }
@@ -447,17 +399,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AppUserDtoRequestData"
+                "$ref": "#/components/schemas/Int64RequestData"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AppUserDtoRequestData"
+                "$ref": "#/components/schemas/Int64RequestData"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AppUserDtoRequestData"
+                "$ref": "#/components/schemas/Int64RequestData"
               }
             }
           }
@@ -504,7 +456,7 @@
             "type": "string",
             "nullable": true
           },
-          "clientKeyHash": {
+          "clientKey": {
             "type": "string",
             "nullable": true
           },
@@ -673,6 +625,33 @@
         },
         "additionalProperties": false
       },
+      "CodeAndKeyDto": {
+        "type": "object",
+        "properties": {
+          "clientCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientKey": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CodeAndKeyDtoRequestData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeAndKeyDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "FilterContent": {
         "required": [
           "propertyName"
@@ -794,6 +773,53 @@
         ],
         "type": "integer",
         "format": "int32"
+      },
+      "StringResponseContentData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPage": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StringResponseData": {
+        "type": "object",
+        "properties": {
+          "returnId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "returnMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/StringResponseContentData"
+          }
+        },
+        "additionalProperties": false
       }
     }
   }

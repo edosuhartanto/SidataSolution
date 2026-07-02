@@ -4,8 +4,8 @@
 // build by Edo Suhartanto 
 // ******************************************************
 
-using Sidata.Abstractions.Exceptions;
 using Sidata.Abstractions.Queryable.Enums;
+using Sidata.Abstractions.Queryable.Exceptions;
 using Sidata.Abstractions.Queryable.Interfaces;
 using Sidata.Abstractions.Queryable.Models;
 using System.Collections.Immutable;
@@ -342,12 +342,12 @@ namespace Sidata.Abstractions.Queryable.Extensions
         public static void ThrowIfNotAValidProperty<T>(this IPropertyOperator content)
         {
             // check property name available in T
-            var p = typeof(T).GetProperty(
+            _ = typeof(T).GetProperty(
                     content.PropertyName,
                     BindingFlags.Public |
                     BindingFlags.Instance |
-                    BindingFlags.IgnoreCase);
-            if (p is null) throw new EntityPropertyBuilderException(
+                    BindingFlags.IgnoreCase)
+                ?? throw new EntityPropertyBuilderException(
                     $"Property '{content.PropertyName}' tidak ditemukan pada entity '{typeof(T).Name}'.");
         }
 

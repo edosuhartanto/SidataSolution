@@ -9,8 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sidata.Abstractions.Auth.JWT.Services;
-using Sidata.Abstractions.DataContext.Extensions;
-using Sidata.Abstractions.Exceptions;
+using Sidata.Abstractions.Queryable.Exceptions;
 using Sidata.Abstractions.Queryable.Models;
 using Sidata.Abstractions.WebApi.Attributes;
 using Sidata.Abstractions.WebApi.BaseControllers;
@@ -31,17 +30,17 @@ namespace Sidata.Auth.WebApi.Controllers
     public class ApiClientController(
                     IDbContextFactory<AuthDbContext> dbfactory,
                     ICrudDefinition<ApiClient, ApiClientDto> cruddefinition,
-                    IJwtTokenService jwt) 
+                    IJwtTokenService jwt)
         : BaseController<AuthDbContext, ApiClient, ApiClientDto>
             (dbfactory, cruddefinition)
     {
         protected readonly IJwtTokenService _jwt = jwt;
 
         [HttpPost("registerclient")]
-        public async Task<ActionResult<ResponseData<ApiClientDto>>> 
+        public async Task<ActionResult<ResponseData<ApiClientDto>>>
             RegisterClient(RequestData<ApiClientDto> request)
         {
-            return await EntityCreateAsync(request, 
+            return await EntityCreateAsync(request,
                             (dto) =>
                             {
                                 if (dto.ClientKey.Length > 0)
@@ -52,7 +51,7 @@ namespace Sidata.Auth.WebApi.Controllers
                                 }
                                 else
                                 {
-                                     dto.IsHashed = false;
+                                    dto.IsHashed = false;
                                 }
                                 dto.IsActive = true;
                             });
@@ -73,7 +72,7 @@ namespace Sidata.Auth.WebApi.Controllers
         }
 
         [HttpPost("getaccesstoken")]
-        public async Task<ActionResult<ResponseData<string>>> 
+        public async Task<ActionResult<ResponseData<string>>>
             GetAccessToken(RequestData<CodeAndKeyDto> request)
         {
             using var db = _dbfactory.CreateDbContext();
@@ -130,4 +129,5 @@ namespace Sidata.Auth.WebApi.Controllers
                             ControllerObjectIdExtension.Builder(ControllerObjectId, BaseStatementId.AccessToken)));
             }
         }
+    }
 }
