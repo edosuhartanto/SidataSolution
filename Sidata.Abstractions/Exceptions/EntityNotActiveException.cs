@@ -5,7 +5,7 @@
 // ******************************************************
 namespace Sidata.Abstractions.Exceptions
 {
-    public class EntityNotActiveException(string message) : Exception(message), ISafeException
+    public class EntityNotActiveException(string message) : SidataEntityContextException(message)
     {
     }
 }

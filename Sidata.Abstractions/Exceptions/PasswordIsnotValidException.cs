@@ -5,7 +5,7 @@
 // ******************************************************
 namespace Sidata.Abstractions.Exceptions
 {
-    public class PasswordIsnotValidException(string message) : Exception(message), ISafeException
+    public class PasswordIsnotValidException(string message) : SidataAuthenticationException(message)
     {
     }
 }

@@ -5,7 +5,7 @@
 // ******************************************************
 namespace Sidata.Abstractions.Exceptions
 {
-    public class EntityNotFoundException(string message) : SidataEntityContextException(message) 
+    public class SidataAuthenticationException(string message) : Exception(message), ISafeException
     {
     }
 }

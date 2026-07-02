@@ -5,7 +5,8 @@
 // ******************************************************
 namespace Sidata.Abstractions.Exceptions
 {
-    public class EntityDuplicateException(string message) : Exception(message), ISafeException 
+    public class EntityDuplicateException(string message) 
+        : SidataEntityContextException(message)
     {
     }
 }
