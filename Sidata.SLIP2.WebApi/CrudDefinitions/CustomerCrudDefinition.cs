@@ -16,16 +16,17 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
     {
         public override Func<CustomerDto, Expression<Func<Customer, bool>>>
             InsertDuplicateChecker =>
-                (dto) => c => c.CustomerNumber == dto.CustomerNumber;
+                (dto) => c => c.MerchantId = dto.MerchantId &&
+                              c.CustomerNumber == dto.CustomerNumber;
         public override Func<CustomerDto, Expression<Func<Customer, bool>>>
             UpdateDuplicateChecker =>
-                (dto) => c => c.CustomerNumber == dto.CustomerNumber &&
-                               c.Id != dto.Id;
+                (dto) => c => c.MerchantId = dto.MerchantId &&
+                              c.CustomerNumber == dto.CustomerNumber &&
+                              c.Id != dto.Id;
         public override Action<CustomerDto, Customer, CopyIdStatus>
             UpdateEntityFromDto =>
                 (dto, customer, copyid) =>
                 {
-                    customer.MerchantId = dto.MerchantId;
                     customer.SimariCustomerId = dto.SimariCustomerId;
                     customer.Name = dto.Name;
                     customer.Email = dto.Email;
@@ -34,6 +35,7 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
                     customer.IsActive = dto.IsActive;
                     if (copyid == CopyIdStatus.CopyIt)
                     {
+                        customer.MerchantId = dto.MerchantId;
                         customer.CustomerNumber = dto.CustomerNumber;
                         customer.Id = dto.Id;
                     }
