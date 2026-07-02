@@ -74,7 +74,7 @@ namespace Sidata.Abstractions.DataContext.Extensions
         where TEntity : class, IMasterClass
         where TData : class
         {
-            if (allowtracking) queryentity = queryentity.AsNoTracking();
+            if (!allowtracking) queryentity = queryentity.AsNoTracking();
             // have selector for only some properties you want to?
             // default you select it all and return TEntity
             return await queryentity.Where(x => x.Id == id)
@@ -92,7 +92,7 @@ namespace Sidata.Abstractions.DataContext.Extensions
         where TEntity : class, IMasterClass
         where TData : class
         {
-            if (allowtracking) queryentity = queryentity.AsNoTracking();
+            if (!allowtracking) queryentity = queryentity.AsNoTracking();
             // have selector for only some properties you want to?
             // default you select it all and return TEntity
             var r = await queryentity.Where(x => ids.Contains(x.Id))

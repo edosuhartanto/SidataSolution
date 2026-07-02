@@ -127,7 +127,7 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
                     currententity, 
                     copyidstatus);
                 
-                dbentity.Add(currententity);
+                dbentity.Update(currententity);
                 await db.SaveChangesAsync();
 
                 return Ok(_cruddefinition.CopyEntityToDto(currententity)
