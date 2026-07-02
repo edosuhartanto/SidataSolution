@@ -6,7 +6,9 @@
 using Sidata.Abstractions.WebApi.Enums;
 using Sidata.Abstractions.WebApi.Services;
 using Sidata.SLIP2.Data.DTOs.Masters;
+using Sidata.SLIP2.Data.DTOs.Transactions;
 using Sidata.SLIP2.Data.Masters;
+using Sidata.SLIP2.Data.Transactions;
 using System.Linq.Expressions;
 
 namespace Sidata.SLIP2.WebApi.CrudDefinitions
@@ -17,11 +19,11 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
         public override Func<BalanceBucketDto, Expression<Func<BalanceBucket, bool>>>
             InsertDuplicateChecker =>
                 (dto) => c => c.InstrumentAccountId == dto.InstrumentAccountId &&
-                              c.SequenceNumber = dto.SequenceNumber;
+                              c.SequenceNumber == dto.SequenceNumber;
         public override Func<BalanceBucketDto, Expression<Func<BalanceBucket, bool>>>
             UpdateDuplicateChecker =>
                 (dto) => c => c.InstrumentAccountId == dto.InstrumentAccountId &&
-                              c.SequenceNumber = dto.SequenceNumber &&
+                              c.SequenceNumber == dto.SequenceNumber &&
                               c.Id != dto.Id;
         public override Action<BalanceBucketDto, BalanceBucket, CopyIdStatus>
             UpdateEntityFromDto =>

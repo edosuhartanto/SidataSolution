@@ -12,6 +12,7 @@ using Sidata.Abstractions.Queryable.SqlServer.Extensions;
 using Sidata.Abstractions.Services;
 using Sidata.Abstractions.WebApi.Services;
 using Sidata.SLIP2.Data.Context;
+using Sidata.SLIP2.WebApi.CrudDefinitions;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Text.Json.Serialization;
 
@@ -32,7 +33,7 @@ internal class Program
         // Like must be handled with special custom handle
         builder.Services.AddQueryableLikeOperatorForSqlServer();
         // setup CRUD Definition to be consumed by webapi crud controller base
-        builder.Services.AddCrudDefinitions();
+        builder.Services.AddCrudDefinitions([typeof(MerchantCrudDefinition).Assembly]);
 
         // Add json so endpoint can receive or response Enum in string name
         builder.Services.AddControllers()

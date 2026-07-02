@@ -5,6 +5,8 @@
 // ******************************************************
 using Sidata.Abstractions.WebApi.Enums;
 using Sidata.Abstractions.WebApi.Services;
+using Sidata.SLIP2.Data.Definitions;
+using Sidata.SLIP2.Data.DTOs.Definitions;
 using Sidata.SLIP2.Data.DTOs.Masters;
 using Sidata.SLIP2.Data.Masters;
 using System.Linq.Expressions;

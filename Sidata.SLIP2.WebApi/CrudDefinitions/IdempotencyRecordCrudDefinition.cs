@@ -6,7 +6,9 @@
 using Sidata.Abstractions.WebApi.Enums;
 using Sidata.Abstractions.WebApi.Services;
 using Sidata.SLIP2.Data.DTOs.Masters;
+using Sidata.SLIP2.Data.DTOs.Transactions;
 using Sidata.SLIP2.Data.Masters;
+using Sidata.SLIP2.Data.Transactions;
 using System.Linq.Expressions;
 
 namespace Sidata.SLIP2.WebApi.CrudDefinitions
@@ -17,11 +19,11 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
         public override Func<IdempotencyRecordDto, Expression<Func<IdempotencyRecord, bool>>>
             InsertDuplicateChecker =>
                 (dto) => c => c.IdempotencyKey == dto.IdempotencyKey &&
-                              c.RequestHash = dto.RequestHash;
+                              c.RequestHash == dto.RequestHash;
         public override Func<IdempotencyRecordDto, Expression<Func<IdempotencyRecord, bool>>>
             UpdateDuplicateChecker =>
                 (dto) => c => c.IdempotencyKey == dto.IdempotencyKey &&
-                              c.RequestHash = dto.RequestHash &&
+                              c.RequestHash == dto.RequestHash &&
                               c.Id != dto.Id;
         public override Action<IdempotencyRecordDto, IdempotencyRecord, CopyIdStatus>
             UpdateEntityFromDto =>

@@ -6,7 +6,9 @@
 using Sidata.Abstractions.WebApi.Enums;
 using Sidata.Abstractions.WebApi.Services;
 using Sidata.SLIP2.Data.DTOs.Masters;
+using Sidata.SLIP2.Data.DTOs.Periods;
 using Sidata.SLIP2.Data.Masters;
+using Sidata.SLIP2.Data.Periods;
 using System.Linq.Expressions;
 
 namespace Sidata.SLIP2.WebApi.CrudDefinitions
@@ -16,12 +18,12 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
     {
         public override Func<AccountSummaryPeriodDto, Expression<Func<AccountSummaryPeriod, bool>>>
             InsertDuplicateChecker =>
-                (dto) => c => c.InstrumentAccountId = dto.InstrumentAccountId &&
+                (dto) => c => c.InstrumentAccountId == dto.InstrumentAccountId &&
                               c.AccountingPeriodYear == dto.AccountingPeriodYear && 
                               c.AccountingPeriodMonth == dto.AccountingPeriodMonth;
         public override Func<AccountSummaryPeriodDto, Expression<Func<AccountSummaryPeriod, bool>>>
             UpdateDuplicateChecker =>
-                (dto) => c => c.InstrumentAccountId = dto.InstrumentAccountId &&
+                (dto) => c => c.InstrumentAccountId == dto.InstrumentAccountId &&
                               c.AccountingPeriodYear == dto.AccountingPeriodYear &&
                               c.AccountingPeriodMonth == dto.AccountingPeriodMonth &&
                               c.Id != dto.Id;

@@ -21,12 +21,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.11" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Sidata.Abstractions.DataContext\Sidata.Abstractions.DataContext.csproj" />
     <ProjectReference Include="..\Sidata.Abstractions.WebApi.ResponseRequest\Sidata.Abstractions.WebApi.ResponseRequest.csproj" />
+	<FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
 </Project>

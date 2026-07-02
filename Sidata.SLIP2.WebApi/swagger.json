@@ -9,7 +9,7 @@
     "/api/Merchant/getlist": {
       "post": {
         "tags": [
-          "1.Masters - 1.Merchant"
+          "1.Masters - 1.MerchantController"
         ],
         "requestBody": {
           "content": {
@@ -57,7 +57,7 @@
     "/api/Merchant/getbyid": {
       "post": {
         "tags": [
-          "1.Masters - 1.Merchant"
+          "1.Masters - 1.MerchantController"
         ],
         "requestBody": {
           "content": {
@@ -105,7 +105,7 @@
     "/api/Merchant/createnew": {
       "post": {
         "tags": [
-          "1.Masters - 1.Merchant"
+          "1.Masters - 1.MerchantController"
         ],
         "requestBody": {
           "content": {
@@ -153,7 +153,7 @@
     "/api/Merchant/update": {
       "post": {
         "tags": [
-          "1.Masters - 1.Merchant"
+          "1.Masters - 1.MerchantController"
         ],
         "requestBody": {
           "content": {
@@ -201,7 +201,7 @@
     "/api/Merchant/delete": {
       "post": {
         "tags": [
-          "1.Masters - 1.Merchant"
+          "1.Masters - 1.MerchantController"
         ],
         "requestBody": {
           "content": {
@@ -246,10 +246,490 @@
         }
       }
     },
+    "/api/AccountSummaryPeriod/getlist": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.AccountSummaryPeriodController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/AccountSummaryPeriod/getbyid": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.AccountSummaryPeriodController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/AccountSummaryPeriod/createnew": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.AccountSummaryPeriodController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountSummaryPeriodDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountSummaryPeriodDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountSummaryPeriodDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/AccountSummaryPeriod/update": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.AccountSummaryPeriodController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountSummaryPeriodDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountSummaryPeriodDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountSummaryPeriodDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/AccountSummaryPeriod/delete": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.AccountSummaryPeriodController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountSummaryPeriodDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountSummaryPeriodDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountSummaryPeriodDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/BalanceBucket/getlist": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.BalanceBucketController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/BalanceBucket/getbyid": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.BalanceBucketController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/BalanceBucket/createnew": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.BalanceBucketController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BalanceBucketDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BalanceBucketDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BalanceBucketDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/BalanceBucket/update": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.BalanceBucketController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BalanceBucketDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BalanceBucketDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BalanceBucketDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/BalanceBucket/delete": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.BalanceBucketController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BalanceBucketDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BalanceBucketDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BalanceBucketDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceBucketDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Customer/getlist": {
       "post": {
         "tags": [
-          "1.Masters - 2.Customer"
+          "1.Masters - 2.CustomerController"
         ],
         "requestBody": {
           "content": {
@@ -297,7 +777,7 @@
     "/api/Customer/getbyid": {
       "post": {
         "tags": [
-          "1.Masters - 2.Customer"
+          "1.Masters - 2.CustomerController"
         ],
         "requestBody": {
           "content": {
@@ -345,7 +825,7 @@
     "/api/Customer/createnew": {
       "post": {
         "tags": [
-          "1.Masters - 2.Customer"
+          "1.Masters - 2.CustomerController"
         ],
         "requestBody": {
           "content": {
@@ -393,7 +873,7 @@
     "/api/Customer/update": {
       "post": {
         "tags": [
-          "1.Masters - 2.Customer"
+          "1.Masters - 2.CustomerController"
         ],
         "requestBody": {
           "content": {
@@ -441,7 +921,7 @@
     "/api/Customer/delete": {
       "post": {
         "tags": [
-          "1.Masters - 2.Customer"
+          "1.Masters - 2.CustomerController"
         ],
         "requestBody": {
           "content": {
@@ -485,10 +965,1912 @@
           }
         }
       }
+    },
+    "/api/IdempotencyRecord/getlist": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.IdempotencyRecordController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/IdempotencyRecord/getbyid": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.IdempotencyRecordController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/IdempotencyRecord/createnew": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.IdempotencyRecordController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdempotencyRecordDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdempotencyRecordDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdempotencyRecordDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/IdempotencyRecord/update": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.IdempotencyRecordController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdempotencyRecordDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdempotencyRecordDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdempotencyRecordDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/IdempotencyRecord/delete": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.IdempotencyRecordController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdempotencyRecordDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdempotencyRecordDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdempotencyRecordDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdempotencyRecordDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentAccount/getlist": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentAccountController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentAccount/getbyid": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentAccountController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentAccount/createnew": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentAccountController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentAccountDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentAccountDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentAccountDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentAccount/update": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentAccountController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentAccountDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentAccountDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentAccountDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentAccount/delete": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentAccountController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentAccountDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentAccountDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentAccountDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentAccountDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentDefinition/getlist": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentDefinitionController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentDefinition/getbyid": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentDefinitionController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentDefinition/createnew": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentDefinitionController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentDefinitionDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentDefinitionDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentDefinitionDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentDefinition/update": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentDefinitionController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentDefinitionDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentDefinitionDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentDefinitionDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentDefinition/delete": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentDefinitionController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentDefinitionDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentDefinitionDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentDefinitionDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentType/getlist": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentTypeController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentType/getbyid": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentTypeController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentType/createnew": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentTypeController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentTypeDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentTypeDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentTypeDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentType/update": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentTypeController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentTypeDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentTypeDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentTypeDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InstrumentType/delete": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.InstrumentTypeController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentTypeDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentTypeDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstrumentTypeDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentTypeDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/LedgerTransaction/getlist": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.LedgerTransactionController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/LedgerTransaction/getbyid": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.LedgerTransactionController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/LedgerTransaction/createnew": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.LedgerTransactionController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LedgerTransactionDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LedgerTransactionDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LedgerTransactionDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/LedgerTransaction/update": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.LedgerTransactionController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LedgerTransactionDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LedgerTransactionDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LedgerTransactionDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/LedgerTransaction/delete": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.LedgerTransactionController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LedgerTransactionDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LedgerTransactionDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LedgerTransactionDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerTransactionDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MerchantInstrumentType/getlist": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.MerchantInstrumentTypeController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MerchantInstrumentType/getbyid": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.MerchantInstrumentTypeController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MerchantInstrumentType/createnew": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.MerchantInstrumentTypeController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantInstrumentTypeDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantInstrumentTypeDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantInstrumentTypeDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MerchantInstrumentType/update": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.MerchantInstrumentTypeController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantInstrumentTypeDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantInstrumentTypeDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantInstrumentTypeDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MerchantInstrumentType/delete": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.MerchantInstrumentTypeController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantInstrumentTypeDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantInstrumentTypeDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantInstrumentTypeDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MerchantSummaryPeriod/getlist": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.MerchantSummaryPeriodController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryContentRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MerchantSummaryPeriod/getbyid": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.MerchantSummaryPeriodController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Int64RequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MerchantSummaryPeriod/createnew": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.MerchantSummaryPeriodController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantSummaryPeriodDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantSummaryPeriodDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantSummaryPeriodDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MerchantSummaryPeriod/update": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.MerchantSummaryPeriodController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantSummaryPeriodDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantSummaryPeriodDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantSummaryPeriodDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MerchantSummaryPeriod/delete": {
+      "post": {
+        "tags": [
+          "1.Masters - 2.MerchantSummaryPeriodController"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantSummaryPeriodDtoRequestData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantSummaryPeriodDtoRequestData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantSummaryPeriodDtoRequestData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseData"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "AccountSummaryPeriodDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "instrumentAccountId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "accountingPeriodYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "accountingPeriodMonth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "openingBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalEarnAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalRedeemAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalExpireAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalOtherAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "closingBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "isClosed": {
+            "type": "boolean"
+          },
+          "closedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "closedBy": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountSummaryPeriodDtoRequestData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountSummaryPeriodDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountSummaryPeriodDtoResponseContentData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountSummaryPeriodDto"
+            },
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPage": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountSummaryPeriodDtoResponseData": {
+        "type": "object",
+        "properties": {
+          "returnId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "returnMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/AccountSummaryPeriodDtoResponseContentData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BalanceBucketDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "instrumentAccountId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sequenceNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "originalAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "consumedAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "earnedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expireAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BalanceBucketDtoRequestData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BalanceBucketDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BalanceBucketDtoResponseContentData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BalanceBucketDto"
+            },
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPage": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BalanceBucketDtoResponseData": {
+        "type": "object",
+        "properties": {
+          "returnId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "returnMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/BalanceBucketDtoResponseContentData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BalanceStrategyType": {
+        "enum": [
+          "Undefined",
+          "Reusable",
+          "Bucket",
+          "OneTime",
+          "PartialSingleTime"
+        ],
+        "type": "string"
+      },
       "CustomerDto": {
         "type": "object",
         "properties": {
@@ -628,6 +3010,475 @@
         ],
         "type": "string"
       },
+      "IdempotencyRecordDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "idempotencyRecordStatus": {
+            "$ref": "#/components/schemas/IdempotencyRecordStatus"
+          },
+          "requestHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "requestData": {
+            "type": "string",
+            "nullable": true
+          },
+          "expireAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdempotencyRecordDtoRequestData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdempotencyRecordDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdempotencyRecordDtoResponseContentData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdempotencyRecordDto"
+            },
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPage": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdempotencyRecordDtoResponseData": {
+        "type": "object",
+        "properties": {
+          "returnId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "returnMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/IdempotencyRecordDtoResponseContentData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdempotencyRecordStatus": {
+        "enum": [
+          "Undefined",
+          "Processing",
+          "Completed",
+          "Failed"
+        ],
+        "type": "string"
+      },
+      "InstrumentAccountDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "merchantId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "instrumentDefinitionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "accountNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountName": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "reservedBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "status": {
+            "$ref": "#/components/schemas/InstrumentAccountStatus"
+          },
+          "activatedAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "pinHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinLockedUntilUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstrumentAccountDtoRequestData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstrumentAccountDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstrumentAccountDtoResponseContentData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstrumentAccountDto"
+            },
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPage": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstrumentAccountDtoResponseData": {
+        "type": "object",
+        "properties": {
+          "returnId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "returnMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/InstrumentAccountDtoResponseContentData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstrumentAccountStatus": {
+        "enum": [
+          "Undefined",
+          "Draft",
+          "Active",
+          "Closed",
+          "Locked",
+          "Redeemed",
+          "Expired"
+        ],
+        "type": "string"
+      },
+      "InstrumentDefinitionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "merchantId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "instrumentTypeId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "definitionCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "definitionName": {
+            "type": "string",
+            "nullable": true
+          },
+          "balanceStrategyType": {
+            "$ref": "#/components/schemas/BalanceStrategyType"
+          },
+          "earnConversionRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "earnRoundingMode": {
+            "$ref": "#/components/schemas/RoundingMode"
+          },
+          "earnRoundingFactor": {
+            "type": "number",
+            "format": "double"
+          },
+          "redeemConversionRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "redeemRoundingMode": {
+            "$ref": "#/components/schemas/RoundingMode"
+          },
+          "redeemRoundingFactor": {
+            "type": "number",
+            "format": "double"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "allowTopup": {
+            "type": "boolean"
+          },
+          "allowDebit": {
+            "type": "boolean"
+          },
+          "hasExpiration": {
+            "type": "boolean"
+          },
+          "expireAfterDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maximumBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "singleUseOnly": {
+            "type": "boolean"
+          },
+          "transferable": {
+            "type": "boolean"
+          },
+          "allowNegativeBalance": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstrumentDefinitionDtoRequestData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstrumentDefinitionDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstrumentDefinitionDtoResponseContentData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstrumentDefinitionDto"
+            },
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPage": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstrumentDefinitionDtoResponseData": {
+        "type": "object",
+        "properties": {
+          "returnId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "returnMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/InstrumentDefinitionDtoResponseContentData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstrumentTypeDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "typeCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "defaultAllowTopup": {
+            "type": "boolean"
+          },
+          "defaultAllowDebit": {
+            "type": "boolean"
+          },
+          "defaultHasExpiration": {
+            "type": "boolean"
+          },
+          "defaultExpireAfterDays": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "defaultMaximumBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "defaultSingleUseOnly": {
+            "type": "boolean"
+          },
+          "defaultTransferable": {
+            "type": "boolean"
+          },
+          "defaultAllowNegativeBalance": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstrumentTypeDtoRequestData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstrumentTypeDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstrumentTypeDtoResponseContentData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstrumentTypeDto"
+            },
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPage": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstrumentTypeDtoResponseData": {
+        "type": "object",
+        "properties": {
+          "returnId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "returnMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/InstrumentTypeDtoResponseContentData"
+          }
+        },
+        "additionalProperties": false
+      },
       "Int64RequestData": {
         "type": "object",
         "properties": {
@@ -641,6 +3492,141 @@
           }
         },
         "additionalProperties": false
+      },
+      "LedgerTransactionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "merchantId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "instrumentAccountId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "transactionReferenceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountingPeriodYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "accountingPeriodMonth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "transactionDateAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "transactionType": {
+            "$ref": "#/components/schemas/LedgerTransactionType"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "idempotencyRecordId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "externalReferenceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "branchReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "machineReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "remark": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LedgerTransactionDtoRequestData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LedgerTransactionDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LedgerTransactionDtoResponseContentData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LedgerTransactionDto"
+            },
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPage": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LedgerTransactionDtoResponseData": {
+        "type": "object",
+        "properties": {
+          "returnId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "returnMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/LedgerTransactionDtoResponseContentData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LedgerTransactionType": {
+        "enum": [
+          "Unknown",
+          "Earn",
+          "Redeem",
+          "Expire",
+          "Adjustment",
+          "Migration",
+          "TransferOwnership",
+          "Activation",
+          "Close"
+        ],
+        "type": "string"
       },
       "MerchantDto": {
         "type": "object",
@@ -731,6 +3717,209 @@
         },
         "additionalProperties": false
       },
+      "MerchantInstrumentTypeDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "merchantId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "instrumentTypeId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "isDisabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MerchantInstrumentTypeDtoRequestData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MerchantInstrumentTypeDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MerchantInstrumentTypeDtoResponseContentData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MerchantInstrumentTypeDto"
+            },
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPage": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MerchantInstrumentTypeDtoResponseData": {
+        "type": "object",
+        "properties": {
+          "returnId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "returnMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/MerchantInstrumentTypeDtoResponseContentData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MerchantSummaryPeriodDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "merchantId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "accountingPeriodYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "accountingPeriodMonth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCustomerCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalActiveCustomerCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalAccountCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalActiveAccountCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalOpeningBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalClosingBalance": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalEarnAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalRedeemAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalExpireAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalOtherAmount": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MerchantSummaryPeriodDtoRequestData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MerchantSummaryPeriodDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MerchantSummaryPeriodDtoResponseContentData": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MerchantSummaryPeriodDto"
+            },
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPage": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MerchantSummaryPeriodDtoResponseData": {
+        "type": "object",
+        "properties": {
+          "returnId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "returnMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "$ref": "#/components/schemas/MerchantSummaryPeriodDtoResponseContentData"
+          }
+        },
+        "additionalProperties": false
+      },
       "QueryContent": {
         "type": "object",
         "properties": {
@@ -775,6 +3964,15 @@
           }
         },
         "additionalProperties": false
+      },
+      "RoundingMode": {
+        "enum": [
+          "None",
+          "Floor",
+          "Ceiling",
+          "Round"
+        ],
+        "type": "string"
       },
       "SortContent": {
         "required": [

@@ -12,7 +12,9 @@ using Sidata.Abstractions.WebApi.BaseControllers;
 using Sidata.Abstractions.WebApi.Interfaces;
 using Sidata.SLIP2.Data.Context;
 using Sidata.SLIP2.Data.DTOs.Masters;
+using Sidata.SLIP2.Data.DTOs.Periods;
 using Sidata.SLIP2.Data.Masters;
+using Sidata.SLIP2.Data.Periods;
 
 namespace Sidata.SLIP2.WebApi.Controllers
 {

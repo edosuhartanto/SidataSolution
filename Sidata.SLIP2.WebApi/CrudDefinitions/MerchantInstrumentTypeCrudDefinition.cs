@@ -5,6 +5,8 @@
 // ******************************************************
 using Sidata.Abstractions.WebApi.Enums;
 using Sidata.Abstractions.WebApi.Services;
+using Sidata.SLIP2.Data.Definitions;
+using Sidata.SLIP2.Data.DTOs.Definitions;
 using Sidata.SLIP2.Data.DTOs.Masters;
 using Sidata.SLIP2.Data.Masters;
 using System.Linq.Expressions;
@@ -17,11 +19,11 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
         public override Func<MerchantInstrumentTypeDto, Expression<Func<MerchantInstrumentType, bool>>>
             InsertDuplicateChecker =>
                 (dto) => c => c.MerchantId == dto.MerchantId &&
-                              c.InstrumentTypeId = dto.InstrumentTypeId;
+                              c.InstrumentTypeId == dto.InstrumentTypeId;
         public override Func<MerchantInstrumentTypeDto, Expression<Func<MerchantInstrumentType, bool>>>
             UpdateDuplicateChecker =>
                 (dto) => c => c.MerchantId == dto.MerchantId &&
-                              c.InstrumentTypeId = dto.InstrumentTypeId &&
+                              c.InstrumentTypeId == dto.InstrumentTypeId &&
                               c.Id != dto.Id;
         public override Action<MerchantInstrumentTypeDto, MerchantInstrumentType, CopyIdStatus>
             UpdateEntityFromDto =>

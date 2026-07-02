@@ -11,6 +11,8 @@ using Sidata.Abstractions.WebApi.Attributes;
 using Sidata.Abstractions.WebApi.BaseControllers;
 using Sidata.Abstractions.WebApi.Interfaces;
 using Sidata.SLIP2.Data.Context;
+using Sidata.SLIP2.Data.Definitions;
+using Sidata.SLIP2.Data.DTOs.Definitions;
 using Sidata.SLIP2.Data.DTOs.Masters;
 using Sidata.SLIP2.Data.Masters;
 
