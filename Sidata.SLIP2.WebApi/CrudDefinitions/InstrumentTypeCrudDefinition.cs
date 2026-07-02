@@ -25,7 +25,6 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
             UpdateEntityFromDto =>
                 (dto, InstrumentType, copyid) =>
                 {
-                    InstrumentType.Id = dto.Id;
                     InstrumentType.Description = dto.Description;
                     InstrumentType.DefaultAllowTopup = dto.DefaultAllowTopup;
                     InstrumentType.DefaultAllowDebit = dto.DefaultAllowDebit;
@@ -62,7 +61,6 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
                 (cust) => new()
                 {
                     Id = cust.Id,
-                    MerchantId = cust.MerchantId,
                     TypeCode = cust.TypeCode,
                     Description = cust.Description,
                     DefaultAllowTopup = cust.DefaultAllowTopup,
