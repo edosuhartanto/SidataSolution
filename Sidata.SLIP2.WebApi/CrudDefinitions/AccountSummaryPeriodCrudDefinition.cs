@@ -16,20 +16,19 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
     {
         public override Func<AccountSummaryPeriodDto, Expression<Func<AccountSummaryPeriod, bool>>>
             InsertDuplicateChecker =>
-                (dto) => c => c.AccountingPeriodYear == dto.AccountingPeriodYear && 
+                (dto) => c => c.InstrumentAccountId = dto.InstrumentAccountId &&
+                              c.AccountingPeriodYear == dto.AccountingPeriodYear && 
                               c.AccountingPeriodMonth == dto.AccountingPeriodMonth;
         public override Func<AccountSummaryPeriodDto, Expression<Func<AccountSummaryPeriod, bool>>>
             UpdateDuplicateChecker =>
-                (dto) => c => c.AccountingPeriodYear == dto.AccountingPeriodYear &&
+                (dto) => c => c.InstrumentAccountId = dto.InstrumentAccountId &&
+                              c.AccountingPeriodYear == dto.AccountingPeriodYear &&
                               c.AccountingPeriodMonth == dto.AccountingPeriodMonth &&
                               c.Id != dto.Id;
         public override Action<AccountSummaryPeriodDto, AccountSummaryPeriod, CopyIdStatus>
             UpdateEntityFromDto =>
                 (dto, AccountSummaryPeriod, copyid) =>
                 {
-                    AccountSummaryPeriod.InstrumentAccountId = dto.InstrumentAccountId;
-                    AccountSummaryPeriod.AccountingPeriodYear = dto.AccountingPeriodYear;
-                    AccountSummaryPeriod.AccountingPeriodMonth = dto.AccountingPeriodMonth;
                     AccountSummaryPeriod.OpeningBalance = dto.OpeningBalance;
                     AccountSummaryPeriod.TotalEarnAmount = dto.TotalEarnAmount;
                     AccountSummaryPeriod.TotalRedeemAmount = dto.TotalRedeemAmount;
@@ -42,6 +41,9 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
                     
                     if (copyid == CopyIdStatus.CopyIt)
                     {
+                        AccountSummaryPeriod.InstrumentAccountId = dto.InstrumentAccountId;
+                        AccountSummaryPeriod.AccountingPeriodYear = dto.AccountingPeriodYear;
+                        AccountSummaryPeriod.AccountingPeriodMonth = dto.AccountingPeriodMonth;
                         AccountSummaryPeriod.Id = dto.Id;
                     }
                 };
