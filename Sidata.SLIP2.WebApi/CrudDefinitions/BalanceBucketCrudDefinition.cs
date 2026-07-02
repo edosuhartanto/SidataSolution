@@ -16,17 +16,18 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
     {
         public override Func<BalanceBucketDto, Expression<Func<BalanceBucket, bool>>>
             InsertDuplicateChecker =>
-                (dto) => c => c.InstrumentAccountId == dto.InstrumentAccountId;
+                (dto) => c => c.InstrumentAccountId == dto.InstrumentAccountId &&
+                              c.SequenceNumber = dto.SequenceNumber;
         public override Func<BalanceBucketDto, Expression<Func<BalanceBucket, bool>>>
             UpdateDuplicateChecker =>
                 (dto) => c => c.InstrumentAccountId == dto.InstrumentAccountId &&
-                               c.Id != dto.Id;
+                              c.SequenceNumber = dto.SequenceNumber &&
+                              c.Id != dto.Id;
         public override Action<BalanceBucketDto, BalanceBucket, CopyIdStatus>
             UpdateEntityFromDto =>
                 (dto, BalanceBucket, copyid) =>
                 {
                     BalanceBucket.Id = dto.Id;
-                    BalanceBucket.SequenceNumber = dto.SequenceNumber;
                     BalanceBucket.OriginalAmount = dto.OriginalAmount;
                     BalanceBucket.ConsumedAmount = dto.ConsumedAmount;
                     BalanceBucket.EarnedAtUtc = dto.EarnedAtUtc;
@@ -35,6 +36,7 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
                     if (copyid == CopyIdStatus.CopyIt)
                     {
                         BalanceBucket.InstrumentAccountId = dto.InstrumentAccountId;
+                        BalanceBucket.SequenceNumber = dto.SequenceNumber;
                         BalanceBucket.Id = dto.Id;
                     }
                 };

@@ -53,24 +53,5 @@ namespace Sidata.SLIP2.Data.DTOs.Transactions
         /// </summary>
         public DateTime ExpireAtUtc { get; set; } = default!;
         #endregion
-
-        #region Owner Relationships
-        /// <summary>
-        /// instrument account object which own this bucket
-        /// </summary>
-        public InstrumentAccount InstrumentAccount { get; set; } = default!;
-        #endregion
-
-        #region Functional Properties
-        /// <summary>
-        /// flag that defined if this bucket is already expired or not
-        /// </summary>
-        public bool IsExpired => ExpireAtUtc <= DateTime.UtcNow;
-
-        /// <summary>
-        /// the remaining amount of this bucket
-        /// </summary>
-        public decimal RemainingAmount { get => OriginalAmount - ConsumedAmount; }
-        #endregion
     }
 }
