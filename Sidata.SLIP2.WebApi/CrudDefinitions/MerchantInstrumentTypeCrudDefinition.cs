@@ -16,11 +16,13 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
     {
         public override Func<MerchantInstrumentTypeDto, Expression<Func<MerchantInstrumentType, bool>>>
             InsertDuplicateChecker =>
-                (dto) => c => c.MerchantId == dto.MerchantId;
+                (dto) => c => c.MerchantId == dto.MerchantId &&
+                              c.InstrumentTypeId = dto.InstrumentTypeId;
         public override Func<MerchantInstrumentTypeDto, Expression<Func<MerchantInstrumentType, bool>>>
             UpdateDuplicateChecker =>
                 (dto) => c => c.MerchantId == dto.MerchantId &&
-                               c.Id != dto.Id;
+                              c.InstrumentTypeId = dto.InstrumentTypeId &&
+                              c.Id != dto.Id;
         public override Action<MerchantInstrumentTypeDto, MerchantInstrumentType, CopyIdStatus>
             UpdateEntityFromDto =>
                 (dto, MerchantInstrumentType, copyid) =>
