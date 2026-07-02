@@ -36,7 +36,7 @@ namespace Sidata.SLIP2.Data.Context.Configurations.Definitions
             builder.ConfigureBooleanProperty(x => x.DefaultAllowNegativeBalance);
 
             // unique key
-            builder.ConfigureIndexes(x => x.TypeCode, UniqueMode.No);
+            builder.ConfigureIndexes(x => x.TypeCode, UniqueMode.Yes);
 
             // added aggregation one to many relationship
             // CAUTION: do use lazy load for aggregation ... can slowing query performance
