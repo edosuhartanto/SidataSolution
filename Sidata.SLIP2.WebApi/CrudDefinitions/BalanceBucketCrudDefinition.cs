@@ -27,12 +27,10 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
             UpdateEntityFromDto =>
                 (dto, BalanceBucket, copyid) =>
                 {
-                    BalanceBucket.Id = dto.Id;
                     BalanceBucket.OriginalAmount = dto.OriginalAmount;
                     BalanceBucket.ConsumedAmount = dto.ConsumedAmount;
                     BalanceBucket.EarnedAtUtc = dto.EarnedAtUtc;
                     BalanceBucket.ExpireAtUtc = dto.ExpireAtUtc;
-                    BalanceBucket.InstrumentAccount = dto.InstrumentAccount;
                     if (copyid == CopyIdStatus.CopyIt)
                     {
                         BalanceBucket.InstrumentAccountId = dto.InstrumentAccountId;
@@ -51,21 +49,18 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
                     ConsumedAmount = dto.ConsumedAmount,
                     EarnedAtUtc = dto.EarnedAtUtc,
                     ExpireAtUtc = dto.ExpireAtUtc,
-                    InstrumentAccount = dto.InstrumentAccount
                 };
         public override Expression<Func<BalanceBucket, BalanceBucketDto>>
             LinqExpressionEntityToDto =>
                 (cust) => new()
                 {
                     Id = cust.Id,
-                    MerchantId = cust.MerchantId,
                     InstrumentAccountId = cust.InstrumentAccountId,
                     SequenceNumber = cust.SequenceNumber,
                     OriginalAmount = cust.OriginalAmount,
                     ConsumedAmount = cust.ConsumedAmount,
                     EarnedAtUtc = cust.EarnedAtUtc,
                     ExpireAtUtc = cust.ExpireAtUtc,
-                    InstrumentAccount = cust.InstrumentAccount
                 };
 
 
