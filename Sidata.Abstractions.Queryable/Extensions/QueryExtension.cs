@@ -4,6 +4,7 @@
 // build by Edo Suhartanto 
 // ******************************************************
 
+using Sidata.Abstractions.Exceptions;
 using Sidata.Abstractions.Queryable.Enums;
 using Sidata.Abstractions.Queryable.Interfaces;
 using Sidata.Abstractions.Queryable.Models;
@@ -215,7 +216,7 @@ namespace Sidata.Abstractions.Queryable.Extensions
                 // not null, means it is recognize as valid operator
                 if (result != null) return result;
             }
-            throw new NotSupportedException(
+            throw new EntityPropertyBuilderException(
                   $"Operator {filter.Operator} tidak didukung");
         }
 
@@ -346,7 +347,7 @@ namespace Sidata.Abstractions.Queryable.Extensions
                     BindingFlags.Public |
                     BindingFlags.Instance |
                     BindingFlags.IgnoreCase);
-            if (p is null) throw new InvalidOperationException(
+            if (p is null) throw new EntityPropertyBuilderException(
                     $"Property '{content.PropertyName}' tidak ditemukan pada entity '{typeof(T).Name}'.");
         }
 

@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!--
+      Path proyek SwaggerToHttp relatif terhadap file .csproj ini.
+      Contoh di bawah: solution root ada satu level di atas YourWebApi.
+    -->
+    <SwaggerToHttpProject>$(MSBuildThisFileDirectory)..\Sidata.Tools.SwaggerJsonToWebApiHttpConverter\Sidata.Tools.SwaggerJsonToWebApiHttpConverter.csproj</SwaggerToHttpProject>
+
+    <!-- Output swagger.json dari Swashbuckle CLI -->
+    <SwaggerJsonOutput>$(MSBuildThisFileDirectory)swagger.json</SwaggerJsonOutput>
+
+    <!-- Output .http — di root proyek (selalu mudah ditemukan) -->
+    <HttpFileOutput>$(MSBuildThisFileDirectory)$(AssemblyName).http</HttpFileOutput>
+
+    <!-- Nama dokumen Swagger (default "v1", sesuaikan jika berbeda) -->
+    <SwaggerDocName>v1</SwaggerDocName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.28">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sidata.Abstractions.WebApi.ResponseRequest\Sidata.Abstractions.WebApi.ResponseRequest.csproj" />
+    <ProjectReference Include="..\Sidata.Abstractions.WebApi\Sidata.Abstractions.WebApi.csproj" />
+    <ProjectReference Include="..\Sidata.Auth.Data.Context\Sidata.Auth.Data.Context.csproj" />
+    <ProjectReference Include="..\Sidata.Auth.Data\Sidata.Auth.Data.csproj" />
+  </ItemGroup>
+
+  <!-- ───────────────────────────────────────────────────────────────── -->
+  <!-- Target: generate swagger.json lalu konversi ke .http             -->
+  <!-- ───────────────────────────────────────────────────────────────── -->
+  <Target Name="GenerateSwaggerAndHttpFile" AfterTargets="Build">
+
+    <!-- Langkah 1: Generate swagger.json via Swashbuckle CLI -->
+    <Exec Command="dotnet swagger tofile --output &quot;$(SwaggerJsonOutput)&quot; &quot;$(TargetDir)$(AssemblyName).dll&quot; $(SwaggerDocName)" WorkingDirectory="$(MSBuildThisFileDirectory)" ContinueOnError="true" ConsoleToMSBuild="false" />
+
+    <!-- Langkah 2: Konversi swagger.json → swagger.http -->
+    <Exec Condition="Exists('$(SwaggerJsonOutput)')" Command="dotnet run --project &quot;$(SwaggerToHttpProject)&quot; --configuration Release --no-launch-profile -- &quot;$(SwaggerJsonOutput)&quot; &quot;$(HttpFileOutput)&quot;" WorkingDirectory="$(MSBuildThisFileDirectory)" ContinueOnError="true" ConsoleToMSBuild="false" />
+
+    <Message Condition="Exists('$(HttpFileOutput)')" Text="✔ $(AssemblyName).http berhasil dibuat: $(HttpFileOutput)" Importance="High" />
+
+    <Message Condition="!Exists('$(HttpFileOutput)')" Text="⚠ $(AssemblyName).http tidak dibuat (swagger.json mungkin belum ada)." Importance="Normal" />
+
+  </Target>
+</Project>

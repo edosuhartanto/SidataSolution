@@ -25,4 +25,8 @@
     <Product>Sidata Solution Abstraction</Product>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sidata.Abstractions\Sidata.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>

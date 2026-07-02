@@ -5,7 +5,6 @@
 // build by Edo Suhartanto 
 // ******************************************************
 
-using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Sidata.Abstractions.Queryable.SqlServer.Extensions;

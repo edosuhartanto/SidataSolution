@@ -7,6 +7,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using Sidata.Abstractions.DataContext.Services;
+using Sidata.Abstractions.Exceptions;
 using Sidata.Abstractions.Interfaces;
 using Sidata.Abstractions.Queryable.Extensions;
 using Sidata.Abstractions.Queryable.Models;
@@ -35,8 +36,9 @@ namespace Sidata.Abstractions.DataContext.Extensions
 
         /// <summary>
         /// modul to check if entity is double.
-        /// double criteria is push by caller.
+        /// the criteria of duplication is defined by caller through duplicatechecker expression
         /// </summary>
+        /// <exception cref="EntityDuplicateException"></exception>
         public static async Task ThrowIfDuplicateEntity<TEntity, TData>(
                 this IQueryable<TEntity> dbentity,
                 TData request,
@@ -49,11 +51,12 @@ namespace Sidata.Abstractions.DataContext.Extensions
             bool exists = await dbentity.AnyAsync(duplicateExpression);
             if (exists)
             {
+                // get the property name and its value from expression
                 var (PropertyName, Value) =
                     ExpressionExtractor.ExtractMemberInfo(duplicateExpression);
-                throw new ArgumentException(
-                    $"Entity with {PropertyName}='{Value}' already exists",
-                    nameof(request));
+                // and throw exception with that information
+                throw new EntityDuplicateException(
+                    $"Entity dengan {PropertyName}={Value} sudah ada dalam tabel {typeof(TEntity).Name}");
             }
         }
 
@@ -63,9 +66,6 @@ namespace Sidata.Abstractions.DataContext.Extensions
         /// to return TEntity ... send 'x => x' to selectproperties
         /// or used the second overload
         /// </summary>
-        /// <exception cref="NullReferenceException">
-        /// jika Id tidak ditemukan, akan dihasilkan exception ini
-        /// </exception>
         public static async Task<TData> LoadEntityByIdAsync<TEntity, TData>(
             this IQueryable<TEntity> queryentity,
             Expression<Func<TEntity, TData>> selectproperties,
@@ -74,14 +74,14 @@ namespace Sidata.Abstractions.DataContext.Extensions
         where TEntity : class, IMasterClass
         where TData : class
         {
-            if (allowtracking) queryentity = queryentity.AsNoTracking();
+            if (!allowtracking) queryentity = queryentity.AsNoTracking();
             // have selector for only some properties you want to?
             // default you select it all and return TEntity
             return await queryentity.Where(x => x.Id == id)
                                     .Select(selectproperties)
                                     .FirstOrDefaultAsync()
-                    ?? throw new NullReferenceException(
-                        $"{typeof(TEntity).Name} Id={id} Not Found");
+                    ?? throw new EntityNotFoundException(
+                        $"Entity {typeof(TEntity).Name} dengan Id={id} tidak ditemukan");
         }
 
         public static async Task<IEnumerable<TData>> LoadEntityByIdAsync<TEntity, TData>(
@@ -92,15 +92,15 @@ namespace Sidata.Abstractions.DataContext.Extensions
         where TEntity : class, IMasterClass
         where TData : class
         {
-            if (allowtracking) queryentity = queryentity.AsNoTracking();
+            if (!allowtracking) queryentity = queryentity.AsNoTracking();
             // have selector for only some properties you want to?
             // default you select it all and return TEntity
             var r = await queryentity.Where(x => ids.Contains(x.Id))
                                     .Select(selectproperties)
                                     .ToListAsync();
             if ((r is null) || (r.Count == 0))
-                throw new NullReferenceException(
-                        $"{typeof(TEntity).Name} Id={ids} Not Found");
+                throw new EntityNotFoundException(
+                        $"Daftar Id berikut:[{string.Join(",", ids)}] tidak ditemukan dalam tabel {typeof(TEntity).Name}");
             return r;
         }
 

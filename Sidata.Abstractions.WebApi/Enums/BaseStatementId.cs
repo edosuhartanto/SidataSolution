@@ -17,6 +17,7 @@ namespace Sidata.Abstractions.WebApi.Enums
         Update = 2,
         Delete = 3,
         GetList = 4,
-        GetById = 5
+        GetById = 5,
+        AccessToken = 6
     }
 }

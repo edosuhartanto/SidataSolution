@@ -262,10 +262,9 @@ namespace Sidata.Abstractions.WebApi.ResponseRequest.Extensions
             request.ThrowIfContentNull();
             if (request.Contents.Count > 1)
                 throw new ArgumentException(
-                    "Jumlah data yang dikirim harus tepat satu",
+                    "Jumlah data yang dikirim dalam request data hanya boleh satu",
                     nameof(request));
         }
-
 
     }
 }

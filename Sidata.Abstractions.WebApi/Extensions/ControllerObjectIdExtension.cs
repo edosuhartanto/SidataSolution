@@ -12,13 +12,20 @@ namespace Sidata.Abstractions.WebApi.Extensions
     public static class ControllerObjectIdExtension
     {
         /// <summary>
-        /// memabngun kode error utk identifikasi object yang menyebabkan kesalahan timbul.
+        /// memabngun kode error utk identifikasi object yang menyebabkan kesalahan timbul.<br/>
+        /// scopeid = code for project,
+        /// id = code for controller,
+        /// sequencenumber = code for endpoint
         /// </summary>
         public static int Builder(int id, BaseStatementId sequencenumber)
         {
-            return (id * 100) + (int)sequencenumber;
+            return Builder(id, (int)sequencenumber);
         }
 
+        public static int Builder(int id, int sequencenumber)
+        {
+            return (id * 100) + sequencenumber;
+        }
 
     }
 }

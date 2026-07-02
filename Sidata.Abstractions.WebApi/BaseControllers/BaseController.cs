@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sidata.Abstractions.BaseClasses;
 using Sidata.Abstractions.DataContext.Extensions;
+using Sidata.Abstractions.Exceptions;
 using Sidata.Abstractions.Interfaces;
 using Sidata.Abstractions.Queryable.Extensions;
 using Sidata.Abstractions.Queryable.Models;
@@ -23,19 +24,30 @@ using System.Reflection;
 namespace Sidata.Abstractions.WebApi.BaseControllers
 {
     /// <summary>
-    /// base controller for any Entity, and any DbContext.
+    /// base controller for any Entity, and any DbContext.<br/>
     /// controller utama harus menurunkan dari base controller ini agar 
     /// entity dapat diakses dari/ke database.
     /// Dan entity harus turunan dari PersistentObject.
-    /// Controller turunan harus memiliki Attribute "[ControllerObjectId(no)]".
+    /// Controller turunan harus memiliki Attribute "[ControllerObjectId(no)]".<br/>
     /// Dan harus disediakan ICrudDefinition sesuai tipe Entity dan Dto
-    /// yang didaftarkan secara singleton.
+    /// yang didaftarkan secara singleton. (CrudDefinition adalah class yang melakukan
+    /// mapping dari Entity ke Dto dan sebaliknya, sekaligus mencatat cara mendeteksi 
+    /// duplikasi data untuk insert dan update)
     /// </summary>
     /// <remarks>
+    /// Catatan:
+    /// <list type="number">
+    /// <item>
     /// Class ini dibuat sebagai Abstract, agar controller ini tidak bisa
     /// digunakan secara langsung.
+    /// </item>
+    /// <item>
+    /// Jika membutuhkan implementasi endpoint utk CRUD standard, 
+    /// telah disediakan class <seealso cref="WebApiCrudControllerBase{TDbContext, TEntity, TDto}"/>
+    /// </item>
+    /// </list>
     /// </remarks>
-    public abstract class WebApiCrudControllerBase<TDbContext, TEntity, TDto>(
+    public abstract class BaseController<TDbContext, TEntity, TDto>(
                           IDbContextFactory<TDbContext> dbfactory,
                           ICrudDefinition<TEntity, TDto> cruddefinition)
         : ControllerBase
@@ -43,8 +55,8 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
     where TEntity : PersistentObject
     where TDto : class, IMasterClass
     {
-        private readonly IDbContextFactory<TDbContext> _dbfactory = dbfactory;
-        private readonly ICrudDefinition<TEntity, TDto> _cruddefinition = cruddefinition;  
+        protected readonly IDbContextFactory<TDbContext> _dbfactory = dbfactory;
+        protected readonly ICrudDefinition<TEntity, TDto> _cruddefinition = cruddefinition;  
 
         #region CONTROLLER OBJECTID
         private int? _tmpobjectid;
@@ -52,29 +64,21 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
             GetType()  // ✅ GetType() = tipe controller turunan yang sebenarnya
                 .GetCustomAttribute<ControllerObjectIdAttribute>()
                 ?.Id
-                ?? throw new InvalidOperationException(
+                ?? throw new ControllerObjectIdNotDeclaredException(
                     $"{GetType().Name} harus deklarasi [ControllerObjectId(id)]");
         #endregion
 
         #region PROTECTED CORE ENGINE
         /// <summary>
-        /// delete command, TData adalah Dto yang diturunkan dari IMasterClass
-        /// yang berisi Id. 
-        /// Jika berhasil maka ResponseData Id akan berisi 0,
-        /// dan entity yang berhasil dihapus akan dikirimkan balik.
+        /// delete command, Request data bertipe long, yang adalah Id dari entity yang ingin dihapus.
+        /// Jika berhasil delete maka ResponseData akan berisi TDto 
+        /// sbg entity yang berhasil dihapus.
         /// </summary>
-        /// <typeparam name="TData">
-        /// Type data dari Dto yang akan dihapus. Dto ini hrus diturunkan dari
-        /// IMasterClass yang berisi property Id bertype long
-        /// </typeparam>
-        /// <param name="copytoDtoAsResult">
-        /// Expression untuk memindahkan data dari entity ke 
-        /// dto yg menjadi hasil response. 
-        /// </param>
-        /// <param name="request">Dto yang ingin dihapus</param>
         /// <returns></returns>
         protected virtual async Task<ActionResult<ResponseData<TDto>>>
-                        EntityDeleteAsync(RequestData<TDto> request)
+                        EntityDeleteAsync(
+                            RequestData<long> request,
+                            Action<TEntity>? beforedelete = null)
         {
             using var db = _dbfactory.CreateDbContext();
             try
@@ -82,8 +86,11 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
                 request.ThrowIfContentNullOrMultipleItem();
 
                 var dbentity = db.Set<TEntity>();
-                var currententity = 
-                    await dbentity.LoadEntityByIdAsync(request.Contents[0].Id);
+                var id = request.Contents[0];
+                var currententity = await dbentity.LoadEntityByIdAsync(id);
+
+                beforedelete?.Invoke(currententity);
+
                 dbentity.Remove(currententity); 
                 // softdelete is happened inside TDbContext
                 await db.SaveChangesAsync();
@@ -103,10 +110,19 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
             }
         }
 
+        /// <summary>
+        /// fungsi mengupdate entity, Request data berisi TDto sbg data yang ingin diupdate,
+        /// copyidstatus enenrtukan apakah unique key dari entity akan diedit juga atau tidak,
+        /// namun krn unique key biasanya tidak boleh diubah, maka default diset DonotCopy<br/>
+        /// beforeupdate adalah action yang dijalankan sebelum entity diupdate oleh dto<br/> 
+        /// transformentitybeforesafe adalah action yg dijalankan sebelum entity disimpan ke database
+        /// </summary>
         protected virtual async Task<ActionResult<ResponseData<TDto>>> 
                         EntityUpdateAsync(
                             RequestData<TDto> request,
-                            CopyIdStatus copyidstatus = CopyIdStatus.DonotCopy)
+                            CopyIdStatus copyidstatus = CopyIdStatus.DonotCopy,
+                            Action<TDto, TEntity>? beforeupdate = null,
+                            Action<TEntity>? transformentitybeforesafe = null)
         {
             using var db = _dbfactory.CreateDbContext();
             try
@@ -122,11 +138,15 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
                 var currententity = 
                     await dbentity.LoadEntityByIdAsync(requesteddata.Id);
 
+                beforeupdate?.Invoke(requesteddata, currententity);
+
                 _cruddefinition.UpdateEntityFromDto.Invoke(
                     requesteddata, 
                     currententity, 
                     copyidstatus);
-                
+
+                transformentitybeforesafe?.Invoke(currententity);
+
                 dbentity.Add(currententity);
                 await db.SaveChangesAsync();
 
@@ -142,7 +162,9 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
         }
 
         protected virtual async Task<ActionResult<ResponseData<TDto>>>
-            EntityCreateAsync(RequestData<TDto> request)
+            EntityCreateAsync(RequestData<TDto> request, 
+                              Action<TDto>? beforecreate = null,
+                              Action<TEntity>? transformentitybeforesafe = null)
         {
             using var db = _dbfactory.CreateDbContext();
 
@@ -157,7 +179,12 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
                             dto, 
                             _cruddefinition.InsertDuplicateChecker);
 
+                beforecreate?.Invoke(dto);
+
                 var entity = _cruddefinition.CopyDtoToEntity(dto);
+                
+                transformentitybeforesafe?.Invoke(entity);
+
                 dbentity.Add(entity);
                 await db.SaveChangesAsync();
 
@@ -250,58 +277,6 @@ namespace Sidata.Abstractions.WebApi.BaseControllers
                         ControllerObjectIdExtension.Builder(
                             ControllerObjectId, BaseStatementId.GetList)));
             }
-        }
-        #endregion
-
-        #region PUBLIC ENDPOINTS
-        //==================================================
-        // GET LIST
-        //==================================================
-        [HttpPost("getlist")]
-        public virtual async Task<ActionResult<ResponseData<TDto>>>
-                        GetList(RequestData<QueryContent>? request = null)
-        {
-            return await BuildListAsync(request);
-        }
-
-        //==================================================
-        // GET BY ID
-        //==================================================
-        [HttpPost("getbyid")]
-        public virtual async Task<ActionResult<ResponseData<TDto>>>
-            GetById(RequestData<long> request)
-        {
-            return await BuildByIdAsync(request);
-        }
-
-        //==================================================
-        // CREATE
-        //==================================================
-        [HttpPost("createnew")]
-        public virtual async Task<ActionResult<ResponseData<TDto>>>
-            CreateNew(RequestData<TDto> request)
-        {
-            return await EntityCreateAsync(request);
-        }
-
-        //==================================================
-        // UPDATE
-        //==================================================
-        [HttpPost("update")]
-        public virtual async Task<ActionResult<ResponseData<TDto>>> Update(
-            RequestData<TDto> request)
-        {
-            return await EntityUpdateAsync(request);
-        }
-
-        //==================================================
-        // DELETE (SOFT DELETE)
-        //==================================================
-        [HttpPost("delete")]
-        public virtual async Task<ActionResult<ResponseData<TDto>>> Delete(
-            RequestData<TDto> request)
-        {
-            return await EntityDeleteAsync(request);
         }
         #endregion
 
