@@ -89,18 +89,5 @@ namespace Sidata.SLIP2.Data.DTOs.Transactions
         /// </summary>
         public string? Remark { get; set; }
         #endregion
-
-        #region Relationships
-        /// <summary>
-        /// Instrument Account who own this ledger
-        /// </summary>
-        public InstrumentAccount InstrumentAccount { get; set; } = default!;
-
-        /// <summary>
-        /// Merchant who own this ledger
-        /// </summary>
-        public Merchant Merchant { get; set; } = default!;
-
-        #endregion
     }
 }

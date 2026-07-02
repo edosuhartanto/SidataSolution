@@ -16,17 +16,17 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
     {
         public override Func<LedgerTransactionDto, Expression<Func<LedgerTransaction, bool>>>
             InsertDuplicateChecker =>
-                (dto) => c => c.MerchantId == dto.MerchantId;
+                (dto) => false;
         public override Func<LedgerTransactionDto, Expression<Func<LedgerTransaction, bool>>>
             UpdateDuplicateChecker =>
-                (dto) => c => c.MerchantId == dto.MerchantId &&
-                               c.Id != dto.Id;
+                (dto) => c => c.Id != dto.Id;
         public override Action<LedgerTransactionDto, LedgerTransaction, CopyIdStatus>
             UpdateEntityFromDto =>
                 (dto, LedgerTransaction, copyid) =>
                 {
-                    LedgerTransaction.Id = dto.Id;
+                    LedgerTransaction.MerchantId = dto.MerchantId;
                     LedgerTransaction.InstrumentAccountId = dto.InstrumentAccountId;
+                    LedgerTransaction.TransactionReferenceNumber = dto.TransactionReferenceNumber;
                     LedgerTransaction.AccountingPeriodYear = dto.AccountingPeriodYear;
                     LedgerTransaction.AccountingPeriodMonth = dto.AccountingPeriodMonth;
                     LedgerTransaction.TransactionDateAtUtc = dto.TransactionDateAtUtc;
@@ -37,12 +37,8 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
                     LedgerTransaction.BranchReference = dto.BranchReference;
                     LedgerTransaction.MachineReference = dto.MachineReference;
                     LedgerTransaction.Remark = dto.Remark;
-                    LedgerTransaction.InstrumentAccount = dto.InstrumentAccount;
-                    LedgerTransaction.Merchant = dto.Merchant;
                     if (copyid == CopyIdStatus.CopyIt)
                     {
-                        LedgerTransaction.MerchantId = dto.MerchantId;
-                        LedgerTransaction.TransactionReferenceNumber = dto.TransactionReferenceNumber;
                         LedgerTransaction.Id = dto.Id;
                     }
                 };
@@ -63,16 +59,13 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
                     ExternalReferenceNumber = dto.ExternalReferenceNumber,
                     BranchReference = dto.BranchReference,
                     MachineReference = dto.MachineReference,
-                    Remark = dto.Remark,
-                    InstrumentAccount = dto.InstrumentAccount,
-                    Merchant = dto.Merchant
+                    Remark = dto.Remark
                 };
         public override Expression<Func<LedgerTransaction, LedgerTransactionDto>>
             LinqExpressionEntityToDto =>
                 (cust) => new()
                 {
                     Id = cust.Id,
-                    MerchantId = cust.MerchantId,
                     MerchantId = cust.MerchantId,
                     InstrumentAccountId = cust.InstrumentAccountId,
                     TransactionReferenceNumber = cust.TransactionReferenceNumber,
@@ -85,9 +78,7 @@ namespace Sidata.SLIP2.WebApi.CrudDefinitions
                     ExternalReferenceNumber = cust.ExternalReferenceNumber,
                     BranchReference = cust.BranchReference,
                     MachineReference = cust.MachineReference,
-                    Remark = cust.Remark,
-                    InstrumentAccount = cust.InstrumentAccount,
-                    Merchant = cust.Merchant
+                    Remark = cust.Remark
                 };
 
 
